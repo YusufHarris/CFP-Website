@@ -1,0 +1,65 @@
+/* The Pemba Map */
+#map {
+    height: 300px;
+}
+
+/* Beneficiary Type Dropdown menu */
+#benSelect select {
+    font: 18px sans-serif;
+    background: #666;
+    color: #fff;
+    /* Hide the dropdown arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Round the border */
+    border:1px transparent;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    /* Set the margin */
+    text-align: center;
+    padding: 8px;
+    cursor: pointer;
+}
+
+/* Set the Sector colors */
+.Agriculture { fill: #f60; }
+.Energy { fill: #c07; }
+.Forestry { fill: #8c0; }
+.Water { fill: #0ac; }
+.Total { fill: #999; }
+
+/* The Sector Beneficiary Pie Chart*/
+#sectorPie text {
+  font: 14px sans-serif;
+  font-weight: bold;
+  fill: #fff;
+  text-anchor: middle;
+}
+
+/* The Beneficiary Bar Chart*/
+#benBarTitle {
+  font: 22px sans-serif;
+  font-weight: bold;
+  fill: #333;
+}
+
+/* Final Beneficiaries Tree Diagram */
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 3px;
+}
+.node text {
+  font: 12px sans-serif;
+}
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
+.benTreeOverlay {
+    background-color: #EEE;
+}
