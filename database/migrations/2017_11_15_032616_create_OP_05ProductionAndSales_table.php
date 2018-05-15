@@ -22,6 +22,7 @@ class CreateOP05ProductionAndSalesTable extends Migration {
 			$table->date('monthProduction')->nullable()->default('0000-00-00');
 			$table->smallInteger('producedCount')->nullable();
 			$table->smallInteger('soldCount')->nullable();
+			$table->text('stoveType')->nullable();
 		});
 	}
 
