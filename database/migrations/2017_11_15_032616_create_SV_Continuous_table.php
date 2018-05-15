@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateSVSurveysTable extends Migration {
+class CreateSVContinuousTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -218,7 +218,7 @@ class CreateSVSurveysTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::connection('mysql2')->drop('SV_Surveys');
+		Schema::connection('mysql2')->drop('SV_Continuous');
 	}
 
 }
