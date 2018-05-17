@@ -10,8 +10,9 @@ class GovLinksController extends Controller
 {
     public function index()
     {
-        $communities = GovLinks::getSROIACommunities();
+        $agencies = GovLinks::getGovAgencies();
+        $workshops = GovLinks::getGovWorkshops();
 
-        return view('gov-links', compact('communities'));
+        return view('gov-links', compact('agencies', 'workshops'));
     }
 }
