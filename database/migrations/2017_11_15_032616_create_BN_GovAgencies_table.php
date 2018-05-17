@@ -14,6 +14,7 @@ class CreateBNGovAgenciesTable extends Migration {
 	{
 		Schema::connection('mysql2')->create('BN_GovAgencies', function(Blueprint $table)
 		{
+			$table->text('agencyAcronym')->nullable();
 			$table->text('agencyName')->nullable();
 			$table->dateTime('createTS')->nullable()->default('0000-00-00 00:00:00');
 			$table->text('createUser')->nullable();
