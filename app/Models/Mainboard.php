@@ -134,6 +134,35 @@ class Mainboard extends Model
         return $result;
     }
 
+
+    //returns communities
+    public static function getCommunities()
+    {
+        $sqlQuery = 'SELECT `BN_Districts`.`district`,
+                            `BN_Communities`.`community`
+                    FROM `BN_Communities`
+                    JOIN `BN_Districts`
+                    ON `BN_Communities`.`id_BN_Districts`=`BN_Districts`.`id`
+                    WHERE `BN_Communities`.`sroia`=1';
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        return $result;
+    }
+
+
+    //returns activities
+    public static function getActivities()
+    {
+        $sqlQuery = 'SELECT `sector`,`keyActivity` as activity
+                    FROM `LK_KeyActivities`';
+
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        return $result;
+    }
+
+
+
     // Returns the final beneficiaries by key activity
     public static function getFinalBeneficiariesByKeyActivity()
     {

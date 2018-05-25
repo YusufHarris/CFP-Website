@@ -10,13 +10,15 @@ class MainboardController extends Controller
 {
     public function index()
     {
-        $communities = Mainboard::getSROIACommunities();
+        //$communities = Mainboard::getSROIACommunities();
         $sectorBens = Mainboard::getBenPie();
         $districtBens = Mainboard::getBenBar();
+        $communities = Mainboard::getCommunities();
+        $activities = Mainboard::getActivities();
         #$sexBens = Mainboard::getFinalBeneficiariesBySex();
         #$kActivityBens = Mainboard::getFinalBeneficiariesBykeyActivity();
 
-        return view('mainboard', compact('communities', 'sectorBens', 'districtBens'));
+        return view('mainboard', compact('activities', 'communities', 'sectorBens', 'districtBens'));
     }
 
     public function communityFilter()
