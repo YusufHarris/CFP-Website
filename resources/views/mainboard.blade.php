@@ -23,18 +23,144 @@
     </div>
 </div>
 
+<!-- 2nd row -->
+
 <div class="row text-center">
         <!-- Placeholder-->
-    <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
-        <h4>Placeholder:</h4>
-        Number of Villages at-risk to the negative effects of climate change with improved adaptive capacity
+    <div class="col-12 col-md-6" class="placeholder" style="overflow-y:auto; height: 400px;">
+
+
+      <h4>{{count($communities)}} Beneficiary Communities</h4>
+      <?php
+
+        // Filter for individual districts
+        $wet = array_filter($communities, function($obj)
+        {
+            return $obj->district == "Wete";
+        });
+
+        $mko = array_filter($communities, function($obj)
+        {
+            return $obj->district == "Mkoani";
+        });
+
+        $cha = array_filter($communities, function($obj)
+        {
+            return $obj->district == "Chake Chake";
+        });
+        $mic = array_filter($communities, function($obj)
+        {
+            return $obj->district == "Micheweni";
+        });
+
+      ?>
+
+        <div class="row text-left">
+          <div class="col-6">
+
+            <h5>{{count($wet)}} Wete</h5>
+            <ul>
+              @foreach($wet as $community)
+                <li>{{ $community->community }}</li>
+              @endforeach
+            </ul>
+
+
+          </div>
+          <div class="col-6">
+
+            <h5>{{count($mic)}} Micheweni</h5>
+            <ul>
+              @foreach($mic as $community)
+                <li>{{ $community->community }}</li>
+              @endforeach
+            </ul>
+            <h5>{{count($cha)}} Chake Chake</h5>
+            <ul>
+              @foreach($cha as $community)
+                <li>{{ $community->community }}</li>
+              @endforeach
+            </ul>
+            <h5>{{count($mko)}} Mkoani</h5>
+            <ul>
+              @foreach($mko as $community)
+                <li>{{ $community->community }}</li>
+              @endforeach
+            </ul>
+
+          </div>
+        </div>
     </div>
-    <!-- Placeholder-->
-    <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
-        <h4>Placeholder:</h4>
-        Number of adaptive technologies initiated and demonstrated
+
+
+
+    <!-- PlaceholderNumber of adaptive technologies initiated and demonstrated-->
+
+            <!-- Placeholder-->
+    <div class="col-12 col-md-6" class="placeholder" style="overflow-y:auto; height: 400px;">
+
+      <h4>{{count($activities)}} Adaptive Technologies</h4>
+      <?php
+      $wat = array_filter($activities, function($obj)
+      {
+          return $obj->sector == "Water";
+      });
+      $agr = array_filter($activities, function($obj)
+      {
+          return $obj->sector == "Agriculture";
+      });
+      $for = array_filter($activities, function($obj)
+      {
+          return $obj->sector == "Forestry";
+      });
+      $ene = array_filter($activities, function($obj)
+      {
+          return $obj->sector == "Energy";
+      });
+      ?>
+
+        <div class="row text-left">
+
+
+          <div class="col-6">
+
+
+            <h5>{{count($wat)}} Water</h5>
+            <ul>
+              @foreach($wat as $activity)
+                <li>{{ $activity->activity }}</li>
+              @endforeach
+            </ul>
+            <h5>{{count($ene)}} Energy</h5>
+            <ul>
+              @foreach($ene as $activity)
+                <li>{{ $activity->activity }}</li>
+              @endforeach
+            </ul>
+
+          </div>
+          <div class="col-6">
+
+            <h5>{{count($for)}} Forestry</h5>
+            <ul>
+              @foreach($for as $activity)
+                <li>{{ $activity->activity }}</li>
+              @endforeach
+            </ul>
+            <h5>{{count($agr)}} Agriculture</h5>
+            <ul>
+              @foreach($agr as $activity)
+                <li>{{ $activity->activity }}</li>
+              @endforeach
+            </ul>
+
+          </div>
+        </div>
     </div>
+
 </div>
+
+<!-- end second row -->
 
 <div class="row text-center">
     <!-- Placeholder-->
