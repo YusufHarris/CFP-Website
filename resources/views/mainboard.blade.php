@@ -64,9 +64,10 @@
 
 <div class="row text-center">
     <!-- Placeholder-->
-    <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
-        <h4>Placeholder:</h4>
-        Percent of trainees that report an increase in income resulting from project supported interventions
+    <div class="col-12 col-md-6" id="incomeChange" style="height: 400px;">
+        @foreach($incomeChange as $val)
+            {{$val->improved}}<br>
+        @endforeach
     </div>
     <!-- Placeholder-->
     <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">

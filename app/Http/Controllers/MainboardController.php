@@ -14,8 +14,10 @@ class MainboardController extends Controller
         $sectorBens = Mainboard::getBenPie();
         $districtBens = Mainboard::getBenBar();
         $communities = Mainboard::getCommunities();
+        $incomeChange = Mainboard::getIncomeChange();
 
-        return view('mainboard', compact('communities', 'sectorBens', 'districtBens'));
+        return view('mainboard', compact('communities', 'sectorBens',
+                                         'districtBens', 'incomeChange'));
     }
 
     public function communityFilter()

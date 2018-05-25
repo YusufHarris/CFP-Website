@@ -110,6 +110,18 @@ class Mainboard extends Model
         return $result;
     }
 
+    // Returns the final beneficiary communities for SROIA project
+    public static function getIncomeChange()
+    {
+        $sqlQuery = 'SELECT SUM(IF(`ovallIncomeChange`="Improved", 1, 0)) as improved,
+                            SUM(IF(`ovallIncomeChange`="Declined", 1, 0)) as declined,
+                            SUM(IF(`ovallIncomeChange`="Stayed the same", 1, 0)) as noChange
+                     FROM `SV_Continuous`';
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        return $result;
+    }
+
 
     // Returns the final beneficiaries by key activity
     public static function getFinalBeneficiariesByKeyActivity()
