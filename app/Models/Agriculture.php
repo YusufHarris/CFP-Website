@@ -20,7 +20,7 @@ class Agriculture extends Model
         return $result;
     }
 
-    // Returns the final beneficiaries by sector
+    // Returns the final beneficiaries by agricultural key activity
     public static function getBenPie()
     {
 
@@ -38,6 +38,26 @@ class Agriculture extends Model
                      FROM `RE_Beneficiaries`
                      GROUP BY `sector`, `beneficiaryType`
                      ORDER BY `beneficiaryType` ASC, `sector` ASC';
+
+         $sqlQuery = 'SELECT `RE_KeyActivityBeneficiaries`.`beneficiaryType`,
+                             `LK_KeyActivities`.`keyActivity`,
+                             SUM(`totalBeneficiaries`) as totalBeneficiaries,
+                             SUM(IF(`mF`="F", `totalBeneficiaries`, 0)) as fTot,
+                             SUM(IF(`mF`="M", `totalBeneficiaries`, 0)) as mTot
+                      FROM `RE_KeyActivityBeneficiaries`
+                      JOIN `LK_KeyActivities`
+                      ON `RE_KeyActivityBeneficiaries`.`id_LK_KeyActivities` = `LK_KeyActivities`.`id`
+                      WHERE `LK_KeyActivities`.`sector` = "Agriculture"
+                      GROUP BY  `beneficiaryType`, `keyActivity`
+                      ORDER BY `beneficiaryType` ASC, `keyActivity` ASC';
+         $sqlQuery2 = 'SELECT `beneficiaryType`, "Total" as `keyActivity`,
+                              SUM(`totalBeneficiaries`) As totalBeneficiaries,
+                              SUM(IF(`mF`="F", `totalBeneficiaries`, 0)) as fTot,
+                              SUM(IF(`mF`="M", `totalBeneficiaries`, 0)) as mTot
+                      FROM `RE_SectorBeneficiaries`
+                      WHERE `sector` = "Agriculture"
+                      GROUP BY `keyActivity`, `beneficiaryType`
+                      ORDER BY `beneficiaryType` ASC, `keyActivity` ASC';
 
         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
         $result2 = DB::connection('mysql2')->select(DB::Raw($sqlQuery2));
