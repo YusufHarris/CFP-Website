@@ -3,6 +3,7 @@
 
 @section('content')
 
+{{ dd(get_defined_vars()) }}
 
 <div class="row text-center">
     <div class="col-12 col-md-6">
@@ -191,7 +192,11 @@
 <div class="row text-center">
     <!-- Placeholder-->
     <div class="col-12 col-md-6" id="incomeChange" style="height: 400px;">
-        
+        <ul>
+          @foreach($incomeChange as $inc)
+            <li>{{ $inc->ovallIncomeChange }}</li>
+          @endforeach
+        </ul>
     </div>
     <!-- Placeholder-->
     <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
@@ -202,5 +207,4 @@
 
 <!-- D3 javascript for Beneficiary Pie Chart and Bar Chart -->
 @include('js.sectorPieDistrictBar')
-
 @endsection

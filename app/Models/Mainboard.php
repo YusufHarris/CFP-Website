@@ -115,14 +115,17 @@ class Mainboard extends Model
         return $result;
     }
 
-    // Returns the final beneficiary communities for SROIA project
+    // Returns the income change reported by annual surveyees
     public static function getIncomeChange()
     {
         $sqlQuery = 'SELECT `ovallIncomeChange`,
                             COUNT(`ovallIncomeChange`) as benCount
                      FROM `SV_Continuous`
-                     GROUP BY `ovallIncomeChange`
-                     WHERE `ovallIncomeChange` IS NOT NULL';
+                     WHERE `ovallIncomeChange` != "NULL"
+                     GROUP BY `ovallIncomeChange`';
+
+         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+         return $result;
     }
 
     //returns activities
