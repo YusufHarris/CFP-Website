@@ -47,40 +47,6 @@ class Mainboard extends Model
     // Returns the Beneficiaries for the Bar Chart
     public static function getBenBar()
     {
-        /* Final Beneficiaries by sector, region, district, and community*/
-        $sqlQuery = 'SELECT `RE_SectorBeneficiaries`.`beneficiaryType`, `RE_SectorBeneficiaries`.`sector`,
-                            `BN_ComDist`.`region`, `BN_ComDist`.`district`, `BN_ComDist`.`community`,
-                            `RE_SectorBeneficiaries`.`mF`,
-                            SUM(`RE_SectorBeneficiaries`.`totalBeneficiaries`) As tot
-                     FROM `RE_SectorBeneficiaries`
-                     JOIN (SELECT `BN_Communities`.`id`, `BN_Districts`.`district`, `BN_Districts`.`region`,
-                                  `BN_Communities`.`community`
-                            FROM `BN_Communities`
-                            JOIN `BN_Districts` ON BN_Communities.id_BN_Districts=BN_Districts.id) AS `BN_ComDist`
-                     ON `RE_SectorBeneficiaries`.`id_BN_Communities`=`BN_ComDist`.`id`
-                     GROUP BY `RE_SectorBeneficiaries`.`beneficiaryType`, `RE_SectorBeneficiaries`.`sector`,
-                              `BN_ComDist`.`region`, `BN_ComDist`.`district`,
-                              `BN_ComDist`.`community`, `RE_SectorBeneficiaries`.`mF`
-                     ORDER BY `RE_SectorBeneficiaries`.`beneficiaryType` ASC,`RE_SectorBeneficiaries`.`sector` ASC,
-                              `BN_ComDist`.`region` ASC, `BN_ComDist`.`district` ASC, `BN_ComDist`.`community` ASC,
-                              `RE_SectorBeneficiaries`.`mF` ASC';
-
-        /* Final Beneficiaries by region, district, and community */
-        $sqlQuery2 = 'SELECT `RE_Beneficiaries`.`beneficiaryType`, "Total" AS `sector`, `BN_ComDist`.`region`,
-                             `BN_ComDist`.`district`, `BN_ComDist`.`community`, `RE_Beneficiaries`.`mF`,
-                             SUM(`RE_Beneficiaries`.`totalBeneficiaries`) As tot
-                     FROM `RE_Beneficiaries`
-                     JOIN (SELECT `BN_Communities`.`id`, `BN_Districts`.`district`, `BN_Districts`.`region`,
-                                  `BN_Communities`.`community`
-                           FROM `BN_Communities`
-                           JOIN `BN_Districts` ON BN_Communities.id_BN_Districts=BN_Districts.id) AS `BN_ComDist`
-                     ON `RE_Beneficiaries`.`id_BN_Communities`=`BN_ComDist`.`id`
-                     GROUP BY `RE_Beneficiaries`.`beneficiaryType`, `sector`, `BN_ComDist`.`district`,
-                              `BN_ComDist`.`community`, `RE_Beneficiaries`.`mF`
-                     ORDER BY `RE_Beneficiaries`.`beneficiaryType` ASC, `BN_ComDist`.`region` ASC,
-                              `BN_ComDist`.`district` ASC, `BN_ComDist`.`community` ASC,
-                              `RE_Beneficiaries`.`mF` ASC';
-
           /* Final Beneficiaries by sector, region, district, and community*/
           $sqlQuery = 'SELECT `RE_SectorBeneficiaries`.`beneficiaryType`, `RE_SectorBeneficiaries`.`sector`,
                               `BN_ComDist`.`region`, `BN_ComDist`.`district`,
@@ -133,9 +99,9 @@ class Mainboard extends Model
         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
         return $result;
     }
-
-
-    //returns communities
+  
+  
+    // Returns the final beneficiary communities for SROIA project
     public static function getCommunities()
     {
         $sqlQuery = 'SELECT `BN_Districts`.`district`,
@@ -149,6 +115,13 @@ class Mainboard extends Model
         return $result;
     }
 
+    // Returns the final beneficiary communities for SROIA project
+    public static function getIncomeChange()
+    {
+        $sqlQuery = 'SELECT SUM(IF(`ovallIncomeChange`="Improved", 1, 0)) as improved,
+                            SUM(IF(`ovallIncomeChange`="Declined", 1, 0)) as declined,
+                            SUM(IF(`ovallIncomeChange`="Stayed the same", 1, 0)) as noChange
+                     FROM `SV_Continuous`';
 
     //returns activities
     public static function getActivities()
@@ -156,12 +129,9 @@ class Mainboard extends Model
         $sqlQuery = 'SELECT `sector`,`keyActivity` as activity
                     FROM `LK_KeyActivities`';
 
-
         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
         return $result;
     }
-
-
 
     // Returns the final beneficiaries by key activity
     public static function getFinalBeneficiariesByKeyActivity()

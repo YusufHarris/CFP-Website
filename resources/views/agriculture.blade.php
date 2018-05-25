@@ -4,10 +4,18 @@
 @section('content')
 
 <div class="row text-center">
-        <!-- Placeholder-->
-    <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
-        <h4>Placeholder:</h4>
-        Number of agriculture beneficiaries
+    <div class="col-12 col-md-6">
+        <!-- Selecter for the beneficiary type -->
+        <div id="benSelect" style="height: 50px;">
+            <select>
+                <option value="Direct Trainees" selected>Direct Trainees</option>
+                <option value="Indirect Trainees">Indirect Trainees</option>
+                <option value="Final Beneficiaries">Final Beneficiaries</option>
+            </select>
+        </div>
+        <!-- Beneficiary Pie Chart by Sector-->
+        <div id="keyActivityPie" style="height: 350px;">
+        </div>
     </div>
     <!-- Placeholder-->
     <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
@@ -68,5 +76,9 @@
         Area of spice forest polyculture systems established
     </div>
 </div>
+
+
+<!-- D3 javascript for Beneficiary Pie Chart and Bar Chart -->
+@include('js.agriculturePieDistrictBar')
 
 @endsection

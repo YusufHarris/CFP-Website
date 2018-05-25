@@ -39,6 +39,14 @@
   text-anchor: middle;
 }
 
+/* The Sector Beneficiary Pie Chart*/
+#keyActivityPie text {
+  font: 14px sans-serif;
+  font-weight: bold;
+  fill: #fff;
+  text-anchor: middle;
+}
+
 /* The Beneficiary Bar Chart*/
 #benBarTitle {
   font: 22px sans-serif;

@@ -18,6 +18,7 @@ class BenPieChart extends Chart {
         this.benType = 'Direct Trainees';
         // Get the full data set
         this.fullSet = <?php echo json_encode( $sectorBens ) ?>;
+
         // Initialize the subset placeholder for charting the data
         this.subSet;
         // Initialize the total final beneficiaries placeholder for
@@ -251,7 +252,7 @@ class BenBarChart extends Chart {
         // Set the default subset of the beneficiary types
         this.benType = 'Direct Trainees';
         // Set the default sector type to include all sectors
-        this.sector = 'Total'
+        this.sector = 'Total';
         // Get the full data set
         this.fullSet = <?php echo json_encode( $districtBens ) ?>;
         // Initialize the subset placeholder for charting the data

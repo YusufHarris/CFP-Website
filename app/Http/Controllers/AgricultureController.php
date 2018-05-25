@@ -11,7 +11,8 @@ class AgricultureController extends Controller
     public function index()
     {
         $communities = Agriculture::getSROIACommunities();
+        $agBens = Agriculture::getBenPie();
 
-        return view('agriculture', compact('communities'));
+        return view('agriculture', compact('communities', 'agBens'));
     }
 }
