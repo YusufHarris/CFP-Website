@@ -118,10 +118,11 @@ class Mainboard extends Model
     // Returns the final beneficiary communities for SROIA project
     public static function getIncomeChange()
     {
-        $sqlQuery = 'SELECT SUM(IF(`ovallIncomeChange`="Improved", 1, 0)) as improved,
-                            SUM(IF(`ovallIncomeChange`="Declined", 1, 0)) as declined,
-                            SUM(IF(`ovallIncomeChange`="Stayed the same", 1, 0)) as noChange
-                     FROM `SV_Continuous`';
+        $sqlQuery = 'SELECT `ovallIncomeChange`,
+                            COUNT(`ovallIncomeChange`) as benCount
+                     FROM `SV_Continuous`
+                     GROUP BY `ovallIncomeChange`
+                     WHERE `ovallIncomeChange` IS NOT NULL';
     }
 
     //returns activities
