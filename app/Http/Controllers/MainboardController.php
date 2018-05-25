@@ -18,7 +18,7 @@ class MainboardController extends Controller
         $activities = Mainboard::getActivities();
 
         return view('mainboard', compact('communities', 'sectorBens',
-                                         'districtBens', 'incomeChange'
+                                         'districtBens', 'incomeChange',
                                          'activities'));
     }
 

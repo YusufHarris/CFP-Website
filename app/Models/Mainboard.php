@@ -99,8 +99,8 @@ class Mainboard extends Model
         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
         return $result;
     }
-  
-  
+
+
     // Returns the final beneficiary communities for SROIA project
     public static function getCommunities()
     {
@@ -122,6 +122,7 @@ class Mainboard extends Model
                             SUM(IF(`ovallIncomeChange`="Declined", 1, 0)) as declined,
                             SUM(IF(`ovallIncomeChange`="Stayed the same", 1, 0)) as noChange
                      FROM `SV_Continuous`';
+    }
 
     //returns activities
     public static function getActivities()
