@@ -5,29 +5,29 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item {{ Request::is('agriculture') ? 'active' : '' }}">
         <a class="nav-link" href="/agriculture">Agriculture</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/energy">Energy</a>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('energy') ? 'active' : '' }}" href="/energy">Energy</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/forestry">Forestry</a>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('forestry') ? 'active' : '' }}" href="/forestry">Forestry</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/water">Water</a>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('water') ? 'active' : '' }}" href="/water">Water</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/gender">Gender</a>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('gender') ? 'active' : '' }}" href="/gender">Gender</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/land-rights">Land Rights</a>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('land-rights') ? 'active' : '' }}" href="/land-rights">Land Rights</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/gov-links">Gov Links</a>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('gov-links') ? 'active' : '' }}" href="/gov-links">Gov Links</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/tree_diagram">Beneficiaries</a>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('tree_diagram') ? 'active' : '' }}" href="/tree_diagram">Beneficiaries</a>
       </li>
     </ul>
     <!--<form class="form-inline mt-2 mt-md-0">

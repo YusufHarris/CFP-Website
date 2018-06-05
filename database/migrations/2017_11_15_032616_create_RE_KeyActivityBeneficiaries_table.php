@@ -23,6 +23,7 @@ class CreateREKeyActivityBeneficiariesTable extends Migration {
 			$table->text('mF')->nullable();
 			$table->dateTime('modTS')->nullable()->default('0000-00-00 00:00:00');
 			$table->date('monthRegistered')->nullable()->default('0000-00-00');
+			$table->text('sector')->nullable();
 			$table->smallInteger('totalBeneficiaries')->nullable();
 		});
 	}

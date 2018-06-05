@@ -11,7 +11,9 @@ class ForestryController extends Controller
     public function index()
     {
         $communities = Forestry::getSROIACommunities();
+        $foBens = Forestry::getBenPie();
+        $districtBens = Forestry::getBenBar();
 
-        return view('forestry', compact('communities'));
+        return view('forestry', compact('communities', 'foBens', 'districtBens'));
     }
 }

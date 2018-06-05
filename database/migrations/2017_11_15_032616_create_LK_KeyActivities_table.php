@@ -20,6 +20,7 @@ class CreateLKKeyActivitiesTable extends Migration {
 			$table->text('keyActivity')->nullable();
 			$table->dateTime('modTS')->nullable()->default('0000-00-00 00:00:00');
 			$table->text('sector')->nullable();
+			$table->text('shortenName')->nullable();
 			$table->text('swahili')->nullable();
 		});
 	}

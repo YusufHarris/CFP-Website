@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="row text-center">
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-6 col-lg-4">
         <!-- Selecter for the beneficiary type -->
         <div id="benSelect" style="height: 50px;">
             <select>
@@ -17,10 +17,16 @@
         <div id="keyActivityPie" style="height: 350px;">
         </div>
     </div>
+    <!-- Beneficiary Bar Chart by District -->
+    <div class="col-12 col-md-6 col-lg-4" id="agDistrictBar" style="height: 400px;">
+    </div>
     <!-- Placeholder-->
-    <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
-        <h4>Placeholder:</h4>
-        Percent of agriculture beneficiaries that report increased yields
+    <div class="col-12 col-lg-4">
+        <div style="height: 50px;">
+            <h5>Percent of agriculture beneficiaries that report increased yields</h5>
+        </div>
+        <div id="yieldPie" style="height: 350px;">
+        </div>
     </div>
 </div>
 <h3>Kitchen Gardens</h3>
@@ -80,5 +86,7 @@
 
 <!-- D3 javascript for Beneficiary Pie Chart and Bar Chart -->
 @include('js.agriculturePieDistrictBar')
+<!-- D3 javascript for Yield Change Pie Chart -->
+@include('js.agricultureYieldChangesPie')
 
 @endsection

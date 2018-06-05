@@ -47,7 +47,7 @@ class Mainboard extends Model
     // Returns the Beneficiaries for the Bar Chart
     public static function getBenBar()
     {
-          /* Final Beneficiaries by sector, region, district, and community*/
+          /* Final Beneficiaries by sector, region, and district */
           $sqlQuery = 'SELECT `RE_SectorBeneficiaries`.`beneficiaryType`, `RE_SectorBeneficiaries`.`sector`,
                               `BN_ComDist`.`region`, `BN_ComDist`.`district`,
                               `RE_SectorBeneficiaries`.`mF`,

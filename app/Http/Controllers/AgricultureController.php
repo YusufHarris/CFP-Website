@@ -12,7 +12,9 @@ class AgricultureController extends Controller
     {
         $communities = Agriculture::getSROIACommunities();
         $agBens = Agriculture::getBenPie();
+        $districtBens = Agriculture::getBenBar();
+        $yieldChgs = Agriculture::getAgYieldChgs();
 
-        return view('agriculture', compact('communities', 'agBens'));
+        return view('agriculture', compact('communities', 'agBens', 'districtBens', 'yieldChgs'));
     }
 }

@@ -17,7 +17,8 @@ class BenPieChart extends Chart {
         // Set the default subset of the beneficiary types
         this.benType = 'Direct Trainees';
         // Get the full data set
-        this.fullSet = <?php echo json_encode( $agBens ) ?>;
+        this.fullSet = <?php echo json_encode( $foBens ) ?>;
+        //console.log(this.fullSet);
 
         // Initialize the subset placeholder for charting the data
         this.subSet;
@@ -185,14 +186,14 @@ class BenPieChart extends Chart {
             .attr('transform',
                   `translate(${this.width / 2}, ${this.height / 2})`)
             // Include the Total class for coloring the circle
-            .classed('Agriculture', true)
+            .classed('Forestry', true)
             // Set the cursor to the pointer hand for easy indication
             // that the circle is clickable
             .style('cursor','pointer')
             // Update the beneficiary bar chart when the circle is
             // clicked
             .on('click', function() {
-                updateBenBarChart(benType, 'Agriculture');
+                updateBenBarChart(benType, 'Forestry');
             })
             // Increase the radius of the circle when the mouse hovers
             .on('mouseover',function(d,i){
@@ -256,7 +257,7 @@ class BenBarChart extends Chart {
         // Set the default subset of the beneficiary types
         this.benType = 'Direct Trainees';
         // Set the default key activity type to include all
-        this.ka = 'Agriculture';
+        this.ka = 'Forestry';
         // Get the full data set
         this.fullSet = <?php echo json_encode( $districtBens ) ?>;
         // Initialize the subset placeholder for charting the data
@@ -562,7 +563,7 @@ $('#benSelect option').prop('selected', function() {
 
 // Create the bar chart
 const benBar= new BenBarChart(
-    '#agDistrictBar',
+    '#foDistrictBar',
     {
         margin: {
             top: 50,
