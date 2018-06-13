@@ -153,4 +153,58 @@ class Mainboard extends Model
         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
         return $result;
     }
+
+    /*Returns the difference in KeyAts known before and known now*/
+    public static function getIncreasedAwareness()
+    {
+        $sqlQuery =  'SELECT "Stayed the Same" AS category, SUM(IF( ( (`id_LK_KeyActivitiesAwareness` = "NULL" AND `id_LK_KeyActivitiesAwarenessBefore` = "NULL")
+                                                          || ( (LENGTH(`id_LK_KeyActivitiesAwareness`) - LENGTH(REPLACE(`id_LK_KeyActivitiesAwareness`, "\n", ""))) - (LENGTH(`id_LK_KeyActivitiesAwarenessBefore`) - LENGTH(REPLACE(`id_LK_KeyActivitiesAwarenessBefore`, "\n", ""))) = 0))
+                                                          ,1,0)) AS amount
+                     FROM `SV_Continuous`
+                    ';
+        $sqlQuery2 =  'SELECT "Increased" AS category, SUM(IF( ( (`id_LK_KeyActivitiesAwareness` = "NULL" AND `id_LK_KeyActivitiesAwarenessBefore` != "NULL")
+                                                          || ( (LENGTH(`id_LK_KeyActivitiesAwareness`) - LENGTH(REPLACE(`id_LK_KeyActivitiesAwareness`, "\n", ""))) - (LENGTH(`id_LK_KeyActivitiesAwarenessBefore`) - LENGTH(REPLACE(`id_LK_KeyActivitiesAwarenessBefore`, "\n", ""))) > 0))
+                                                          ,1,0)) AS amount
+                     FROM `SV_Continuous`
+                    ';
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        $result2 = DB::connection('mysql2')->select(DB::Raw($sqlQuery2));
+        return array_merge($result, $result2);
+    }
+
+    public static function getBusinesses()
+    {
+        $sqlQuery = 'SELECT KA.keyActivity, OP.uniqueMIName,KA.sector
+                      FROM `OP_00Outputs` AS `OP`
+                      JOIN
+                        (SELECT COUNT(id) as `members`, `id_OP_00Outputs`
+                           FROM `OP_00LinkToComMembers`
+                           GROUP BY `id_OP_00Outputs`
+                           HAVING `members` > 3) as `CG`
+                           ON OP.id = CG.id_OP_00Outputs
+                      JOIN `LK_KeyActivities` AS `KA`
+                        ON OP.id_LK_KeyActivities = KA.id
+                        WHERE (KA.keyActivity NOT LIKE "03%" AND
+                        KA.keyActivity NOT LIKE "09%")';
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        return $result;
+    }
+    /*Get beneficiaries who know another beneficiary*/
+    public static function getPracticeOthers()
+    {
+        $sqlQuery = 'SELECT "Know Others" AS category, SUM(IF(`id_LK_KeyActivitiesPracticeOthers`="NULL",0,1)) AS amount
+                     FROM `SV_Continuous`
+                    ';
+        $sqlQuery2 = 'SELECT "Do Not Know Others" as category, SUM(IF(`id_LK_KeyActivitiesPracticeOthers`="NULL",1,0)) AS amount
+                     FROM `SV_Continuous`
+                    ';
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        $result2 = DB::connection('mysql2')->select(DB::Raw($sqlQuery2));
+        return array_merge($result, $result2);
+    }
+
+
 }

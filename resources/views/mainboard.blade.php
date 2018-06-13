@@ -3,7 +3,7 @@
 
 @section('content')
 
-{{ dd(get_defined_vars()) }}
+
 
 <div class="row text-center">
     <div class="col-12 col-md-6">
@@ -164,39 +164,147 @@
 <!-- end second row -->
 
 <div class="row text-center">
+
+    <!-- Placeholder-->
+    <div class="col-12 col-md-6" >
+      <div style="height:50px;">
+        <h4>Beneficiary Income Change</h4>
+      </div>
+      <div style="height:350px" id="incomeChange" class= "incomePie">
+      </div>
+
+    </div>
+
+    <!-- Placeholder-->
+    <div class="col-12 col-md-6">
+
+      <div style="height:50px;">
+        <h4>Beneficiary Awareness Change</h4>
+      </div>
+      <div style="height:350px" id="increasedAwarenessPie" >
+      </div>
+
+
+
+
+
+    </div>
+</div>
+
+<div class="row text-center">
+    <!-- Placeholder-->
+    <div class="col-12 col-md-6">
+      <div style="height:50px;">
+        <h4>Beneficiaries Who Know Other Project Beneficiaries </h4>
+      </div>
+      <div style="height:350px" id="knowOthersPie">
+      </div>
+    </div>
+    <!-- Placeholder-->
+
+      <div class="col-12 col-md-6" id= "businessesFormed" style="overflow-y:auto; height: 400px;">
+
+        <h4>{{count($businesses)}} Businesses Formed</h4>
+        <?php
+        $ear = array_filter($businesses, function($obj)
+        {
+            return $obj->keyActivity == "06 - Interlocking Compressed Stabilized Earth Blocks";
+        });
+        $coo = array_filter($businesses, function($obj)
+        {
+            return $obj->keyActivity == "05 - Fuel Efficient Cook Stoves";
+        });
+        $tre = array_filter($businesses, function($obj)
+        {
+            return $obj->keyActivity == "02A - Tree Nurseries";
+        });
+        $aff = array_filter($businesses, function($obj)
+        {
+            return $obj->keyActivity == "02B - Afforestation & Reforestation";
+        });
+        $agr = array_filter($businesses, function($obj)
+        {
+            return $obj->keyActivity == "01 - Agroforestry";
+        });
+        $sus = array_filter($businesses, function($obj)
+        {
+            return $obj->keyActivity == "08 - Sustainable Beekeeping";
+        });
+        $spi = array_filter($businesses, function($obj)
+        {
+            return $obj->keyActivity == "12 - Spice Forest Polyculture";
+        });
+
+        ?>
+
+          <div class="row text-left">
+
+
+            <div class="col-6">
+
+
+
+              <h5>{{count($coo)}}  Fuel Efficient Cook Stoves</h5>
+              <ul>
+                @foreach($coo as $businesses)
+                  <li>{{ $businesses->uniqueMIName }}</li>
+                @endforeach
+              </ul>
+              <h5>{{count($tre)}}  Tree Nurseries</h5>
+              <ul>
+                @foreach($tre as $businesses)
+                  <li>{{ $businesses->uniqueMIName }}</li>
+                @endforeach
+              </ul>
+              <h5>{{count($aff)}}  Afforestation & Reforestation</h5>
+              <ul>
+                @foreach($aff as $businesses)
+                  <li>{{ $businesses->uniqueMIName }}</li>
+                @endforeach
+              </ul>
+
+            </div>
+            <div class="col-6">
+
+              <h5>{{count($agr)}}  Agroforestry</h5>
+              <ul>
+                @foreach($agr as $businesses)
+                  <li>{{ $businesses->uniqueMIName }}</li>
+                @endforeach
+              </ul>
+              <h5>{{count($sus)}}  Sustainable Beekeeping</h5>
+              <ul>
+                @foreach($sus as $businesses)
+                  <li>{{ $businesses->uniqueMIName }}</li>
+                @endforeach
+              </ul>
+              <h5>{{count($spi)}}  Spice Forest Polyculture</h5>
+              <ul>
+                @foreach($spi as $businesses)
+                  <li>{{ $businesses->uniqueMIName }}</li>
+                @endforeach
+              </ul>
+              <h5>{{count($ear)}}  Interlocking Compressed Stabilized Earth Blocks</h5>
+              <ul>
+                @foreach($ear as $businesses)
+                  <li>{{ $businesses->uniqueMIName }}</li>
+                @endforeach
+              </ul>
+
+            </div>
+          </div>
+      </div>
+
+
+
+
+</div>
+
+<div class="row text-center">
     <!-- Placeholder-->
     <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
         <h4>Placeholder:</h4>
         Percent of beneficiary households the correctly apply / use at least one new intervention / technology disaggregated by sector
-    </div>
-    <!-- Placeholder-->
-    <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
-        <h4>Placeholder:</h4>
-        Percent of final beneficiaries with increased awareness of adaptive livelihood activities
-    </div>
-</div>
-
-<div class="row text-center">
-    <!-- Placeholder-->
-    <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
-        <h4>Placeholder:</h4>
-        Percent of direct beneficiaries that know at least one non-direct beneficiary household that has also adopted one or more project innovations
-    </div>
-    <!-- Placeholder-->
-    <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
-        <h4>Placeholder:</h4>
-        Number of cooperatives/businesses formed around appropriate technologies and innovations
-    </div>
-</div>
-
-<div class="row text-center">
-    <!-- Placeholder-->
-    <div class="col-12 col-md-6" id="incomeChange" style="height: 400px;">
-        <ul>
-          @foreach($incomeChange as $inc)
-            <li>{{ $inc->ovallIncomeChange }}</li>
-          @endforeach
-        </ul>
     </div>
     <!-- Placeholder-->
     <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
@@ -207,4 +315,9 @@
 
 <!-- D3 javascript for Beneficiary Pie Chart and Bar Chart -->
 @include('js.sectorPieDistrictBar')
+<!-- D3 javascript for Income Pie Chart -->
+@include('js.incomePie')
+<!-- D3 javascript for Income Pie Chart -->
+@include('js.knowOthersPie')
+@include('js.increasedAwarenessPie')
 @endsection
