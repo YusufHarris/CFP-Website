@@ -105,6 +105,10 @@ class IncomePieChart extends Chart {
         arc.append('text')
             .attr('transform', function(d) { return 'translate(' + pathLabels.centroid(d) + ')'; })
             .text(function(d) { return (d.data.ovallIncomeChange); })
+            .style('fill','white')
+            .attr('font','12px')
+            .style('text-anchor','middle')
+            .style('font-weight','bold')
             ;
 
         // Draw the corresponding percentages
@@ -115,6 +119,10 @@ class IncomePieChart extends Chart {
             .text(function(d) {
                 return Math.round((d.endAngle - d.startAngle)/(2*(Math.PI))*100) + "%";
             })
+            .style('fill','white')
+            .attr('font','12px')
+            .style('text-anchor','middle')
+            .style('font-weight','bold')
 
             ;
     }
