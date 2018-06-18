@@ -97,4 +97,54 @@ class Forestry extends Model
         // Return the final beneficiaries
         return array_merge($result, $result2);
     }
+
+    public static function getFinalBeneficiariesBySex()
+    {
+        $sqlQuery = 'SELECT IFNULL(`mF`, "Total") as `mF`, DirTrain, IndTrain, FinalBen
+                    FROM (
+                        SELECT `mF`,
+                        SUM(IF(beneficiaryType = "Direct Trainees", totalBeneficiaries, NULL)) AS DirTrain,
+                        SUM(IF(beneficiaryType = "Indirect Trainees", totalBeneficiaries, NULL)) AS IndTrain,
+                        SUM(IF(beneficiaryType = "Final Beneficiaries", totalBeneficiaries, NULL)) AS FinalBen
+                    FROM `RE_Beneficiaries`
+                    GROUP BY `mF` WITH ROLLUP
+                ) as DT';
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        return $result;
+    }
+
+    // Returns the final beneficiaries by key activity
+    public static function getFinalBeneficiariesByKeyActivity()
+    {
+
+        $sqlQuery = 'SELECT `sector`, `keyActivity`, sum(`totalBeneficiaries`) as totalBeneficiaries
+                     FROM `RE_KeyActivityBeneficiaries`
+                     JOIN `LK_KeyActivities` ON RE_KeyActivityBeneficiaries.id_LK_KeyActivities=LK_KeyActivities.id
+                     JOIN `BN_Communities` ON RE_KeyActivityBeneficiaries.id_BN_Communities=BN_Communities.id
+                     WHERE `beneficiaryType`="Final Beneficiaries"
+                     AND `sroia`=1
+                     GROUP BY `sector`, `keyActivity`';
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        return $result;
+    }
+
+
+
+    // Returns the amount of seedlings grown per sector
+    public static function getSeedlingsGrown()
+    {
+        $sqlQuery = 'SELECT `name`,`district`, sum(`grownSeedlingCount`) as totalSeedlings
+                     FROM `OP_02AComponents`
+                     JOIN `LK_AgroEcoComponents` ON OP_02AComponents.id_LK_AgroEcoComponents=LK_AgroEcoComponents.id
+                     JOIN `OP_02ATreeNurseries` ON OP_02AComponents.id_OP_02ATreeNurseries=OP_02ATreeNurseries.id
+                     JOIN `OP_00Outputs` ON OP_02ATreeNurseries.id_OP_00Outputs=OP_00Outputs.id
+                     JOIN `BN_Communities` ON OP_00Outputs.id_BN_Communities=BN_Communities.id
+                     JOIN `BN_Districts` ON BN_Communities.id_BN_Districts=BN_Districts.id
+                     GROUP BY `name`,`district`';
+
+         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+         return $result;
+    }
 }

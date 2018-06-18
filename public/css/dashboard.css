@@ -105,3 +105,25 @@
 .benTreeOverlay {
     background-color: #EEE;
 }
+
+
+/* Income Change Pie Text */
+#incomePie text {
+  font: 14px sans-serif;
+  font-weight: bold;
+  fill: #fff;
+  text-anchor: middle;
+}
+
+#knowOthersPie text {
+  font: 14px sans-serif;
+  font-weight: bold;
+  fill: #fff;
+  text-anchor: middle;
+}
+#increasedAwarenessPie text {
+  font: 14px sans-serif;
+  font-weight: bold;
+  fill: #fff;
+  text-anchor: middle;
+}
