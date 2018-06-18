@@ -84,6 +84,10 @@
   fill: #333;
 }
 
+/* Water Board */
+.Achieved { fill: #9d0; }
+.Unachieved { fill: #eee; }
+
 /* Final Beneficiaries Tree Diagram */
 .node circle {
   fill: #fff;

@@ -97,4 +97,79 @@ class Water extends Model
         // Return the final beneficiaries
         return array_merge($result, $result2);
     }
+
+    // Returns the total number of beneficiary households with access to clean drinking water
+    public static function getWaterHH()
+    {
+         $sqlQuery = 'SELECT "Achieved" as status, ROUND(SUM(`totalBeneficiaries`) / 5.2,0) as totalHH,
+                             ROUND(100 * (SUM(`totalBeneficiaries`) / 5.2)/400,0) as pct
+                      FROM `RE_KeyActivityBeneficiaries`
+                      JOIN `LK_KeyActivities`
+                      ON `RE_KeyActivityBeneficiaries`.`id_LK_KeyActivities` = `LK_KeyActivities`.`id`
+                      WHERE `LK_KeyActivities`.`keyActivity` LIKE "03%" AND
+                            `RE_KeyActivityBeneficiaries`.`beneficiaryType` = "Final Beneficiaries"';
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+
+
+        // Grab the unachieved households if it hasn't hit the 400 household target
+        if ($result[0]->totalHH < 400) {
+            $sqlQuery2 = 'SELECT "Unachieved" as status, 400 - ROUND(SUM(`totalBeneficiaries`) / 5.2,0) as totalHH,
+                                 ROUND(100 * (400 - SUM(`totalBeneficiaries`) / 5.2)/400,0) as pct
+                         FROM `RE_KeyActivityBeneficiaries`
+                         JOIN `LK_KeyActivities`
+                         ON `RE_KeyActivityBeneficiaries`.`id_LK_KeyActivities` = `LK_KeyActivities`.`id`
+                         WHERE `LK_KeyActivities`.`keyActivity` LIKE "03%" AND
+                               `RE_KeyActivityBeneficiaries`.`beneficiaryType` = "Final Beneficiaries"';
+
+            $result2 = DB::connection('mysql2')->select(DB::Raw($sqlQuery2));
+            $result = array_merge($result, $result2);
+        }
+        return $result;
+        #return array_merge($result, $result2);
+    }
+
+    // Returns the total number of beneficiary households with access to clean drinking water
+    public static function getWaterSystems()
+    {
+         $sqlQuery = 'SELECT "Achieved" as status, COUNT(id) as totalSystems,
+                             ROUND(100 * COUNT(id)/6,0) as pct
+                      FROM `OP_03RainwaterHarvestingSystems`';
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+
+
+        // Grab the unachieved households if it hasn't hit the 400 household target
+        if ($result[0]->totalSystems < 6) {
+            $sqlQuery2 = 'SELECT "Unachieved" as status, 6 - COUNT(id) as totalSystems,
+                                ROUND(100 * (6 - COUNT(id))/6,0) as pct
+                         FROM `OP_03RainwaterHarvestingSystems`';
+
+            $result2 = DB::connection('mysql2')->select(DB::Raw($sqlQuery2));
+            $result = array_merge($result, $result2);
+        }
+        return $result;
+        #return array_merge($result, $result2);
+    }
+
+    // Returns the total number of beneficiary households with access to clean drinking water
+    public static function getWaterCapacity()
+    {
+         $sqlQuery = 'SELECT "Achieved" as status, SUM(reservoirCapacity) as totalCapacity,
+                             ROUND(100 * SUM(reservoirCapacity)/400000,0) as pct
+                      FROM `OP_03Reservoirs`';
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+
+
+        // Grab the unachieved households if it hasn't hit the 400 household target
+        if ($result[0]->totalCapacity < 400000) {
+            $sqlQuery2 = 'SELECT "Unachieved" as status, 6 - SUM(reservoirCapacity) as totalCapacity,
+                                ROUND(100 * (400000 - SUM(reservoirCapacity))/400000,0) as pct
+                         FROM `OP_03Reservoirs`';
+
+            $result2 = DB::connection('mysql2')->select(DB::Raw($sqlQuery2));
+            $result = array_merge($result, $result2);
+        }
+        return $result;
+        #return array_merge($result, $result2);
+    }
+
 }

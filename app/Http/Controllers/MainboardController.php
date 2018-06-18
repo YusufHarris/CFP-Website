@@ -16,10 +16,11 @@ class MainboardController extends Controller
         $communities = Mainboard::getCommunities();
         $incomeChange = Mainboard::getIncomeChange();
         $activities = Mainboard::getActivities();
+        $increased = Mainboard::getIncreasedAwareness();
 
         return view('mainboard', compact('communities', 'sectorBens',
                                          'districtBens', 'incomeChange',
-                                         'activities'));
+                                         'activities', 'increased'));
     }
 
     public function communityFilter()

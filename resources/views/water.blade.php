@@ -24,21 +24,28 @@
 <h3>Rainwater Harvesting</h3>
 <div class="row text-center">
     <!-- Placeholder-->
-    <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
-        <h4>Placeholder:</h4>
-        Number of beneficiary households with improved access to water for human consumption
+    <div class="col-12 col-md-6 col-lg-4" class="placeholder" style="height: 400px;">
+        <div style="height: 50px;">
+            <h5>Number of beneficiary households with improved access to water for human consumption</h5>
+        </div>
+        <div id="waterHHPie" style="height: 350px;">
+        </div>
     </div>
     <!-- Placeholder-->
-    <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
-        <h4>Placeholder:</h4>
-        Number of community rainwater harvesting systems
+    <div class="col-12 col-md-6 col-lg-4">
+        <div style="height: 50px;">
+            <h5>Number of community rainwater harvesting systems</h5>
+        </div>
+        <div id="waterSysPie" style="height: 350px;">
+        </div>
     </div>
-</div>
-<div class="row text-center">
     <!-- Placeholder-->
-    <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
-        <h4>Placeholder:</h4>
-        Storage capacity of rainwater harvesting systems
+    <div class="col-12 col-lg-4" class="placeholder" style="height: 400px;">
+        <div style="height: 50px;">
+            <h5>Storage capacity of rainwater harvesting systems</h5>
+        </div>
+        <div id="waterCapacityPie" style="height: 350px;">
+        </div>
     </div>
 </div>
 <h3>Catchment Conservation</h3>
@@ -57,5 +64,14 @@
 
 <!-- D3 javascript for Beneficiary Pie Chart and Bar Chart -->
 @include('js.waterPieDistrictBar')
+
+<!-- D3 javascript for Water Household Beneficiaries-->
+@include('js.waterHouseholdsPie')
+
+<!-- D3 javascript for Water System Count-->
+@include('js.waterHarvestingSystemsPie')
+
+<!-- D3 javascript for Water System Count-->
+@include('js.waterCapacityPie')
 
 @endsection

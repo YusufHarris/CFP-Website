@@ -153,4 +153,22 @@ class Mainboard extends Model
         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
         return $result;
     }
+
+    public static function getIncreasedAwareness()
+   {
+       $sqlQuery =  'SELECT "Stayed the Same" AS category, SUM(IF( ( (`id_LK_KeyActivitiesAwareness` = "NULL" AND `id_LK_KeyActivitiesAwarenessBefore` = "NULL")
+                                                         || ( (LENGTH(`id_LK_KeyActivitiesAwareness`) - LENGTH(REPLACE(`id_LK_KeyActivitiesAwareness`, "\n", ""))) - (LENGTH(`id_LK_KeyActivitiesAwarenessBefore`) - LENGTH(REPLACE(`id_LK_KeyActivitiesAwarenessBefore`, "\n", ""))) = 0))
+                                                         ,1,0)) AS amount
+                    FROM `SV_Continuous`
+                   ';
+       $sqlQuery2 =  'SELECT "Increased" AS category, SUM(IF( ( (`id_LK_KeyActivitiesAwareness` = "NULL" AND `id_LK_KeyActivitiesAwarenessBefore` != "NULL")
+                                                         || ( (LENGTH(`id_LK_KeyActivitiesAwareness`) - LENGTH(REPLACE(`id_LK_KeyActivitiesAwareness`, "\n", ""))) - (LENGTH(`id_LK_KeyActivitiesAwarenessBefore`) - LENGTH(REPLACE(`id_LK_KeyActivitiesAwarenessBefore`, "\n", ""))) > 0))
+                                                         ,1,0)) AS amount
+                    FROM `SV_Continuous`
+                   ';
+
+       $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+       $result2 = DB::connection('mysql2')->select(DB::Raw($sqlQuery2));
+       return array_merge($result, $result2);
+   }
 }
