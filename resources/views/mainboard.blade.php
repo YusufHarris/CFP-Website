@@ -3,6 +3,7 @@
 
 @section('content')
 
+
 <div class="row text-center">
     <div class="col-12 col-md-6">
         <!-- Selecter for the beneficiary type -->
@@ -22,27 +23,23 @@
     </div>
 </div>
 
+
 <!-- 2nd row -->
 
 <div class="row text-center">
-        <!-- Placeholder-->
     <div class="col-12 col-md-6" class="placeholder" style="overflow-y:auto; height: 400px;">
-
 
       <h4>{{count($communities)}} Beneficiary Communities</h4>
       <?php
-
         // Filter for individual districts
         $wet = array_filter($communities, function($obj)
         {
             return $obj->district == "Wete";
         });
-
         $mko = array_filter($communities, function($obj)
         {
             return $obj->district == "Mkoani";
         });
-
         $cha = array_filter($communities, function($obj)
         {
             return $obj->district == "Chake Chake";
@@ -51,7 +48,6 @@
         {
             return $obj->district == "Micheweni";
         });
-
       ?>
 
         <div class="row text-left">
@@ -63,7 +59,6 @@
                 <li>{{ $community->community }}</li>
               @endforeach
             </ul>
-
 
           </div>
           <div class="col-6">
@@ -90,12 +85,6 @@
           </div>
         </div>
     </div>
-
-
-
-    <!-- PlaceholderNumber of adaptive technologies initiated and demonstrated-->
-
-            <!-- Placeholder-->
     <div class="col-12 col-md-6" class="placeholder" style="overflow-y:auto; height: 400px;">
 
       <h4>{{count($activities)}} Adaptive Technologies</h4>
@@ -119,11 +108,7 @@
       ?>
 
         <div class="row text-left">
-
-
           <div class="col-6">
-
-
             <h5>{{count($wat)}} Water</h5>
             <ul>
               @foreach($wat as $activity)
@@ -156,41 +141,28 @@
           </div>
         </div>
     </div>
-
 </div>
 
 <!-- end second row -->
 
 <div class="row text-center">
-
-    <!-- Placeholder-->
     <div class="col-12 col-md-6" >
       <div style="height:50px;">
         <h4>Beneficiary Income Change</h4>
       </div>
       <div style="height:350px" id="incomeChange" class= "incomePie">
       </div>
-
     </div>
-
-    <!-- Placeholder-->
     <div class="col-12 col-md-6">
-
       <div style="height:50px;">
         <h4>Beneficiary Awareness Change</h4>
       </div>
       <div style="height:350px" id="increasedAwarenessPie" >
       </div>
-
-
-
-
-
     </div>
 </div>
 
 <div class="row text-center">
-    <!-- Placeholder-->
     <div class="col-12 col-md-6">
       <div style="height:50px;">
         <h4>Beneficiaries Who Know Other Project Beneficiaries </h4>
@@ -198,10 +170,7 @@
       <div style="height:350px" id="knowOthersPie">
       </div>
     </div>
-    <!-- Placeholder-->
-
       <div class="col-12 col-md-6" id= "businessesFormed" style="overflow-y:auto; height: 400px;">
-
         <h4>{{count($businesses)}} Businesses Formed</h4>
         <?php
         $ear = array_filter($businesses, function($obj)
@@ -232,16 +201,10 @@
         {
             return $obj->keyActivity == "12 - Spice Forest Polyculture";
         });
-
         ?>
 
           <div class="row text-left">
-
-
             <div class="col-6">
-
-
-
               <h5>{{count($coo)}}  Fuel Efficient Cook Stoves</h5>
               <ul>
                 @foreach($coo as $businesses)
@@ -292,10 +255,6 @@
             </div>
           </div>
       </div>
-
-
-
-
 </div>
 
 <div class="row text-center">

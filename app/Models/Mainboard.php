@@ -153,7 +153,7 @@ class Mainboard extends Model
         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
         return $result;
     }
-  
+
     /*Returns the difference in KeyAts known before and known now*/
     public static function getIncreasedAwareness()
     {
@@ -175,19 +175,18 @@ class Mainboard extends Model
 
     public static function getBusinesses()
     {
-        $sqlQuery = 'SELECT KA.keyActivity, OP.uniqueMIName,KA.sector
+        $sqlQuery = 'SELECT `KA`.`keyActivity`, `OP`.`uniqueMIName`, `KA`.`sector`
                       FROM `OP_00Outputs` AS `OP`
                       JOIN
-                        (SELECT COUNT(id) as `members`, `id_OP_00Outputs`
+                        (SELECT COUNT(id) AS members, `id_OP_00Outputs`
                            FROM `OP_00LinkToComMembers`
-                           GROUP BY `id_OP_00Outputs`
-                           HAVING `members` > 3) as `CG`
-                           ON OP.id = CG.id_OP_00Outputs
+                           GROUP BY `id_OP_00Outputs`) AS `CG`
+                        ON OP.id = CG.id_OP_00Outputs
                       JOIN `LK_KeyActivities` AS `KA`
                         ON OP.id_LK_KeyActivities = KA.id
                         WHERE (KA.keyActivity NOT LIKE "03%" AND
-                        KA.keyActivity NOT LIKE "09%")';
-
+                        KA.keyActivity NOT LIKE "09%" AND
+                        CG.members > 7)';
         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
         return $result;
     }
