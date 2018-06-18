@@ -20,24 +20,30 @@ class Energy extends Model
         return $result;
     }
 
-    // Returns the final beneficiaries by sector
+    // Returns the final beneficiaries by agricultural key activity
     public static function getBenPie()
     {
-
-        $sqlQuery = 'SELECT `beneficiaryType`, `sector`,
-                            SUM(`totalBeneficiaries`) as totalBeneficiaries,
-                            SUM(IF(`mF`="F", `totalBeneficiaries`, 0)) as fTot,
-                            SUM(IF(`mF`="M", `totalBeneficiaries`, 0)) as mTot
-                     FROM `RE_SectorBeneficiaries`
-                     GROUP BY  `beneficiaryType`, `sector`
-                     ORDER BY `beneficiaryType` ASC, `sector` ASC';
-        $sqlQuery2 = 'SELECT `beneficiaryType`, "Total" as `sector`,
-                             SUM(`totalBeneficiaries`) As totalBeneficiaries,
+         $sqlQuery = 'SELECT `RE_KeyActivityBeneficiaries`.`beneficiaryType`,
+                             `LK_KeyActivities`.`shortenedName`,
+                             `LK_KeyActivities`.`keyActivity`,
+                             SUM(`totalBeneficiaries`) as totalBeneficiaries,
                              SUM(IF(`mF`="F", `totalBeneficiaries`, 0)) as fTot,
                              SUM(IF(`mF`="M", `totalBeneficiaries`, 0)) as mTot
-                     FROM `RE_Beneficiaries`
-                     GROUP BY `sector`, `beneficiaryType`
-                     ORDER BY `beneficiaryType` ASC, `sector` ASC';
+                      FROM `RE_KeyActivityBeneficiaries`
+                      JOIN `LK_KeyActivities`
+                      ON `RE_KeyActivityBeneficiaries`.`id_LK_KeyActivities` = `LK_KeyActivities`.`id`
+                      WHERE `RE_KeyActivityBeneficiaries`.`sector` = "Energy"
+                      GROUP BY  `beneficiaryType`, `shortenedName`, `keyActivity`
+                      ORDER BY `beneficiaryType` ASC, `keyActivity` ASC';
+         $sqlQuery2 = 'SELECT `beneficiaryType`, "Total" as `shortenedName`,
+                              "Total" as `keyActivity`,
+                              SUM(`totalBeneficiaries`) As totalBeneficiaries,
+                              SUM(IF(`mF`="F", `totalBeneficiaries`, 0)) as fTot,
+                              SUM(IF(`mF`="M", `totalBeneficiaries`, 0)) as mTot
+                      FROM `RE_SectorBeneficiaries`
+                      WHERE `sector` = "Energy"
+                      GROUP BY `beneficiaryType`, `shortenedName`, `keyActivity`
+                      ORDER BY `beneficiaryType` ASC, `keyActivity` ASC';
 
         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
         $result2 = DB::connection('mysql2')->select(DB::Raw($sqlQuery2));
@@ -47,106 +53,48 @@ class Energy extends Model
     // Returns the Beneficiaries for the Bar Chart
     public static function getBenBar()
     {
-        /* Final Beneficiaries by sector, region, district, and community*/
-        $sqlQuery = 'SELECT `RE_SectorBeneficiaries`.`beneficiaryType`, `RE_SectorBeneficiaries`.`sector`,
-                            `BN_ComDist`.`region`, `BN_ComDist`.`district`, `BN_ComDist`.`community`,
-                            `RE_SectorBeneficiaries`.`mF`,
-                            SUM(`RE_SectorBeneficiaries`.`totalBeneficiaries`) As tot
-                     FROM `RE_SectorBeneficiaries`
-                     JOIN (SELECT `BN_Communities`.`id`, `BN_Districts`.`district`, `BN_Districts`.`region`,
-                                  `BN_Communities`.`community`
+        /* Final Beneficiaries by sector, region, and district */
+        $sqlQuery = 'SELECT `RE_KeyActivityBeneficiaries`.`beneficiaryType`,
+                            `LK_KeyActivities`.`keyActivity`,
+                            `LK_KeyActivities`.`shortenedName`,
+                            `BN_ComDist`.`region`, `BN_ComDist`.`district`,
+                            `RE_KeyActivityBeneficiaries`.`mF`,
+                            SUM(`RE_KeyActivityBeneficiaries`.`totalBeneficiaries`) As tot
+                     FROM `RE_KeyActivityBeneficiaries`
+                     JOIN (SELECT `BN_Communities`.`id`, `BN_Districts`.`district`, `BN_Districts`.`region`
                             FROM `BN_Communities`
                             JOIN `BN_Districts` ON BN_Communities.id_BN_Districts=BN_Districts.id) AS `BN_ComDist`
-                     ON `RE_SectorBeneficiaries`.`id_BN_Communities`=`BN_ComDist`.`id`
-                     GROUP BY `RE_SectorBeneficiaries`.`beneficiaryType`, `RE_SectorBeneficiaries`.`sector`,
-                              `BN_ComDist`.`region`, `BN_ComDist`.`district`,
-                              `BN_ComDist`.`community`, `RE_SectorBeneficiaries`.`mF`
-                     ORDER BY `RE_SectorBeneficiaries`.`beneficiaryType` ASC,`RE_SectorBeneficiaries`.`sector` ASC,
-                              `BN_ComDist`.`region` ASC, `BN_ComDist`.`district` ASC, `BN_ComDist`.`community` ASC,
-                              `RE_SectorBeneficiaries`.`mF` ASC';
+                     ON `RE_KeyActivityBeneficiaries`.`id_BN_Communities`=`BN_ComDist`.`id`
+                     JOIN `LK_KeyActivities`
+                     ON `RE_KeyActivityBeneficiaries`.`id_LK_KeyActivities` = `LK_KeyActivities`.`id`
+                     WHERE `RE_KeyActivityBeneficiaries`.`sector` = "Energy"
+                     GROUP BY `RE_KeyActivityBeneficiaries`.`beneficiaryType`, `LK_KeyActivities`.`keyActivity`,
+                              `LK_KeyActivities`.`shortenedName`,
+                              `BN_ComDist`.`region`, `BN_ComDist`.`district`, `RE_KeyActivityBeneficiaries`.`mF`
+                     ORDER BY `RE_KeyActivityBeneficiaries`.`beneficiaryType` ASC,`LK_KeyActivities`.`keyActivity` ASC,
+                              `BN_ComDist`.`region` ASC, `BN_ComDist`.`district` ASC,
+                              `RE_KeyActivityBeneficiaries`.`mF` ASC';
 
-        /* Final Beneficiaries by region, district, and community */
-        $sqlQuery2 = 'SELECT `RE_Beneficiaries`.`beneficiaryType`, "Total" AS `sector`, `BN_ComDist`.`region`,
-                             `BN_ComDist`.`district`, `BN_ComDist`.`community`, `RE_Beneficiaries`.`mF`,
-                             SUM(`RE_Beneficiaries`.`totalBeneficiaries`) As tot
-                     FROM `RE_Beneficiaries`
-                     JOIN (SELECT `BN_Communities`.`id`, `BN_Districts`.`district`, `BN_Districts`.`region`,
-                                  `BN_Communities`.`community`
+        /* Final Beneficiaries by region, and district */
+        $sqlQuery2 = 'SELECT `RE_SectorBeneficiaries`.`beneficiaryType`, "Energy" AS `keyActivity`,
+                             "Energy" AS `shortenedName`, `BN_ComDist`.`region`,
+                             `BN_ComDist`.`district`, `RE_SectorBeneficiaries`.`mF`,
+                             SUM(`RE_SectorBeneficiaries`.`totalBeneficiaries`) As tot
+                     FROM `RE_SectorBeneficiaries`
+                     JOIN (SELECT `BN_Communities`.`id`, `BN_Districts`.`district`, `BN_Districts`.`region`
                            FROM `BN_Communities`
                            JOIN `BN_Districts` ON BN_Communities.id_BN_Districts=BN_Districts.id) AS `BN_ComDist`
-                     ON `RE_Beneficiaries`.`id_BN_Communities`=`BN_ComDist`.`id`
-                     GROUP BY `RE_Beneficiaries`.`beneficiaryType`, `sector`, `BN_ComDist`.`district`,
-                              `BN_ComDist`.`community`, `RE_Beneficiaries`.`mF`
-                     ORDER BY `RE_Beneficiaries`.`beneficiaryType` ASC, `BN_ComDist`.`region` ASC,
-                              `BN_ComDist`.`district` ASC, `BN_ComDist`.`community` ASC,
-                              `RE_Beneficiaries`.`mF` ASC';
-
-          /* Final Beneficiaries by sector, region, district, and community*/
-          $sqlQuery = 'SELECT `RE_SectorBeneficiaries`.`beneficiaryType`, `RE_SectorBeneficiaries`.`sector`,
-                              `BN_ComDist`.`region`, `BN_ComDist`.`district`,
-                              `RE_SectorBeneficiaries`.`mF`,
-                              SUM(`RE_SectorBeneficiaries`.`totalBeneficiaries`) As tot
-                       FROM `RE_SectorBeneficiaries`
-                       JOIN (SELECT `BN_Communities`.`id`, `BN_Districts`.`district`, `BN_Districts`.`region`
-                              FROM `BN_Communities`
-                              JOIN `BN_Districts` ON BN_Communities.id_BN_Districts=BN_Districts.id) AS `BN_ComDist`
-                       ON `RE_SectorBeneficiaries`.`id_BN_Communities`=`BN_ComDist`.`id`
-                       GROUP BY `RE_SectorBeneficiaries`.`beneficiaryType`, `RE_SectorBeneficiaries`.`sector`,
-                                `BN_ComDist`.`region`, `BN_ComDist`.`district`, `RE_SectorBeneficiaries`.`mF`
-                       ORDER BY `RE_SectorBeneficiaries`.`beneficiaryType` ASC,`RE_SectorBeneficiaries`.`sector` ASC,
-                                `BN_ComDist`.`region` ASC, `BN_ComDist`.`district` ASC,
-                                `RE_SectorBeneficiaries`.`mF` ASC';
-
-          /* Final Beneficiaries by region, district, and community */
-          $sqlQuery2 = 'SELECT `RE_Beneficiaries`.`beneficiaryType`, "Total" AS `sector`, `BN_ComDist`.`region`,
-                               `BN_ComDist`.`district`, `RE_Beneficiaries`.`mF`,
-                               SUM(`RE_Beneficiaries`.`totalBeneficiaries`) As tot
-                       FROM `RE_Beneficiaries`
-                       JOIN (SELECT `BN_Communities`.`id`, `BN_Districts`.`district`, `BN_Districts`.`region`
-                             FROM `BN_Communities`
-                             JOIN `BN_Districts` ON BN_Communities.id_BN_Districts=BN_Districts.id) AS `BN_ComDist`
-                       ON `RE_Beneficiaries`.`id_BN_Communities`=`BN_ComDist`.`id`
-                       GROUP BY `RE_Beneficiaries`.`beneficiaryType`, `sector`, `BN_ComDist`.`district`,
-                                `RE_Beneficiaries`.`mF`
-                       ORDER BY `RE_Beneficiaries`.`beneficiaryType` ASC, `BN_ComDist`.`region` ASC,
-                                `BN_ComDist`.`district` ASC, `RE_Beneficiaries`.`mF` ASC';
+                     ON `RE_SectorBeneficiaries`.`id_BN_Communities`=`BN_ComDist`.`id`
+                     WHERE `RE_SectorBeneficiaries`.`sector` = "Energy"
+                     GROUP BY `RE_SectorBeneficiaries`.`beneficiaryType`, `sector`, `BN_ComDist`.`district`,
+                              `RE_SectorBeneficiaries`.`mF`
+                     ORDER BY `RE_SectorBeneficiaries`.`beneficiaryType` ASC, `BN_ComDist`.`region` ASC,
+                              `BN_ComDist`.`district` ASC, `RE_SectorBeneficiaries`.`mF` ASC';
 
         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
         $result2 = DB::connection('mysql2')->select(DB::Raw($sqlQuery2));
 
-        // Return the final beneficiaries and final beneficiaries by sector
+        // Return the final beneficiaries
         return array_merge($result, $result2);
-    }
-
-    public static function getFinalBeneficiariesBySex()
-    {
-        $sqlQuery = 'SELECT IFNULL(`mF`, "Total") as `mF`, DirTrain, IndTrain, FinalBen
-                    FROM (
-                        SELECT `mF`,
-                        SUM(IF(beneficiaryType = "Direct Trainees", totalBeneficiaries, NULL)) AS DirTrain,
-                        SUM(IF(beneficiaryType = "Indirect Trainees", totalBeneficiaries, NULL)) AS IndTrain,
-                        SUM(IF(beneficiaryType = "Final Beneficiaries", totalBeneficiaries, NULL)) AS FinalBen
-                    FROM `RE_Beneficiaries`
-                    GROUP BY `mF` WITH ROLLUP
-                ) as DT';
-
-        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
-        return $result;
-    }
-
-    // Returns the final beneficiaries by key activity
-    public static function getFinalBeneficiariesByKeyActivity()
-    {
-
-        $sqlQuery = 'SELECT `sector`, `keyActivity`, sum(`totalBeneficiaries`) as totalBeneficiaries
-                     FROM `RE_KeyActivityBeneficiaries`
-                     JOIN `LK_KeyActivities` ON RE_KeyActivityBeneficiaries.id_LK_KeyActivities=LK_KeyActivities.id
-                     JOIN `BN_Communities` ON RE_KeyActivityBeneficiaries.id_BN_Communities=BN_Communities.id
-                     WHERE `beneficiaryType`="Final Beneficiaries"
-                     AND `sroia`=1
-                     GROUP BY `sector`, `keyActivity`';
-
-        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
-        return $result;
     }
 }

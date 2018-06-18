@@ -24,14 +24,42 @@
     cursor: pointer;
 }
 
-/* Set the Sector colors */
+/* Set the Sector and Key Activity colors */
 .Agriculture { fill: #f60; }
+.Agro { fill: #dcc32f; }
+.Gardens { fill: #9590ff; }
+.Bees { fill: #d89000; }
+.Spices { fill: #f25667; }
+
 .Energy { fill: #c07; }
+.Stoves { fill: #f8766d; }
+.ICSEB { fill: #e76bf3; }
+.Solar { fill: #f15722; }
+.ICPS { fill: #00b0f6; }
+.Charcoal { fill: #ff62bc; }
+
 .Forestry { fill: #8c0; }
+.Nurseries { fill: #a3a500; }
+.Trees { fill: #39b600; }
+.PNRM { fill: #a3d02f; }
+
 .Water { fill: #0ac; }
+.Irrigate { fill: #00bf7d; }
+.Rainwater { fill: #00bfc4; }
+
 .Total { fill: #999; }
 
-
+/* Changes */
+.Impr { fill: #9d0; }
+.Decl { fill: #f98; }
+.Stay { fill: #eee; }
+/* The Sector Beneficiary Pie Chart
+#yieldPie text {
+  font: 14px sans-serif;
+  font-weight: bold;
+  fill: #fff;
+  text-anchor: middle;
+}*/
 
 /* The Sector Beneficiary Pie Chart*/
 #sectorPie text {
@@ -55,6 +83,10 @@
   font-weight: bold;
   fill: #333;
 }
+
+/* Water Board */
+.Achieved { fill: #9d0; }
+.Unachieved { fill: #eee; }
 
 /* Final Beneficiaries Tree Diagram */
 .node circle {

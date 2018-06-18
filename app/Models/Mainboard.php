@@ -47,7 +47,7 @@ class Mainboard extends Model
     // Returns the Beneficiaries for the Bar Chart
     public static function getBenBar()
     {
-          /* Final Beneficiaries by sector, region, district, and community*/
+          /* Final Beneficiaries by sector, region, and district */
           $sqlQuery = 'SELECT `RE_SectorBeneficiaries`.`beneficiaryType`, `RE_SectorBeneficiaries`.`sector`,
                               `BN_ComDist`.`region`, `BN_ComDist`.`district`,
                               `RE_SectorBeneficiaries`.`mF`,
@@ -153,7 +153,7 @@ class Mainboard extends Model
         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
         return $result;
     }
-
+  
     /*Returns the difference in KeyAts known before and known now*/
     public static function getIncreasedAwareness()
     {
@@ -205,6 +205,4 @@ class Mainboard extends Model
         $result2 = DB::connection('mysql2')->select(DB::Raw($sqlQuery2));
         return array_merge($result, $result2);
     }
-
-
 }
