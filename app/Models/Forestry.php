@@ -132,19 +132,28 @@ class Forestry extends Model
 
 
 
-    // Returns the amount of seedlings grown per sector
+    // Returns the amount of seedlings grown per type
     public static function getSeedlingsGrown()
     {
-        $sqlQuery = 'SELECT `name`,`district`, sum(`grownSeedlingCount`) as totalSeedlings
-                     FROM `OP_02AComponents`
-                     JOIN `LK_AgroEcoComponents` ON OP_02AComponents.id_LK_AgroEcoComponents=LK_AgroEcoComponents.id
-                     JOIN `OP_02ATreeNurseries` ON OP_02AComponents.id_OP_02ATreeNurseries=OP_02ATreeNurseries.id
-                     JOIN `OP_00Outputs` ON OP_02ATreeNurseries.id_OP_00Outputs=OP_00Outputs.id
-                     JOIN `BN_Communities` ON OP_00Outputs.id_BN_Communities=BN_Communities.id
-                     JOIN `BN_Districts` ON BN_Communities.id_BN_Districts=BN_Districts.id
-                     GROUP BY `name`,`district`';
+      $sqlQuery = 'SELECT `name`, sum(`grownSeedlingCount`) as seedlingsGrown
+
+                 FROM `OP_02AComponents`
+                 JOIN `LK_AgroEcoComponents` ON OP_02AComponents.id_LK_AgroEcoComponents=LK_AgroEcoComponents.id
+                 GROUP BY `name`';
 
          $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
          return $result;
+    }
+
+    // Returns the amount of trees planted per type
+    public static function getTreesPlanted()
+    {
+      $sqlQuery = 'SELECT `name`, SUM(grownSeedlingCount) - SUM(remainingSeedlingCount) AS totalTrees
+                 FROM `OP_02AComponents`
+                 JOIN `LK_AgroEcoComponents` ON OP_02AComponents.id_LK_AgroEcoComponents=LK_AgroEcoComponents.id
+                 GROUP BY `name`';
+
+     $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+     return $result;
     }
 }
