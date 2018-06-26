@@ -16,8 +16,10 @@ class WaterController extends Controller
         $waterHHs = Water::getWaterHH();
         $waSys = Water::getWaterSystems();
         $waCap = Water::getWaterCapacity();
+        $waAg = Water::getWaterAgriculture();
+        $waCatch = Water::getCatchConsArea();
 
         return view('water', compact('communities', 'waBens', 'districtBens',
-                    'waterHHs', 'waSys', 'waCap'));
+                    'waterHHs', 'waSys', 'waCap', 'waAg', 'waCatch'));
     }
 }

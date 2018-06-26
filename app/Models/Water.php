@@ -172,4 +172,79 @@ class Water extends Model
         #return array_merge($result, $result2);
     }
 
+    // Returns the total number of beneficiary households with improved access to water for agriculture
+    public static function getWaterAgriculture()
+    {
+        // Get Agroforestry Beneficiaries
+        $sqlQuery = 'SELECT KA.keyActivity, KA.shortenedName, SUM(IF(`SV`.`improveWaterAccess01` = "Yes", 1, 0)) as totalHH
+                      FROM `SV_Continuous` AS SV,
+                            (SELECT keyActivity, shortenedName
+                            FROM LK_KeyActivities
+                            WHERE keyActivity LIKE "01%") AS KA
+                      GROUP BY keyActivity';
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+
+        // Get Kitchen Garden Beneficiaries
+        $sqlQuery = 'SELECT KA.keyActivity, KA.shortenedName, SUM(IF(`SV`.`improveWaterAccess07` = "Yes", 1, 0)) as totalHH
+                      FROM `SV_Continuous` AS SV,
+                            (SELECT keyActivity, shortenedName
+                            FROM LK_KeyActivities
+                            WHERE keyActivity LIKE "07%") AS KA
+                      GROUP BY keyActivity';
+        $result = array_merge($result, DB::connection('mysql2')->select(DB::Raw($sqlQuery)));
+
+        // Get Spice Forestry beneficiaries
+        $sqlQuery = 'SELECT KA.keyActivity, KA.shortenedName, SUM(IF(`SV`.`improveWaterAccess12` = "Yes", 1, 0)) as totalHH
+                      FROM `SV_Continuous` AS SV,
+                            (SELECT keyActivity, shortenedName
+                            FROM LK_KeyActivities
+                            WHERE keyActivity LIKE "12%") AS KA
+                      GROUP BY keyActivity';
+        $result = array_merge($result, DB::connection('mysql2')->select(DB::Raw($sqlQuery)));
+        return $result;
+    }
+
+    // Returns the total area with improved catchment conservation
+    public static function getCatchConsArea()
+    {
+        // Get Agroforestry Beneficiaries
+        $sqlQuery = 'SELECT KA.keyActivity, KA.shortenedName, ROUND(SUM(OP_00Outputs.areaMetersSquared)/10000,1) AS hectares
+                     FROM (SELECT DISTINCT `OP_Link`.`id_OP_00Outputs`
+                                /*Get the community members that indicate their access to water increased*/
+                         FROM (SELECT `SV`.`id_BN_ComMember`
+                                FROM `SV_Continuous` AS `SC`
+                                JOIN `SV_Surveys` AS `SV`
+                                ON `SC`.`id_SV_Surveys` = `SV`.`id`
+                                WHERE `SC`.`improveWaterAccess01` = "Yes") AS BN
+                        JOIN `OP_00LinkToComMembers` as OP_Link
+                        ON `BN`.`id_BN_ComMember` = `OP_Link`.`id_BN_ComMembers`) AS OP
+                    JOIN `OP_00Outputs`
+                    ON `OP`.`id_OP_00Outputs` = `OP_00Outputs`.`id`
+                    JOIN `LK_KeyActivities` AS KA
+                    ON `OP_00Outputs`.`id_LK_KeyActivities` = `KA`.`id`
+                    WHERE KA.keyActivity LIKE "01%"
+                    GROUP BY KA.keyActivity, KA.shortenedName';
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+
+        // Get Kitchen Garden Beneficiaries
+        $sqlQuery = 'SELECT KA.keyActivity, KA.shortenedName, ROUND(SUM(OP_00Outputs.areaMetersSquared)/10000,1) AS hectares
+                     FROM (SELECT DISTINCT `OP_Link`.`id_OP_00Outputs`
+                                /*Get the community members that indicate their access to water increased*/
+                         FROM (SELECT `SV`.`id_BN_ComMember`
+                                FROM `SV_Continuous` AS `SC`
+                                JOIN `SV_Surveys` AS `SV`
+                                ON `SC`.`id_SV_Surveys` = `SV`.`id`
+                                WHERE `SC`.`improveWaterAccess12` = "Yes") AS BN
+                        JOIN `OP_00LinkToComMembers` as OP_Link
+                        ON `BN`.`id_BN_ComMember` = `OP_Link`.`id_BN_ComMembers`) AS OP
+                    JOIN `OP_00Outputs`
+                    ON `OP`.`id_OP_00Outputs` = `OP_00Outputs`.`id`
+                    JOIN `LK_KeyActivities` AS KA
+                    ON `OP_00Outputs`.`id_LK_KeyActivities` = `KA`.`id`
+                    WHERE KA.keyActivity LIKE "12%"
+                    GROUP BY KA.keyActivity, KA.shortenedName';
+        $result = array_merge($result, DB::connection('mysql2')->select(DB::Raw($sqlQuery)));
+        return $result;
+    }
+
 }

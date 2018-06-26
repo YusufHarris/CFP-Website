@@ -37,9 +37,11 @@
         Percent of kitchen garden trainees that report eating vegetables and fruits more days per week
     </div>
     <!-- Placeholder-->
-    <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
+    <!--<div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
         <h4>Placeholder:</h4>
         Number of kitchen gardens established
+    </div>-->
+    <div class="col-12 col-md-6" id="seedlingsGrownBar" style="height: 400px;">
     </div>
 </div>
 <h3>Beekeeping</h3>
@@ -86,7 +88,22 @@
 
 <!-- D3 javascript for Beneficiary Pie Chart and Bar Chart -->
 @include('js.agriculturePieDistrictBar')
-<!-- D3 javascript for Yield Change Pie Chart -->
-@include('js.agricultureYieldChangesPie')
+
+<script>
+// D3 javascript for Yield Change Pie Chart
+const yieldChgPie = new BasicPieChart(
+    '#yieldPie',
+    {
+        margin: {top: 10, bottom: 10, left: 10, right: 10,},
+        dataSet: <?php echo json_encode( $yieldChgs ) ?>,
+        valueField: 'beneficiaries',
+        catField: 'yield01',
+        unit: '',
+        fillRatio: 0.5,
+        showTotals: false,
+        showAsPercent: true,
+    }
+)
+</script>
 
 @endsection

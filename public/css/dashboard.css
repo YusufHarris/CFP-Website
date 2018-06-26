@@ -26,33 +26,33 @@
 
 /* Set the Sector and Key Activity colors */
 .Agriculture { fill: #f60; }
-.Agro { fill: #dcc32f; }
-.Gardens { fill: #9590ff; }
-.Bees { fill: #d89000; }
-.Spices { fill: #f25667; }
+.\30\31-Agro { fill: #dcc32f; }
+.\30\37-Gardens { fill: #9590ff; }
+.\30\38-Bees { fill: #d89000; }
+.\31\32-Spices { fill: #f25667; }
 
 .Energy { fill: #c07; }
-.Stoves { fill: #f8766d; }
-.ICSEB { fill: #e76bf3; }
-.Solar { fill: #f15722; }
-.ICPS { fill: #00b0f6; }
-.Charcoal { fill: #ff62bc; }
+.\30\35-Stoves { fill: #f8766d; }
+.\30\36-ICSEB { fill: #e76bf3; }
+.\30\39-Solar { fill: #f15722; }
+.\31\31-ICPS { fill: #00b0f6; }
+.\30\34-Charcoal { fill: #ff62bc; }
 
 .Forestry { fill: #8c0; }
-.Nurseries { fill: #a3a500; }
-.Trees { fill: #39b600; }
-.PNRM { fill: #a3d02f; }
+.\30\32A-Nurseries { fill: #a3a500; }
+.\30\32B-Trees { fill: #39b600; }
+.\31\33-PNRM { fill: #a3d02f; }
 
 .Water { fill: #0ac; }
 .Irrigate { fill: #00bf7d; }
-.Rainwater { fill: #00bfc4; }
+.\30\33-Rainwater { fill: #00bfc4; }
 
-.Total { fill: #999; }
+.Total { fill: #aaa; }
 
 /* Changes */
-.Impr { fill: #9d0; }
-.Decl { fill: #f98; }
-.Stay { fill: #eee; }
+.Improved { fill: #9d0; }
+.Declined { fill: #f98; }
+.Stayed_the_same { fill: #ccc; }
 /* The Sector Beneficiary Pie Chart
 #yieldPie text {
   font: 14px sans-serif;
@@ -86,7 +86,7 @@
 
 /* Water Board */
 .Achieved { fill: #9d0; }
-.Unachieved { fill: #eee; }
+.Unachieved { fill: #fff; }
 
 /* Final Beneficiaries Tree Diagram */
 .node circle {
@@ -104,26 +104,4 @@
 }
 .benTreeOverlay {
     background-color: #EEE;
-}
-
-
-/* Income Change Pie Text */
-#incomePie text {
-  font: 14px sans-serif;
-  font-weight: bold;
-  fill: #fff;
-  text-anchor: middle;
-}
-
-#knowOthersPie text {
-  font: 14px sans-serif;
-  font-weight: bold;
-  fill: #fff;
-  text-anchor: middle;
-}
-#increasedAwarenessPie text {
-  font: 14px sans-serif;
-  font-weight: bold;
-  fill: #fff;
-  text-anchor: middle;
 }

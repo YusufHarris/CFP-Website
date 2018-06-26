@@ -143,4 +143,28 @@ class Agriculture extends Model
         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
         return $result;
     }
+
+    // Returns the number of trees grown
+    public static function getTreesPlanted()
+   {
+       $sqlQuery = 'SELECT `name`, SUM(grownSeedlingCount) - SUM(remainingSeedlingCount) AS totalTrees
+                    FROM `OP_02AComponents`
+                    JOIN `LK_AgroEcoComponents` ON OP_02AComponents.id_LK_AgroEcoComponents=LK_AgroEcoComponents.id
+                    GROUP BY `name` WITH ROLLUP';
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        return $result;
+   }
+
+   // Returns the seedlings grown
+   public static function getSeedlingsGrown()
+   {
+       $sqlQuery = 'SELECT `name`, sum(`grownSeedlingCount`) as seedlingsGrown
+                    FROM `OP_02AComponents`
+                    JOIN `LK_AgroEcoComponents` ON OP_02AComponents.id_LK_AgroEcoComponents=LK_AgroEcoComponents.id
+                    GROUP BY `name`';
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        return $result;
+   }
 }

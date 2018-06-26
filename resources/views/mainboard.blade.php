@@ -272,9 +272,56 @@
 
 <!-- D3 javascript for Beneficiary Pie Chart and Bar Chart -->
 @include('js.sectorPieDistrictBar')
-<!-- D3 javascript for Income Pie Chart -->
-@include('js.incomePie')
-<!-- D3 javascript for Income Pie Chart -->
-@include('js.knowOthersPie')
-@include('js.increasedAwarenessPie')
+
+<script>
+
+// D3 javascript for Income Change Pie Chart
+const incomePie = new BasicPieChart(
+    '#incomeChange',
+    {
+        margin: {top: 10, bottom: 10, left: 10, right: 10,},
+        dataSet: <?php echo json_encode( $incomeChange ) ?>,
+        valueField: 'benCount',
+        catField: 'ovallIncomeChange',
+        fillRatio: 0.5,
+        showTotals: false,
+        showAsPercent: true,
+        colorPalette: ['#A0FF9F','#1AAB19','#5BFF5A'],
+        sliceTextColor: '#000A4C',
+    }
+)
+
+// D3 javascript for Increased Awareness Pie Chart
+const increasedAwarenessPie = new BasicPieChart(
+    '#increasedAwarenessPie',
+    {
+        margin: {top: 10, bottom: 10, left: 10, right: 10,},
+        dataSet: <?php echo json_encode( $awareness ) ?>,
+        valueField: 'amount',
+        catField: 'category',
+        fillRatio: 0.5,
+        showTotals: false,
+        showAsPercent: true,
+        colorPalette: ['#FF9FCC','#FC0076'],
+        sliceTextColor: '#000A4C',
+    }
+)
+
+// D3 javascript for Knowing Others that have adapted the activities
+const knowOthersPie = new BasicPieChart(
+    '#knowOthersPie',
+    {
+        margin: {top: 10, bottom: 10, left: 10, right: 10,},
+        dataSet: <?php echo json_encode( $knowOthers ) ?>,
+        valueField: 'amount',
+        catField: 'category',
+        fillRatio: 0.5,
+        showTotals: false,
+        showAsPercent: true,
+        colorPalette: ['#464BC1','#ACAEDC'],
+        sliceTextColor: '#040743',
+    }
+)
+
+</script>
 @endsection
