@@ -15,6 +15,8 @@ class ForestryController extends Controller
         $districtBens = Forestry::getBenBar();
         $seedlings = Forestry::getSeedlingsGrown();
 
-        return view('forestry', compact('communities', 'seedlings', 'foBens', 'districtBens'));
+        $treesPlanted = Forestry:: getTreesPlanted();
+
+        return view('forestry', compact('communities', 'seedlings' ,'foBens', 'districtBens','treesPlanted'));
     }
 }
