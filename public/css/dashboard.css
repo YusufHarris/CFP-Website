@@ -26,26 +26,26 @@
 
 /* Set the Sector and Key Activity colors */
 .Agriculture { fill: #f60; }
-.\30\31-Agro { fill: #dcc32f; }
-.\30\37-Gardens { fill: #9590ff; }
-.\30\38-Bees { fill: #d89000; }
-.\31\32-Spices { fill: #f25667; }
+[class='01-Agro'] { fill: #dcc32f; }
+[class='07-Gardens'] { fill: #9590ff; }
+[class='08-Bees'] { fill: #d89000; }
+[class='12-Spices'] { fill: #f25667; }
 
 .Energy { fill: #c07; }
-.\30\35-Stoves { fill: #f8766d; }
-.\30\36-ICSEB { fill: #e76bf3; }
-.\30\39-Solar { fill: #f15722; }
-.\31\31-ICPS { fill: #00b0f6; }
-.\30\34-Charcoal { fill: #ff62bc; }
+[class='05-Stoves'] { fill: #f8766d; }
+[class='06-ICSEB'] { fill: #e76bf3; }
+[class='09-Solar'] { fill: #f15722; }
+[class='11-ICPS'] { fill: #00b0f6; }
+[class='04-Charcoal'] { fill: #ff62bc; }
 
 .Forestry { fill: #8c0; }
-.\30\32A-Nurseries { fill: #a3a500; }
-.\30\32B-Trees { fill: #39b600; }
-.\31\33-PNRM { fill: #a3d02f; }
+[class='02A-Nurseries'] { fill: #a3a500; }
+[class='02B-Trees'] { fill: #39b600; }
+[class='13-PNRM'] { fill: #a3d02f; }
 
 .Water { fill: #0ac; }
 .Irrigate { fill: #00bf7d; }
-.\30\33-Rainwater { fill: #00bfc4; }
+[class='03-Rainwater'] { fill: #00bfc4; }
 
 .Total { fill: #aaa; }
 

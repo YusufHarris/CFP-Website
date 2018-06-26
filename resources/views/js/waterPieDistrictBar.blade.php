@@ -401,7 +401,7 @@ class BenBarChart extends Chart {
             // Set the initail height to 0
             .attr('height', 0)
             // Set the class to the key activity for proper coloring
-            .classed(this.ka.substring(this.ka.indexOf('-') + 1), true)
+            .classed(this.ka, true)
             // Adjust the opacity for females and males
             .attr('fill-opacity', function(d,i){
                 if(i%2 == 0){ return 0.5; }
@@ -524,7 +524,7 @@ class BenBarChart extends Chart {
         this.newGroup('title');
 
         // Set the current class
-        var curClass = this.ka.substring(this.ka.indexOf('-') + 1);
+        var curClass = this.ka;
 
         // Draw the title
         this.title
