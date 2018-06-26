@@ -135,8 +135,7 @@ class BenPieChart extends Chart {
             .attr('d', pathLoad)
             // Set the slice widths using the data points
             .attr('class', function(d) {
-                    var startIdx = d.data.shortenedName.indexOf('-') + 1;
-                    return d.data.shortenedName.substring(startIdx);
+                    return d.data.shortenedName;
                 }
             )
             // Transition to the default slice radii after the page is loaded

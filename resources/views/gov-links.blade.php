@@ -59,6 +59,25 @@
 </div>
 
 <!-- D3 javascript for Government Member Bar Chart -->
-@include('js.govMembersBar')
+<!--'js.govMembersBar')-->
+
+<script>
+
+// D3 javascript for Knowing Others that have adapted the activities
+const govBar= new BasicBarChart(
+    '#govTrainees',
+    {
+        margin: {top: 10, bottom: 10, left: 150, right: 10,},
+        dataSet: <?php echo json_encode( $agencies ) ?>,
+        xField: 'members',
+        yField: 'agencyAcronym',
+        popupField: 'agencyName',
+        unit: '',
+        titleText: getFieldSum(<?php echo json_encode($agencies)?>, 'members') + ' Government Members',
+    }
+)
+
+</script>
+
 
 @endsection

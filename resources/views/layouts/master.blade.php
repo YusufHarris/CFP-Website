@@ -20,10 +20,17 @@
     <link rel="stylesheet" href="{{asset('css/leaflet.css')}}"/>
     <script src="{{asset('js/leaflet.js')}}"></script>
 
+    <!-- Locally created supporting functions -->
+    <script src="{{asset('js/supportFunctions.js')}}"></script>
+
     <!-- D3 core Javascript -->
     <script src="{{asset('js/d3.v5.js')}}"></script>
     <!-- Chart Class for quickly creating resizable D3 charts -->
     <script src="{{asset('js/ChartClass.js')}}"></script>
+    <!-- Basic Pie Chart Subclass -->
+    <script src="{{asset('js/BasicPieChartClass.js')}}"></script>
+    <!-- Basic Bar Chart Subclass -->
+    <script src="{{asset('js/BasicBarChartClass.js')}}"></script>
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/dashboard.css')}}"/>
