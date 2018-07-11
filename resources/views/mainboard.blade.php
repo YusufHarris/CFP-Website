@@ -4,6 +4,7 @@
 @section('content')
 
 
+
 <div class="row text-center">
     <div class="col-12 col-md-6">
         <!-- Selecter for the beneficiary type -->

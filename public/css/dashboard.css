@@ -61,6 +61,8 @@
   text-anchor: middle;
 }*/
 
+#enSystemsList text {color: #c07}
+
 /* The Sector Beneficiary Pie Chart*/
 #sectorPie text {
   font: 14px sans-serif;
