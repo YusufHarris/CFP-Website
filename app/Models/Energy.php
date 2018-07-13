@@ -97,4 +97,158 @@ class Energy extends Model
         // Return the final beneficiaries
         return array_merge($result, $result2);
     }
+
+    // Returns the number of renewabe energy systems by district
+    public static function getEnergySystems()
+    {
+         $sqlQuery = 'SELECT `uniqueMIName`, `district`
+                      FROM `OP_00Outputs`
+                      JOIN `BN_Communities`
+                          ON `OP_00Outputs`.id_BN_Communities = `BN_Communities`.id
+                      JOIN `BN_Districts`
+                          ON `BN_Communities`.id_BN_Districts = `BN_Districts`.id
+                      JOIN `LK_KeyActivities`
+                        ON `OP_00Outputs`.id_LK_KeyActivities = `LK_KeyActivities`.id
+                        WHERE (keyActivity LIKE "09%")
+
+                      GROUP BY `uniqueMIName`,`district`';
+
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        return $result;
+    }
+
+
+    // Returns the number of renewabe energy systems by district
+    public static function getSolarHouseholds()
+    {
+         $sqlQuery = 'SELECT (ROUND(SUM(IF(`beneficiaryType`="Final Beneficiaries", `totalBeneficiaries`/5.2, 0)) )) AS totalHouseholds, `community`
+                      FROM `RE_KeyActivityBeneficiaries`
+
+
+                      JOIN `BN_Communities`
+                          ON `RE_KeyActivityBeneficiaries`.id_BN_Communities = `BN_Communities`.id
+
+                      JOIN `LK_KeyActivities`
+                        ON `RE_KeyActivityBeneficiaries`.id_LK_KeyActivities = `LK_KeyActivities`.id
+                        WHERE (keyActivity LIKE "09%")
+
+                      GROUP BY `community`';
+
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        return $result;
+    }
+
+    /*Returns the difference in firewood before and now*/
+    public static function getDecreasedFirewood()
+    {
+        $sqlQuery =  'SELECT "Decreased" AS category, SUM(IF( ( (`bundlesWeekBefore05` != "NULL")
+                                                          AND (`bundlesWeek05` != "NULL")
+                                                          AND (`bundlesWeekBefore05` - `bundlesWeek05` > 0) )
+                                                          ,1,0)) AS amount
+                     FROM `SV_Continuous`';
+        $sqlQuery2 =  'SELECT "Stayed the Same" AS category, SUM(IF( ((`bundlesWeekBefore05` != "NULL")
+                                                          AND (`bundlesWeek05` != "NULL")
+                                                          AND (`bundlesWeekBefore05` - `bundlesWeek05` = 0))
+                                                          ,1,0)) AS amount
+                     FROM `SV_Continuous`';
+
+       $sqlQuery3 =  'SELECT "Increased" AS category, SUM(IF( ((`bundlesWeekBefore05` != "NULL")
+                                                         AND (`bundlesWeek05` != "NULL")
+                                                         AND (`bundlesWeekBefore05` - `bundlesWeek05` < 0))
+                                                         ,1,0)) AS amount
+                    FROM `SV_Continuous`';
+
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        $result2 = DB::connection('mysql2')->select(DB::Raw($sqlQuery2));
+        $result3 = DB::connection('mysql2')->select(DB::Raw($sqlQuery3));
+        return array_merge($result, $result2,$result3);
+    }
+
+    // Returns the number of cook stoves by district
+    public static function getCookStoveGroups()
+    {
+         $sqlQuery = 'SELECT `uniqueMIName`, `district`
+                      FROM `OP_00Outputs`
+                      JOIN `BN_Communities`
+                          ON `OP_00Outputs`.id_BN_Communities = `BN_Communities`.id
+                      JOIN `BN_Districts`
+                          ON `BN_Communities`.id_BN_Districts = `BN_Districts`.id
+                      JOIN `LK_KeyActivities`
+                        ON `OP_00Outputs`.id_LK_KeyActivities = `LK_KeyActivities`.id
+                        WHERE (keyActivity LIKE "05%")
+
+                      GROUP BY `uniqueMIName`,`district`';
+
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        return $result;
+    }
+
+    // Returns the number of renewabe energy systems by district
+    public static function getCookStoves()
+    {
+         $sqlQuery = 'SELECT (ROUND(SUM(IF(`beneficiaryType`="Final Beneficiaries", `totalBeneficiaries`/5.2, 0)) )) AS totalStoves, `district`
+                      FROM `RE_KeyActivityBeneficiaries`
+
+
+                      JOIN `BN_Communities`
+                          ON `RE_KeyActivityBeneficiaries`.id_BN_Communities = `BN_Communities`.id
+                      JOIN `BN_Districts`
+                          ON `BN_Communities`.id_BN_Districts = `BN_Districts`.id
+                      JOIN `LK_KeyActivities`
+                        ON `RE_KeyActivityBeneficiaries`.id_LK_KeyActivities = `LK_KeyActivities`.id
+                        WHERE (keyActivity LIKE "05%")
+
+                      GROUP BY `district`';
+
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        return $result;
+    }
+
+    // Returns the number of charcoal production systems by district
+    public static function getCharcoalSystems()
+    {
+         $sqlQuery = 'SELECT (ROUND(SUM(IF(`beneficiaryType`="Final Beneficiaries", `totalBeneficiaries`/5.2, 0)) )) AS totalSys, `district`
+                      FROM `RE_KeyActivityBeneficiaries`
+
+
+                      JOIN `BN_Communities`
+                          ON `RE_KeyActivityBeneficiaries`.id_BN_Communities = `BN_Communities`.id
+                      JOIN `BN_Districts`
+                          ON `BN_Communities`.id_BN_Districts = `BN_Districts`.id
+                      JOIN `LK_KeyActivities`
+                        ON `RE_KeyActivityBeneficiaries`.id_LK_KeyActivities = `LK_KeyActivities`.id
+                        WHERE (keyActivity LIKE "11%")
+
+                      GROUP BY `district`';
+
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        return $result;
+    }
+
+    // Returns the number of earth block presses by district
+    public static function getEarthBlockPresses()
+    {
+         $sqlQuery = 'SELECT `uniqueMIName`, `district`
+                      FROM `OP_00Outputs`
+                      JOIN `BN_Communities`
+                          ON `OP_00Outputs`.id_BN_Communities = `BN_Communities`.id
+                      JOIN `BN_Districts`
+                          ON `BN_Communities`.id_BN_Districts = `BN_Districts`.id
+                      JOIN `LK_KeyActivities`
+                        ON `OP_00Outputs`.id_LK_KeyActivities = `LK_KeyActivities`.id
+                        WHERE (keyActivity LIKE "06%")
+
+                      GROUP BY `uniqueMIName`,`district`';
+
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        return $result;
+    }
+
 }
