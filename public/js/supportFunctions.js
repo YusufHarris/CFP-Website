@@ -7,7 +7,7 @@ function numberWithCommas(x) {
 function getFieldSum(dataSet, field) {
     var cnt = 0;
     for (var x in dataSet) {
-        cnt += dataSet[x][field];
+        cnt += Number(dataSet[x][field]);
     }
     return cnt;
 }

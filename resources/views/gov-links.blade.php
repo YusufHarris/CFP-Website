@@ -72,8 +72,8 @@ const govBar= new BasicBarChart(
         xField: 'members',
         yField: 'agencyAcronym',
         popupField: 'agencyName',
-        unit: '',
         titleText: getFieldSum(<?php echo json_encode($agencies)?>, 'members') + ' Government Members',
+        colorPalette: ['#FF9FCC','#FC0076'],
     }
 )
 
