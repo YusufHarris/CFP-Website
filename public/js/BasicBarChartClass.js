@@ -13,7 +13,7 @@
                             yField will be used as the class
                 titleText: the text to display in the title
 
-                unit: the unit to be appended to the values when labeling
+                xUnit: the unit to be appended to the xField values when labeling
                 fillRatio: the ratio of the doughnut width
 
                 showTotals: flag to indicate if the center of the pie chart
@@ -24,7 +24,7 @@
                 colorPalette: the color palette to be used for the chart
                 yTextColor: the color of the y-axis text
                 xTextColor: the color of the x-axis text
-                totalsTextColor: the color of the totals text in the center of
+                titleTextColor: the color of the totals text in the center of
                                  the chart
     This class was originally copied from:
 */
@@ -44,19 +44,24 @@ class BasicBarChart extends Chart {
         // Get the key of the categories to chart
         this.yField = params.yField;
         // Get the key of the category classes to chart
-        this.classField = params.classField || params.yField;
+        this.classField = params.classField || '';
         // Get the key of the popupField
         this.popupField = params.popupField || '';
 
         // Get the title text
         this.titleText = params.titleText || '';
 
+        // Get the unit for the xField values
+        this.xUnit = params.xUnit || '';
+
         // Get the color palette if it was set
         this.colorPalette = params.colorPalette || '';
         // Get the text color for the slices
-        this.xTextColor = params.sliceTextColor || '#666';
+        this.xTextColor = params.xTextColor || '#fff';
         // Get the text color for the total displayed in the center
-        this.yTextColor = params.totalsTextColor || '#666';
+        this.yTextColor = params.yTextColor || '#666';
+        // Get the title text color
+        this.titleTextColor = params.titleTextColor || '#666';
 
         // Initialize the class
         this.init();
@@ -73,7 +78,11 @@ class BasicBarChart extends Chart {
         yField = this.yField,
         // Set the local variable for the popup field name when the mouse
         // hovers on the bar
-        popupField = this.popupField;
+        popupField = this.popupField,
+        // Set the local variable for the class field
+        classField = this.classField,
+        // Set the local variable for the x-axis unit
+        xUnit = this.xUnit || '';
 
         // Set the padding between bars
         var padding = 1,
@@ -103,60 +112,26 @@ class BasicBarChart extends Chart {
             .enter()
             // Initialize the container for the bars and labels
             .append('g')
-            .classed('bars', true)
+            .classed('barholder', true)
             // Darken the bar and lighten the labels when the mouse
             // hovers over it
-            .on('mouseover',function(d,i){
-                if(i%2 == 0) {
-                    d3.select(this)
-                    .select('rect')
-                    .transition()
-                    .duration(750)
-                    .delay(10)
-                    .attr('fill-opacity', 1.0)
-                } else {
-                    d3.select(this)
-                    .select('rect')
-                    .transition()
-                    .duration(750)
-                    .delay(10)
-                    .attr('fill-opacity', 0.8)
-                }
-                // Lighten the color of the labels to the default
+            .on('mouseover',function(d){
                 d3.select(this)
-                .select('text.xLabels')
+                .select('rect')
                 .transition()
                 .duration(750)
                 .delay(10)
-                .attr('fill', '#fff');
+                .attr('fill-opacity', 0.8);
             })
             // Return to the default opacity and font color when
             // the mouse leaves
-            .on('mouseout',function(d,i){
-                // Return to the default opacity of the F bars
-                if(i%2 == 0) {
-                    d3.select(this)
-                    .select('rect')
-                    .transition()
-                    .duration(750)
-                    .delay(10)
-                    .attr('fill-opacity', 0.5);
-                // Return to the default opacity of the F bars
-                } else {
-                    d3.select(this)
-                    .select('rect')
-                    .transition()
-                    .duration(750)
-                    .delay(10)
-                    .attr('fill-opacity', 0.3);
-                }
-                // Return to the default color of the labels
+            .on('mouseout',function(d){
                 d3.select(this)
-                .select('text.xLabels')
+                .select('rect')
                 .transition()
                 .duration(750)
                 .delay(10)
-                .attr('fill', '#333');
+                .attr('fill-opacity', 1.0);
             });
 
         // Adjust the bar chart graph below the title if it has been set
@@ -165,8 +140,8 @@ class BasicBarChart extends Chart {
             height = height - 30;
         }
 
-        // Draw the bar for the current data point
-        barHolder.append('rect')
+        // Draw the bars
+        var thebars = barHolder.append('rect')
             // Set the initial x coordinate of the left side of the bar
             .attr('x', function(d) {
                 return 0;
@@ -176,20 +151,39 @@ class BasicBarChart extends Chart {
             .attr('y', function(d,i){
                 return i * (height / valueCnt);
             })
-            // Set width of the bar as a function of the total width
-            // of the chart
+            // Set the initail width to 0
             .attr('width', 0)
-            // Set the initail height to 0
+            // Set height of the bar as a function of the total height
+            // of the bar chart
             .attr('height', height / valueCnt - padding)
-            // Set the class to the sector for proper coloring
-            .classed('govMembers', true)
-            // Adjust the opacity for females and males
-            .attr('fill-opacity', function(d,i){
-                if(i%2 == 0){ return 0.5; }
-                else { return 0.3; }
-            })
+            // Set the original opacity to 100%
+            .attr('fill-opacity', 1.0);
+
+        // Set the bar color using either the class, the color scheme,
+        // or the default grayscale
+        if (this.classField != '') {
+            // Set color using the class
+            thebars.attr('class', function(d) {
+                    return d[classField].split(" ").join("_");
+                })
+        } else if (this.colorPalette != '') {
+            // If the colorPalette is set color the slices using
+            // the color palette
+            var color = d3.scaleOrdinal(this.colorPalette);
+            thebars.attr('fill', function(d) {
+                    return color(d[yField]);
+                })
+        } else {
+            // If the colorPalette is set color the slices using
+            // the color palette
+            var color = d3.scaleOrdinal(['#666', '#999']);
+            thebars.attr('fill', function(d) {
+                    return color(d[yField]);
+                })
+        }
+
             // Transition to the default state after the page is loaded
-            .transition()
+            thebars.transition()
             .duration(750)
             .delay(10)
             // Grow the height of the bar from 0 to the scaled value
@@ -203,7 +197,6 @@ class BasicBarChart extends Chart {
         if (popupField != '') {
             barHolder.append("svg:title")
             .text(function(d) { return d[popupField]; });
-
         }
 
         // Draw the label for the current data point
@@ -212,11 +205,11 @@ class BasicBarChart extends Chart {
             .classed('xLabels', true)
             // Set the text using the beneficiary total
             .text(function(d){
-                return d[xField];
+                    return numberWithCommas(d[xField]) + xUnit;
             })
             // Set the x coordinate of the label
             .attr('x', function(d) {
-                return -10;
+                return -5;
             })
             // Set the initial y coordinate of the label to the
             // bottom of the chart
@@ -226,15 +219,15 @@ class BasicBarChart extends Chart {
             // Set the font style
             .attr('font-family', 'sans-serif')
             .attr('font-size', '13px')
-            .attr('fill', '#333')
-            .attr('text-anchor', 'middle')
+            .attr('fill', this.xTextColor)
+            .attr('text-anchor', 'end')
             // Transition to the default state after the page is loaded
             .transition()
             .duration(750)
             .delay(10)
             // Grow the label as the bar grows to the scaled size
             .attr('x', function(d){
-                return xScale(d[xField]) - 10;
+                return xScale(d[xField]) - 5;
             });
     }
 
@@ -252,6 +245,7 @@ class BasicBarChart extends Chart {
         // can be called within sub-functions of D3
         width = this.width,
         height = this.height;
+
 
         // Initialize this group
         this.newGroup('yLabels');
@@ -283,7 +277,7 @@ class BasicBarChart extends Chart {
             .attr('y', function(d,i){
                 return (i+0.7) * (height / valueCnt);
             })
-            .attr('fill', '#666')
+            .attr('fill', this.yTextColor)
             .attr('text-anchor', 'end');
     }
 
@@ -304,7 +298,8 @@ class BasicBarChart extends Chart {
     		.text(this.titleText)
             // Center the text and set its size
             .attr('text-anchor', 'middle')
-            .attr('font-size', '24px');
+            .attr('font-size', '24px')
+            .attr('fill', this.titleTextColor);
 
     }
 

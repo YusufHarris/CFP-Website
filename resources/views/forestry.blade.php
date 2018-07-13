@@ -46,7 +46,38 @@
 
 <!-- D3 javascript for Beneficiary Pie Chart and Bar Chart -->
 @include('js.forestryPieDistrictBar')
-@include('js.seedlingsGrownBar')
-@include('js.treesPlantedBar')
+
+<script>
+
+// D3 javascript for Seedlings seedlingsGrown
+const seedlingsBar= new BasicBarChart(
+    '#seedlingsGrownBar',
+    {
+        margin: {top: 10, bottom: 10, left: 150, right: 10,},
+        dataSet: <?php echo json_encode( $seedlings ) ?>,
+        xField: 'seedlingsGrown',
+        yField: 'name',
+        popupField: 'name',
+        titleText: numberWithCommas(getFieldSum(<?php echo json_encode($seedlings)?>, 'seedlingsGrown')) + ' Seedlings Grown',
+        titleTextColor: '#a3a500',
+        colorPalette: ['#a3a500', '#b4b600'],
+    }
+)
+
+// D3 javascript for Trees Grown
+const treesPlantedBar= new BasicBarChart(
+    '#treesPlantedBar',
+    {
+        margin: {top: 10, bottom: 10, left: 150, right: 10,},
+        dataSet: <?php echo json_encode( $treesPlanted ) ?>,
+        xField: 'totalTrees',
+        yField: 'name',
+        popupField: 'name',
+        titleText: numberWithCommas(getFieldSum(<?php echo json_encode($treesPlanted)?>, 'totalTrees')) + ' Trees Planted',
+        titleTextColor: '#39b600',
+        colorPalette: ['#39b600', '#49c600'],
+    }
+)
+</script>
 
 @endsection
