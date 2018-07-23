@@ -25,6 +25,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'id'
     ];
+
+    /**
+     * Removes autoincrementing ids because we are using UUIDs.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
 }
