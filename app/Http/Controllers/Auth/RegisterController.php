@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -27,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -49,6 +50,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
+            'username' => 'required|string|min:3|max:20|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -62,10 +64,40 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // Set the admin boolean value based on whether or not
+        // the Adminstrator Privilages was ticked
+        if(array_key_exists('admin', $data)) {
+            $admin = 1;
+        }
+        else {
+            $admin = 0;
+        }
+
         return User::create([
             'name' => $data['name'],
+            'username' => $data['username'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'admin' => $admin,
+            'password' => Hash::make($data['password']),
         ]);
     }
+
+    /**
+     * Disable individual registration
+     *
+     * @return void
+     *
+     */
+     public function showRegistrationForm()
+     {
+         // Hide the registration form if there is already an Administrator
+         if(User::all()->where('admin', '=', 1)->count() > 0){
+             return redirect('/');
+         }
+         // Otherwise show the registration form
+         else {
+             return view('auth.register');
+         }
+     }
+
 }

@@ -9,5 +9,5 @@ function getFieldSum(dataSet, field) {
     for (var x in dataSet) {
         cnt += Number(dataSet[x][field]);
     }
-    return cnt;
+    return Math.round(cnt,0);
 }

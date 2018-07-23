@@ -11,28 +11,35 @@
 |
 */
 
-// Mainboard Request
-Route::get('/', 'MainboardController@index');
-// Mainboard Request filtering for a community
-Route::post('/', 'MainboardController@communityFilter');
-// Agriculture Request
-Route::get('/agriculture', 'AgricultureController@index');
-// Energy Request
-Route::get('/energy', 'EnergyController@index');
-// Forestry Request
-Route::get('/forestry', 'ForestryController@index');
-// Water Request
-Route::get('/water', 'WaterController@index');
-// Gender Request
-Route::get('/gender', 'GenderController@index');
-// Gender Request
-Route::get('/land-rights', 'LandRightsController@index');
-// Government Linkages Request
-Route::get('/gov-links', 'GovLinksController@index');
-// Tree Diagram
-Route::get('/tree_diagram', 'TreeDiagramController@index');
-
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Home Page -- shows the login or redirects to the indicators page if the user is logged in
+Route::get('/', 'HomeController@index')->name('home');
+
+ /*
+ |--------------------------------------------------------------------------
+ | Indicators Routes
+ |--------------------------------------------------------------------------
+ |
+ */
+// Mainboard Request
+Route::get('/indicators', 'IndicatorsController@mainboard')->name('indicators');
+// Agriculture Request
+Route::get('/indicators/agriculture', 'IndicatorsController@agriculture')->name('indicators.agriculture');
+// Energy Request
+Route::get('/indicators/energy', 'IndicatorsController@energy')->name('indicators.energy');
+// Forestry Request
+Route::get('/indicators/forestry', 'IndicatorsController@forestry')->name('indicators.forestry');
+// Water Request
+Route::get('/indicators/water', 'IndicatorsController@water')->name('indicators.water');
+// Gender Request
+Route::get('/indicators/gender', 'IndicatorsController@gender')->name('indicators.gender');
+// Land Rights Request
+Route::get('/indicators/land-rights', 'IndicatorsController@landRights')->name('indicators.land');
+// Government Links Request
+Route::get('/indicators/gov-links', 'IndicatorsController@govLinks')->name('indicators.gov');
+
+
+Route::resources([
+    'users' => 'UsersController',
+]);
