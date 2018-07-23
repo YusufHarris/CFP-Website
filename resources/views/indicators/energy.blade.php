@@ -23,7 +23,11 @@
 </div>
 
 <h3>Fuel Efficient Cook Stoves</h3>
-<div class="row text-center" id="cookstoveBar" style="height: 400px;">
+<div class="row text-center">
+    <div class="col-12 ">
+        <div id="cookstoveBar" style="height: 400px;">
+        </div>
+    </div>
 </div>
 <div class="row text-center">
 
@@ -127,21 +131,14 @@
 
 <h3>Improved Charcoal Production System</h3>
 <div class="row text-center">
-
   <div class="col-12 col-md-6" style="height:400px;color:#c07;font-family:sans-serif;">
-      <div style="height: 100px">
-      </div>
       <h1>{{count($charcoalSys)}} Improved Charcoal Production Systems</h1>
   </div>
-  <!-- Placeholder-->
-  <div class="col-12 col-md-6" class="placeholder" style="height: 400px;">
-  </div>
 </div>
+
 <h3>Discontinued</h3>
 
 <div class="row text-center">
-    <!-- Placeholder-->
-
     <div class="col-12 col-md-6"  style="overflow-y:auto; height:400px;color:#00043d;font-family:sans-serif;">
       <div style="height: 50px">
       </div>

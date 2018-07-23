@@ -50,6 +50,7 @@ class BasicBarChart extends Chart {
 
         // Get the title text
         this.titleText = params.titleText || '';
+        this.titleTextSize = params.titleTextSize || '24px';
 
         // Get the unit for the xField values
         this.xUnit = params.xUnit || '';

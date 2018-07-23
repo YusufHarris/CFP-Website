@@ -26,15 +26,15 @@
 
 /* Set the Sector and Key Activity colors */
 .Agriculture { fill: #f60; }
-[class='01-Agro'] { fill: #00a86b; }
-[class='07-Gardens'] { fill: #ff8442; }
-[class='08-Bees'] { fill: #ffd963; }
-[class='12-Spices'] { fill: #b5d6ff; }
+[class='01-Agro'] { fill: #dcc32f; }
+[class='07-Gardens'] { fill: #9590ff; }
+[class='08-Bees'] { fill: #d89000; }
+[class='12-Spices'] { fill: #f25667; }
 
 .Energy { fill: #c07; }
 [class='05-Stoves'] { fill: #f8766d; }
-[class='06-ICSEB'] { fill: #13605b; }
-[class='09-Solar'] { fill: #1f9e95; }
+[class='06-ICSEB'] { fill: #e76bf3; }
+[class='09-Solar'] { fill: #f15722; }
 [class='11-ICPS'] { fill: #00b0f6; }
 [class='04-Charcoal'] { fill: #ff62bc; }
 
@@ -53,6 +53,13 @@
 .Improved { fill: #9d0; }
 .Declined { fill: #f98; }
 .Stayed_the_same { fill: #ccc; }
+/* The Sector Beneficiary Pie Chart
+#yieldPie text {
+  font: 14px sans-serif;
+  font-weight: bold;
+  fill: #fff;
+  text-anchor: middle;
+}*/
 
 #enSystemsList text {color: #c07}
 
