@@ -19,6 +19,15 @@ use App\Models\Indicators\Water;
 
 class IndicatorsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('enabled');
+    }
 
     public function mainboard()
     {

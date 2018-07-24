@@ -84,10 +84,10 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                @if (Auth::user()->admin)
-                                    <a class="dropdown-item" href="{{ action('UsersController@index') }}">{{ __('Users') }}</a>
-                                @endif
-                                <a class="dropdown-item" href="{{ action('UsersController@edit', Auth::id()) }}">{{ __('Profile') }}</a>
+                                <a class="dropdown-item" href="{{ route('edit') }}">{{ __('Profile') }}</a>
+                            @if (Auth::user()->admin)
+                                <a class="dropdown-item" href="{{ route('users.index') }}">{{ __('Users') }}</a>
+                            @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">

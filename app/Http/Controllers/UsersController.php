@@ -10,17 +10,22 @@ use App\User;
 class UsersController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
+    /**
      * Display a listing of the users.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // Ensure the user is an administrator
-        if ($this->checkUserStatus() < 2) {
-            return redirect('/');
-        }
-
         $users = User::select('id', 'name', 'username', 'email', 'admin',
                               'enabled', 'created_at')
                     ->get();
@@ -35,11 +40,6 @@ class UsersController extends Controller
      */
     public function create()
     {
-        // Ensure the user is an administrator
-        if ($this->checkUserStatus() < 2) {
-            return redirect('/');
-        }
-
         return view('users.create');
     }
 
@@ -51,11 +51,6 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        // Ensure the user creating the new user account is an administrator
-        if ($this->checkUserStatus() < 2) {
-            return redirect('/');
-        }
-
         // Validate the new user fields
         $request->validate([
             'name' => 'required|string|max:255',
@@ -81,31 +76,15 @@ class UsersController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        // Ensure the user is logged in
-        if ($this->checkUserStatus() < 2) {
-            return redirect('/');
-        }
-
-        return redirect('users/'.$id.'/edit');
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($username)
     {
-        $user = User::find($id);
-        return view('users.edit',compact('user','id'));
+        $user = User::where('username', $username)->first();
+        return view('users.edit',compact('user'));
     }
 
     /**
@@ -115,75 +94,46 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $username)
     {
         // Retrieve the user
-        $user = User::find($id);
+        $user = User::where('username', $username)->first();
 
-        // Rules for Administrator updating an account
-        if ($this->checkUserStatus() == 2)
-        {
-            // Validate the data
-            // Check if the email has been updated and validate accordingly
-            if($request->email == $user->email) {
-                // Validate the user fields
-                $request->validate([
-                    'name' => 'required|string|max:255'
-                ]);
-            }
-            else {
-                // Validate the user fields
-                $request->validate([
-                    'name' => 'required|string|max:255',
-                    'email' => 'required|string|email|max:255|unique:users'
-                ]);
+        // Set the request checkbox values
+        $admin = $request->admin == 1 ? 1 : 0;
+        $enabled = $request->enabled == 1 ? 1 : 0;
 
+        if( $user->email == $request->email && $user->name == $request->name &&
+            $user->admin == $admin && $user->enabled == $enabled) {
+                // Nothing was updated
+                return redirect()->back()->with("error","No fields were updated.");
             }
 
-            // Update the user
-            $user->email = $request->email;
-            $user->name = $request->name;
-            $user->admin = $request->admin == 1 ? 1 : 0;
-            $user->enabled = $request->enabled == 1 ? 1 : 0;
-
-            // Save the user
-            $user->save();
-
-            return redirect('users/'.$id.'/edit')->with('success', "Updated the account details.");
+        // Do not validate the email if it has not been updated
+        if( $request->email == $user->email) {
+            // Validate the user fields
+            $request->validate([
+                'name' => 'required|string|max:255',
+            ]);
+        } else {
+            // Validate the user fields
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+            ]);
         }
 
+        // Update the user
+        $user->email = $request->email;
+        $user->name = $request->name;
+        $user->admin = $admin;
+        $user->enabled = $enabled;
 
-        // Rules for user updating their own account
-        elseif (Auth::id() == $id) {
-            // Validate the data
-            // Check if the email has been updated and validate accordingly
-            if($request->email == $user->email) {
-                // Validate the user fields
-                $request->validate([
-                    'name' => 'required|string|max:255'
-                ]);
-            }
-            else {
-                // Validate the user fields
-                $request->validate([
-                    'name' => 'required|string|max:255',
-                    'email' => 'required|string|email|max:255|unique:users'
-                ]);
+        // Save the user
+        $user->save();
 
-            }
-
-            // Update the user
-            $user->email = $request->email;
-            $user->name = $request->name;
-
-            // Save the user
-            $user->save();
-
-            return redirect('users/'.$id.'/edit')->with('success', "Updated the account details.");
-
-        }
-        // Otherwise, return the login home page
-        return redirect('/');
+        // Redirect to the user's edit page
+        return redirect()->back()->with('success', "Updated the user details.");
     }
 
     /**
@@ -192,39 +142,12 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($username)
     {
-        $user = User::find($id);
+        // Retrieve the user
+        $user = User::where('username', $username)->first();
         $user->delete();
-        return redirect('users')->with('success', $user->name . ' has been deleted');
+        return redirect('users')->with('success', $user->name . ' was deleted.');
     }
 
-    /**
-     * Check user status
-     *
-     * @return int 0 - not logged in
-     *             1 - logged in with enabled account
-     *             2 - logged in with enabled account as Administrator
-     */
-    private function checkUserStatus()
-    {
-        // Ensure the user is logged in
-        if (Auth::guard()->check()) {
-            // And that the user is an administrator
-            if (Auth::user()->enabled) {
-
-                // Check if the user is an Administrator
-                if (Auth::user()->admin) {
-                    return 2;
-                }
-                return 1;
-            }
-            // Log the user out if the account is disabled
-            else {
-                Auth::logout();
-            }
-        }
-        // Return false if the user is not logged in with an enabled account
-        return 0;
-    }
 }
