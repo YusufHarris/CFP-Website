@@ -47,6 +47,10 @@
 .Irrigate { fill: #00bf7d; }
 [class='03-Rainwater'] { fill: #00bfc4; }
 
+.Gender { fill: #ce678c; }
+[class='Male'] { fill: #f9c83b; }
+[class='Female'] { fill: #70c9c1; }
+
 .Total { fill: #aaa; }
 
 /* Changes */

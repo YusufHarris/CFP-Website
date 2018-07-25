@@ -80,6 +80,7 @@ const yieldChgPie = new BasicPieChart(
         fillRatio: 0.5,
         showTotals: false,
         showAsPercent: true,
+        colorPalette: ['#ff8442','#00a86b','#ffd963'],
     }
 )
 
@@ -112,9 +113,9 @@ const kitchenBar = new BasicBarChart(
         fillRatio: 0.5,
         showTotals: true,
         showAsPercent: false,
-        colorPalette: ['#00a86b'],
+        colorPalette: ['#00a86b','#22bf86'],
         yTextColor: '#666',
-        xTextColor: '#666',
+        xTextColor: '#fff',
         totalsTextColor: '#666',
         titleText: numberWithCommas(getFieldSum(<?php echo json_encode($kitchenGardens)?>, 'totalKitchens')) + ' Kitchen Gardens',
         titleTextColor: '#00a86b',
@@ -133,12 +134,12 @@ const beehiveBar = new BasicBarChart(
         fillRatio: 0.5,
         showTotals: true,
         showAsPercent: false,
-        colorPalette: ['#ffc000'],
+        colorPalette: ['#ffd142','#ffd963'],
         yTextColor: '#666',
         xTextColor: '#fff',
         totalsTextColor: '#666',
         titleText: numberWithCommas(getFieldSum(<?php echo json_encode($beehives)?>, 'totalHives')) + ' Beehives',
-        titleTextColor: '#ffc000',
+        titleTextColor: '#e29f02',
     }
 )
 
@@ -154,10 +155,10 @@ const agroBar = new BasicBarChart(
         fillRatio: 0.5,
         showTotals: true,
         showAsPercent: false,
-        colorPalette: ['#f60'],
+        colorPalette: ['#ff8442','#ff9963'],
         yTextColor: '#666',
-        xTextColor: '#666',
-        totalsTextColor: '#666',
+        xTextColor: '#fff',
+        totalsTextColor: '#fff',
         titleText: numberWithCommas(getFieldSum(<?php echo json_encode($agroArea)?>, 'totalArea')) + 'Ha of Agroforestry Systems',
         titleTextColor: '#f60',
     }
@@ -175,9 +176,9 @@ const spiceBar = new BasicBarChart(
         fillRatio: 0.5,
         showTotals: true,
         showAsPercent: false,
-        colorPalette: ['#00a86b'],
+        colorPalette: ['#00a86b','#22bf86'],
         yTextColor: '#666',
-        xTextColor: '#666',
+        xTextColor: '#fff',
         totalsTextColor: '#666',
         titleText: numberWithCommas(getFieldSum(<?php echo json_encode($spiceArea)?>, 'totalArea')) + 'Ha of Spice Forests',
         titleTextColor: '#00a86b',

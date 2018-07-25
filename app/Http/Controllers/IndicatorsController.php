@@ -101,8 +101,12 @@ class IndicatorsController extends Controller
             return redirect('/');
         }
         $communities = Gender::getSROIACommunities();
+        $genBens = Gender::getBenPie();
+        $districtBens = Gender::getBenBar();
+        $busGen = Gender::getGenders();
+        $incomeControl = Gender::getIncomeControl();
 
-        return view('indicators.gender', compact('communities'));
+        return view('indicators.gender', compact('communities', 'genBens', 'districtBens','busGen','incomeControl'));
     }
 
     public function govLinks()
