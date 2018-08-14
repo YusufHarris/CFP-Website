@@ -54,7 +54,15 @@
       <div style="height:350px" id="incomeControlPie" class= "incomePie">
       </div>
 </div>
+</div>
+
+
+
+
+
+
 @include('js.genderBenPie')
+
 
 <script>
 

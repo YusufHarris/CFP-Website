@@ -140,6 +140,7 @@ class IndicatorsController extends Controller
         return view('treediagram', compact('treeBens'));
     }
 
+
     public function water()
     {
         if ($this->checkUserStatus() == 0) {

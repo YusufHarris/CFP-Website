@@ -31,7 +31,7 @@
 </div>
 <div class="row text-center">
 
-    <div class="col-12 col-md-6"  style="overflow-y:auto; height:400px;color:#00043d;font-family:sans-serif;">
+    <div class="col-12 col-md-6"  style="overflow-y:auto; height:400px;">
       <h1>{{count($cookstoveGroups)}} Cookstove Production Groups</h1>
       <?php
         // Filter for individual districts
@@ -107,7 +107,7 @@
 
     </div>
 
-    <div class="col-12 col-md-6"  style="overflow-y:auto; height:400px;color:#b73a00;font-family:sans-serif;">
+    <div class="col-12 col-md-6"  style="overflow-y:auto; height:400px;">
       <div style="height: 100px;">
       </div>
       <h1>{{count($enSystems)}} Renewable Energy Systems</h1>
@@ -131,7 +131,10 @@
 
 <h3>Improved Charcoal Production System</h3>
 <div class="row text-center">
-  <div class="col-12 col-md-6" style="height:400px;color:#c07;font-family:sans-serif;">
+
+  <div class="col-12 col-md-6" style="height:400px;">
+    <div style="height: 150px">
+    </div>
       <h1>{{count($charcoalSys)}} Improved Charcoal Production Systems</h1>
   </div>
 </div>
@@ -139,7 +142,7 @@
 <h3>Discontinued</h3>
 
 <div class="row text-center">
-    <div class="col-12 col-md-6"  style="overflow-y:auto; height:400px;color:#00043d;font-family:sans-serif;">
+    <div class="col-12 col-md-6"  style="overflow-y:auto; height:400px;">
       <div style="height: 50px">
       </div>
       <h1>{{count($earthBlocks)}} Earth Block Presses</h1>
@@ -208,8 +211,8 @@
 
 <!-- D3 javascript for Beneficiary Pie Chart and Bar Chart -->
 @include('js.energyPieDistrictBar')
-@include('js.cookstoveBar')
-@include('js.solarHouseholdsBar')
+
+
 
 
 <script>
@@ -224,11 +227,52 @@ const decreasedFirewoodPie = new BasicPieChart(
         fillRatio: 0.5,
         showTotals: false,
         showAsPercent: true,
-        colorPalette: ['#526887','#e572d4','#ffb99e'],
+        colorPalette: ['#13605b','#1f9e95','#f8766d'],
         sliceTextColor: '#fff',
     }
 )
 
+// D3 javascript for
+const cookstoveBar = new BasicBarChart(
+    '#cookstoveBar',
+    {
+        margin: {top: 10, bottom: 10, left: 125, right: 10,},
+        dataSet: <?php echo json_encode( $cookstoves ) ?>,
+        xField: 'totalStoves',
+        yField: 'district',
+        unit: '',
+        fillRatio: 0.5,
+        showTotals: true,
+        showAsPercent: false,
+        colorPalette: ['#1f9e95','#3dafa7'],
+        yTextColor: '#666',
+        xTextColor: '#fff',
+        totalsTextColor: '#666',
+        titleText: numberWithCommas(getFieldSum(<?php echo json_encode($cookstoves)?>, 'totalStoves')) + ' Fuel Efficient Cookstoves',
+        titleTextColor: '#1f9e95',
+    }
+)
+
+// D3 javascript for
+const solarHouseholdsBar = new BasicBarChart(
+    '#solarHouseholdsBar',
+    {
+        margin: {top: 10, bottom: 10, left: 100, right: 10,},
+        dataSet: <?php echo json_encode( $solarHouseholds ) ?>,
+        xField: 'totalHouseholds',
+        yField: 'community',
+        unit: '',
+        fillRatio: 0.5,
+        showTotals: true,
+        showAsPercent: false,
+        colorPalette: ['#f8766d','#ff9a93'],
+        yTextColor: '#666',
+        xTextColor: '#fff',
+        totalsTextColor: '#666',
+        titleText: numberWithCommas(getFieldSum(<?php echo json_encode($solarHouseholds)?>, 'totalHouseholds')) + ' Houses Acquire Solar Energy Equipment',
+        titleTextColor: '#ff6156',
+    }
+)
 
 
 
