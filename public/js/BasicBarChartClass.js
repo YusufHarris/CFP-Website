@@ -26,6 +26,10 @@
                 xTextColor: the color of the x-axis text
                 titleTextColor: the color of the totals text in the center of
                                  the chart
+                titleSize: the size of the title
+                titleDistance: title distance from the top of field
+                minVal: minimum value for graph
+                maxVal: max value fro graph to display
     This class was originally copied from:
 */
 class BasicBarChart extends Chart {
@@ -47,22 +51,44 @@ class BasicBarChart extends Chart {
         this.classField = params.classField || '';
         // Get the key of the popupField
         this.popupField = params.popupField || '';
+        //get the minimum value for the graph to display
+        this.minVal = params.minVal || '0';
+        //get the maximum value for graph to display
+        this.maxVal = params.maxVal || d3.max(this.dataSet, function(d){ return parseInt(d[params.xField]); });
+
 
         // Get the title text
         this.titleText = params.titleText || '';
         this.titleTextSize = params.titleTextSize || '24px';
-
+        // Get the title text color
+        this.titleTextColor = params.titleTextColor || '#666';
+        //get the title title size
+        this.titleSize = params.titleSize || '24px';
+        //get the title distance
+        this.titleDistance = params.titleDistance || '30';
+        //get the title's font
+        this.titleFont = params.titleFont || 'sans-serif';
+        //get the title font weight
+        this.fontWeight = params.fontWeight || 'normal';
         // Get the unit for the xField values
         this.xUnit = params.xUnit || '';
-
         // Get the color palette if it was set
         this.colorPalette = params.colorPalette || '';
         // Get the text color for the slices
         this.xTextColor = params.xTextColor || '#fff';
         // Get the text color for the total displayed in the center
         this.yTextColor = params.yTextColor || '#666';
+
+
+        // Get the subtitle text
+        this.subTitleText = params.subTitleText || '';
+        this.subTitleTextSize = params.subTitleTextSize || '16px';
         // Get the title text color
-        this.titleTextColor = params.titleTextColor || '#666';
+        this.subTitleTextColor = params.subTitleTextColor || '#666';
+        //get the title title size
+        this.subTitleSize = params.subTitleSize || '24px';
+        //get the title distance
+        this.subTitleDistance = params.subTitleDistance || '30';
 
         // Initialize the class
         this.init();
@@ -97,9 +123,9 @@ class BasicBarChart extends Chart {
         height = this.height,
 
         // Set the scale of the chart
-        xMax = d3.max(this.dataSet, function(d){ return parseInt(d[xField]); }),
+
         xScale = d3.scaleLinear()
-            .domain([0, xMax])
+            .domain([this.minVal, this.maxVal])
             .range([0, this.width]);
 
         // Initialize this group
@@ -218,8 +244,8 @@ class BasicBarChart extends Chart {
                 return (i+0.7) * (height / valueCnt);
             })
             // Set the font style
-            .attr('font-family', 'sans-serif')
-            .attr('font-size', '13px')
+            .attr('font-family', this.titleFont)
+            .attr('font-size', '16px')
             .attr('fill', this.xTextColor)
             .attr('text-anchor', 'end')
             // Transition to the default state after the page is loaded
@@ -292,15 +318,41 @@ class BasicBarChart extends Chart {
         // Draw the title
         this.title
             // Move to the center of the chart
-            .attr('transform', 'translate(' + this.width/2 + ',' + (30 - this.margin.top) + ')')
+            .attr('transform', 'translate(' + this.width/2 + ',' + (this.titleDistance - this.margin.top) + ')')
             .append('text')
     		.classed('title', true)
             // Set the text to the title
     		.text(this.titleText)
             // Center the text and set its size
             .attr('text-anchor', 'middle')
-            .attr('font-size', '24px')
+            .attr('font-size', this.titleSize)
+            .style('font-weight',this.fontWeight)
             .attr('fill', this.titleTextColor);
+
+    }
+
+    /*Draws the subtitle of the charts
+    */
+    /* Draws the title of the chart
+    */
+    drawSubTitle() {
+
+        // Initialize this group
+        this.newGroup('subTitle');
+
+        // Draw the title
+        this.subTitle
+            // Move to the center of the chart
+            .attr('transform', 'translate(' + this.width/2 + ',' + (this.subTitleDistance - this.margin.top) + ')')
+            .append('text')
+    		.classed('title', true)
+            // Set the text to the title
+    		.text(this.subTitleText)
+            // Center the text and set its size
+            .attr('text-anchor', 'middle')
+            .attr('font-size', this.subTitleSize)
+            .style('font-weight',this.fontWeight)
+            .attr('fill', this.subTitleTextColor);
 
     }
 
@@ -311,6 +363,9 @@ class BasicBarChart extends Chart {
         this.drawYLabels();
         if(this.titleText != '') {
             this.drawTitle();
+        }
+        if(this.subTitleText != '') {
+            this.drawSubTitle();
         }
     }
 }

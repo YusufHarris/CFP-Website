@@ -25,7 +25,7 @@
 <h3>Tree Nurseries</h3>
 <div class="row text-center">
     <!-- Placeholder-->
-    <div class="col-12" id="seedlingsGrownBar" style="height: 1275px;">
+    <div class="col-12" id="seedlingsGrownBar" style="height: 1500px;">
     </div>
 
 </div>
@@ -34,7 +34,7 @@
 <div class="row text-center">
 
     <!-- Placeholder-->
-    <div class="col-12 " id="treesPlantedBar" style="height: 1275px;">
+    <div class="col-12 " id="treesPlantedBar" style="height: 1500px;">
     </div>
 </div>
 
@@ -47,14 +47,24 @@
 const seedlingsBar= new BasicBarChart(
     '#seedlingsGrownBar',
     {
-        margin: {top: 10, bottom: 10, left: 150, right: 10,},
+        margin: {top: 315, bottom: 10, left: 150, right: 10,},
         dataSet: <?php echo json_encode( $seedlings ) ?>,
         xField: 'seedlingsGrown',
         yField: 'name',
+        minVal: '-1000',
+        maxVal: '36000',
         popupField: 'name',
-        titleText: numberWithCommas(getFieldSum(<?php echo json_encode($seedlings)?>, 'seedlingsGrown')) + ' Seedlings Grown',
-        titleTextColor: '#a3a500',
-        colorPalette: ['#a3a500', '#b4b600'],
+        titleText: numberWithCommas(getFieldSum(<?php echo json_encode($seedlings)?>, 'seedlingsGrown')),
+        titleTextColor: '#a3d02f',
+        titleSize: '225px',
+        titleDistance: '225',
+        titleFont: 'sans-serif',
+        fontWeight: 'bold',
+        colorPalette: ['#a3d02f', '#bee067'],
+        subTitleText: 'Seedlings Grown',
+        subTitleDistance: '290',
+        subTitleSize: '30px',
+        subTitleTextColor: '#a3d02f',
     }
 )
 
@@ -62,14 +72,24 @@ const seedlingsBar= new BasicBarChart(
 const treesPlantedBar= new BasicBarChart(
     '#treesPlantedBar',
     {
-        margin: {top: 10, bottom: 10, left: 150, right: 10,},
+        margin: {top: 315, bottom: 10, left: 150, right: 10,},
         dataSet: <?php echo json_encode( $treesPlanted ) ?>,
         xField: 'totalTrees',
         yField: 'name',
+        minVal: '-1000',
+        maxVal: '36000',
         popupField: 'name',
-        titleText: numberWithCommas(getFieldSum(<?php echo json_encode($treesPlanted)?>, 'totalTrees')) + ' Trees Planted',
-        titleTextColor: '#39b600',
-        colorPalette: ['#39b600', '#49c600'],
+        titleText: numberWithCommas(getFieldSum(<?php echo json_encode($treesPlanted)?>, 'totalTrees')),
+        titleTextColor: '#45ad00',
+        titleSize: '225px',
+        titleDistance: '225',
+        titleFont: 'sans-serif',
+        fontWeight: 'bold',
+        colorPalette: ['#45ad00', '#6ecc30'],
+        subTitleText: 'Trees Planted',
+        subTitleDistance: '290',
+        subTitleSize: '30px',
+        subTitleTextColor: '#45ad00',
     }
 )
 </script>

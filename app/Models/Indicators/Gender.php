@@ -24,20 +24,15 @@ class Gender extends Model
     public static function getBenPie()
     {
 
-        $sqlQuery = 'SELECT `beneficiaryType`, `sector`,
-                            SUM(`totalBeneficiaries`) as totalBeneficiaries,
-                            SUM(IF(`mF`="F", `totalBeneficiaries`, 0)) as fTot,
-                            SUM(IF(`mF`="M", `totalBeneficiaries`, 0)) as mTot
+        $sqlQuery = 'SELECT `beneficiaryType`, "Female" as category, SUM(IF(`mF`="F", `totalBeneficiaries`, 0)) as amount
                      FROM `RE_SectorBeneficiaries`
-                     GROUP BY  `beneficiaryType`, `sector`
-                     ORDER BY `beneficiaryType` ASC, `sector` ASC';
-        $sqlQuery2 = 'SELECT `beneficiaryType`, "Total" as `sector`,
-                             SUM(`totalBeneficiaries`) As totalBeneficiaries,
-                             SUM(IF(`mF`="F", `totalBeneficiaries`, 0)) as fTot,
-                             SUM(IF(`mF`="M", `totalBeneficiaries`, 0)) as mTot
+                     GROUP BY  `beneficiaryType`
+                     ';
+
+        $sqlQuery2 = 'SELECT `beneficiaryType`, "Male" as category,SUM(IF(`mF`="M", `totalBeneficiaries`, 0)) as amount
                      FROM `RE_Beneficiaries`
-                     GROUP BY `sector`, `beneficiaryType`
-                     ORDER BY `beneficiaryType` ASC, `sector` ASC';
+                     GROUP BY  `beneficiaryType`
+                     ';
 
         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
         $result2 = DB::connection('mysql2')->select(DB::Raw($sqlQuery2));
@@ -148,5 +143,67 @@ class Gender extends Model
 
         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
         return $result;
+    }
+
+    public static function getGenders()
+    {
+        $sqlQuery = 'SELECT SUM(femMembers) as amount, "Women" as category
+                      FROM `OP_00Outputs` AS `OP`
+                      JOIN
+                        (SELECT SUM(IF(mF = "F",1,0)) AS femMembers, COUNT(`BN_ComMembers`.id) AS members, `id_OP_00Outputs`
+                           FROM `OP_00LinkToComMembers`
+                           JOIN BN_ComMembers
+                            ON `OP_00LinkToComMembers`.`id_BN_ComMembers` = `BN_ComMembers`.`id`
+                           GROUP BY `id_OP_00Outputs`) AS `CG`
+                        ON OP.id = CG.id_OP_00Outputs
+                      JOIN `LK_KeyActivities` AS `KA`
+                        ON OP.id_LK_KeyActivities = KA.id
+                        WHERE (KA.keyActivity NOT LIKE "03%" AND
+                        KA.keyActivity NOT LIKE "09%" AND
+                        (CG.members) > 7)
+                      ';
+
+        $sqlQuery2 = 'SELECT SUM(malMembers) as amount, "Men" as category
+                      FROM `OP_00Outputs` AS `OP`
+                      JOIN
+                        (SELECT SUM(IF(mF = "F",1,0)) AS femMembers, SUM(IF(mF = "M",1,0)) AS malMembers, `id_OP_00Outputs`
+                           FROM `OP_00LinkToComMembers`
+                           JOIN BN_ComMembers
+                            ON `OP_00LinkToComMembers`.`id_BN_ComMembers` = `BN_ComMembers`.`id`
+                           GROUP BY `id_OP_00Outputs`) AS `CG`
+                        ON OP.id = CG.id_OP_00Outputs
+                      JOIN `LK_KeyActivities` AS `KA`
+                        ON OP.id_LK_KeyActivities = KA.id
+                        WHERE (KA.keyActivity NOT LIKE "03%" AND
+                        KA.keyActivity NOT LIKE "09%" AND
+                        (CG.femMembers + CG.malMembers) > 7)';
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        $result2 = DB::connection('mysql2')->select(DB::Raw($sqlQuery2));
+        return array_merge($result,$result2);
+    }
+
+    /*Returns the difference in firewood before and now*/
+    public static function getIncomeControl()
+    {
+        $sqlQuery =  'SELECT "Yes, completely" AS category, SUM(IF(womenDecideIncomeUse = "Yes, completely",1,0)) AS amount
+                     FROM `SV_Continuous`';
+       $sqlQuery2 =  'SELECT "No, not at all" AS category, SUM(IF(womenDecideIncomeUse = "No, not at all",1,0)) AS amount
+                    FROM `SV_Continuous`';
+        $sqlQuery3 =  'SELECT "Yes, but consults with husband" AS category, SUM(IF(womenDecideIncomeUse = "Yes, but consult with husband",1,0)) AS amount
+                     FROM `SV_Continuous`';
+
+
+       $sqlQuery4 =  'SELECT "No, but husband consults with them" AS category, SUM(IF(womenDecideIncomeUse = "No, but husband consults with you",1,0)) AS amount
+                    FROM `SV_Continuous`';
+
+
+
+
+        $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
+        $result2 = DB::connection('mysql2')->select(DB::Raw($sqlQuery2));
+        $result3 = DB::connection('mysql2')->select(DB::Raw($sqlQuery3));
+        $result4 = DB::connection('mysql2')->select(DB::Raw($sqlQuery4));
+        return array_merge($result,$result2,$result3,$result4);
     }
 }
