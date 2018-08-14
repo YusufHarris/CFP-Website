@@ -49,6 +49,7 @@
                     <ul class="navbar-nav mr-auto">
                         @guest
                         @else
+
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('indicators/agriculture') ? 'active' : '' }}" href="{{ route('indicators.agriculture') }}">{{ __('Agriculture') }}</a>
                         </li>
