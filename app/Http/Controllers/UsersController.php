@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use Illuminate\Support\Facades\Password;
 
 class UsersController extends Controller
 {
@@ -53,9 +54,9 @@ class UsersController extends Controller
     {
         // Validate the new user fields
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:191',
             'username' => 'required|string|min:3|max:20|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:191|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
 
@@ -148,6 +149,21 @@ class UsersController extends Controller
         $user = User::where('username', $username)->first();
         $user->delete();
         return redirect('users')->with('success', $user->name . ' was deleted.');
+    }
+
+    /**
+     * Send a password reset link to the specified user.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function resetPassword($username)
+    {
+        // Retrieve the user
+        $user = User::where('username', $username)->first();
+        // Send the password reset link
+        Password::sendResetLink(['email' => $user->email]);
+        return redirect('users')->with('success', 'Password reset email was sent to '.$user->name);
     }
 
 }

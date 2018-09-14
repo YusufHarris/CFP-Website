@@ -31,9 +31,6 @@ class IndicatorsController extends Controller
 
     public function mainboard()
     {
-        if ($this->checkUserStatus() == 0) {
-            return redirect('/');
-        }
         //$communities = Mainboard::getSROIACommunities();
         $sectorBens = Mainboard::getBenPie();
         $districtBens = Mainboard::getBenBar();
@@ -53,9 +50,6 @@ class IndicatorsController extends Controller
 
     public function agriculture()
     {
-        if ($this->checkUserStatus() == 0) {
-            return redirect('/');
-        }
         $communities = Agriculture::getSROIACommunities();
         $agBens = Agriculture::getBenPie();
         $districtBens = Agriculture::getBenBar();
@@ -71,9 +65,6 @@ class IndicatorsController extends Controller
 
     public function energy()
     {
-        if ($this->checkUserStatus() == 0) {
-            return redirect('/');
-        }
         $communities = Energy::getSROIACommunities();
         $enBens = Energy::getBenPie();
         $districtBens = Energy::getBenBar();
@@ -91,9 +82,6 @@ class IndicatorsController extends Controller
 
     public function forestry()
     {
-        if ($this->checkUserStatus() == 0) {
-            return redirect('/');
-        }
         $communities = Forestry::getSROIACommunities();
         $foBens = Forestry::getBenPie();
         $districtBens = Forestry::getBenBar();
@@ -106,9 +94,6 @@ class IndicatorsController extends Controller
 
     public function gender()
     {
-        if ($this->checkUserStatus() == 0) {
-            return redirect('/');
-        }
         $communities = Gender::getSROIACommunities();
         $genBens = Gender::getBenPie();
         $districtBens = Gender::getBenBar();
@@ -120,9 +105,6 @@ class IndicatorsController extends Controller
 
     public function govLinks()
     {
-        if ($this->checkUserStatus() == 0) {
-            return redirect('/');
-        }
         $agencies = GovLinks::getGovAgencies();
         $workshops = GovLinks::getGovWorkshops();
 
@@ -131,9 +113,6 @@ class IndicatorsController extends Controller
 
     public function landRights()
     {
-        if ($this->checkUserStatus() == 0) {
-            return redirect('/');
-        }
         $communities = LandRights::getSROIACommunities();
 
         return view('indicators.land-rights', compact('communities'));
@@ -141,9 +120,6 @@ class IndicatorsController extends Controller
 
     public function treeDiagram()
     {
-        if ($this->checkUserStatus() == 0) {
-            return redirect('/');
-        }
         $treeBens = TreeDiagram::getD3TreeFinalBeneficiaries();
 
         return view('treediagram', compact('treeBens'));
@@ -152,9 +128,6 @@ class IndicatorsController extends Controller
 
     public function water()
     {
-        if ($this->checkUserStatus() == 0) {
-            return redirect('/');
-        }
         $communities = Water::getSROIACommunities();
         $waBens = Water::getBenPie();
         $districtBens = Water::getBenBar();
@@ -166,35 +139,5 @@ class IndicatorsController extends Controller
 
         return view('indicators.water', compact('communities', 'waBens', 'districtBens',
                     'waterHHs', 'waSys', 'waCap', 'waAg', 'waCatch'));
-    }
-
-
-    /**
-     * Check user status
-     *
-     * @return int 0 - not logged in
-     *             1 - logged in with enabled account
-     *             2 - logged in with enabled account as Administrator
-     */
-    public static function checkUserStatus()
-    {
-        // Ensure the user is logged in
-        if (Auth::guard()->check()) {
-            // And that the user is an administrator
-            if (Auth::user()->enabled) {
-
-                // Check if the user is an Administrator
-                if (Auth::user()->admin) {
-                    return 2;
-                }
-                return 1;
-            }
-            // Log the user out if the account is disabled
-            else {
-                Auth::logout();
-            }
-        }
-        // Return false if the user is not logged in with an enabled account
-        return 0;
     }
 }

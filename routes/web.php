@@ -40,6 +40,7 @@ Route::get('users/create', 'UsersController@create')->name('users.create');
 Route::get('users/{username}', 'UsersController@edit')->name('users.edit');
 Route::patch('users/{username}', 'UsersController@update')->name('users.update');
 Route::delete('users/{username}', 'UsersController@destroy')->name('users.destroy');
+Route::patch('users/{username}/password/reset', 'UsersController@resetPassword')->name('users.resetPassword');
 
  /*
  |--------------------------------------------------------------------------

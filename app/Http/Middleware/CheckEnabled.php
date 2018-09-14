@@ -16,8 +16,10 @@ class CheckEnabled
     public function handle($request, Closure $next)
     {
         // Ensure that the user is enabled
-        if(auth()->user()->enabled == 1) {
-            return $next($request);
+        if(auth()->guard()->check()) {
+            if(auth()->user()->enabled == 1) {
+                return $next($request);
+            }
         }
 
         return redirect('/');

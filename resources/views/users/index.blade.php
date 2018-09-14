@@ -28,6 +28,7 @@
                         <th class="text-right">Created</th>
                         <th>Status</th>
                         <th>Action</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +40,13 @@
                         <td class="text-center"><?php if($user->admin){echo 'X';}?>
                         <td class="text-right">{{ $user->created_at }}</td>
                         <td><?php if($user->enabled){echo 'Enabled';}else{echo 'Disabled';}?></td>
+                        <td class="text-right">
+                            <form method="POST" action="{{ route('users.resetPassword', $user->username) }}" aria-label="{{ __('Reset Password') }}">
+                                @csrf
+                                <input name="_method" type="hidden" value="PATCH">
+                                <button type="submit" class="btn btn-warning">Reset Password</a>
+                            </form>
+                        </td>
                         <td class="text-right">
                             <a href="{{ route('users.edit', $user->username) }}" class="btn btn-warning">Edit</a>
                         </td>

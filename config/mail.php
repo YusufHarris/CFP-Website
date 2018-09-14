@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'mashtaki@courtbase'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply@forestsinternational.org'),
         'name' => env('MAIL_FROM_NAME', 'Password Resetter'),
     ],
 
