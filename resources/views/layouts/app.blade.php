@@ -11,14 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <!-- JQuery -->
-    <script src="{{asset('js/jquery.slim.min.js')}}"></script>
-    <script src="{{asset('js/popper.min.js')}}"></script>
-    <!-- D3 core Javascript -->
-    <script src="{{asset('js/d3.min.js')}}"></script>
+    <script src="{{asset('js/app.js')}}"></script>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/supportFunctions.js')}}"></script>
     <!-- Chart Class for quickly creating resizable D3 charts -->
     <script src="{{asset('js/ChartClass.js')}}"></script>
@@ -30,8 +24,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/dashboard.css')}}"/>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}"/>
 
 </head>
 <body>
@@ -48,12 +41,12 @@
                     <ul class="navbar-nav mr-auto">
                         @if (Request::is('/'))
                         <ul class="navbar-nav ml-auto">
-                          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                          <li class="nav-item"><a class="nav-link" href="#features">Focus</a></li>
-                          <li class="nav-item"><a class="nav-link" href="#galleries">Galleries</a></li>
-                          <li class="nav-item"><a class="nav-link" href="#staff">Staff</a></li>
-                          <li class="nav-item"><a class="nav-link" href="#beneficiaries">Beneficiaries</a></li>
-                          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#about">About</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#features">Focus</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#galleries">Galleries</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#staff">Staff</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#beneficiaries">Beneficiaries</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#contact">Contact</a></li>
                         </ul>
                         @endif
                     </ul>

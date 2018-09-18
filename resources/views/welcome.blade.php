@@ -4,41 +4,39 @@
 
 <!-- jumbotron -->
 <div id="home" class="py-6 text-center text-light" style="background-image: url(/storage/main/banner.jpg); background-size: cover; background-position: center;height:400px;">
-  <div class="container">
-    <div style="height:50px;"></div>
-    <h1 class="h2 text-uppercase">Community Forest Pemba</h1>
-    <p class="lead">We are together.</p>
-    <div style="height:200px;"></div>
-    <a href="#about" class="btn btn-primary btn-lg">Learn More</a>
-    <a href="#contact" class="btn btn-primary btn-lg">Contact Us</a>
-  </div>
+    <div class="container" style="">
+        <h1 class="h2 text-uppercase">Community Forests Pemba</h1>
+        <!--<p class="lead">We are together.</p>-->
+        <div class="container"><img src="/storage/main/CFP_large_logo.png" alt="CFP" width="200px"></div>
+        <a href="#contact" class="btn btn-primary btn-lg">Contact Us</a>
+    </div>
 </div>
 
 
 <!-- about -->
-  <div id="about" class="py-5 ">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 offset-md-2">
-          <h2 class="text-center text-uppercase mb-4-5 ">About Us</h2>
-          <div style="height:25px;"></div>
-          <h3 class="text-center text-uppercase text-light rounded bg-dark">Vision</h3>
-          <p class="lead mb-0">
-           Together we change the world. Through shared challeges we create opportunity.
-           Our communities have transformed how we live and work. We are all leaders. We all innovate.
-           We work in harmony with the natural world. It's not just our responsibility, it's our potential.
-          </p>
-          <hr/>
-          <h3 class="text-center text-uppercase text-light bg-dark rounded">Mission</h3>
-          <p class="lead mb-0">
-           To foster environmental stewardship in the four districts of Pemba,
-           Zanzibar by establishing community forests,
-           promoting sustainable forestry techniques and initiating environmental education.
-          </p>
-        </div>
-      </div>
+<div id="about" class="py-5 ">
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2 class="text-center text-uppercase mb-4-5 ">About Us</h2>
+      <div style="height:25px;"></div>
+      <h3 class="text-center text-uppercase text-light rounded bg-dark">Vision</h3>
+      <p class="lead mb-0">
+          Pemba communities thrive in harmony with the natural world. The
+          challenges of climate change are overcome with resilient livelihoods that
+          create lasting positive change.
+      </p>
+      <hr/>
+      <h3 class="text-center text-uppercase text-light bg-dark rounded">Mission</h3>
+      <p class="lead mb-0">
+          To adapt to climate change and overcome poverty on Pemba Island by
+          sharing knowledge, advancing sustainable livelihoods, and restoring the
+          natural environment.
+      </p>
     </div>
   </div>
+</div>
+</div>
 
 <!-- features -->
   <div id="features" class="pt-5 pb-4 text-center bg-light">
@@ -46,9 +44,9 @@
       <h2 class="text-uppercase mb-4-5">Our Expertise</h2>
       <div class="row">
        <div class="col-md-3 mb-4">
-        <span class="fa-stack fa-3x mb-2">
-         <img src="/storage/Pictures/water.jpg" onerror="this.src='';" alt="" class="fas fa-dollar-sign fa-stack-1x fa-inverse" style="border-radius:50px;"/>
-        </span>
+        <div>
+         <i class="fa fa-4x fa-tint"></i>
+        </div>
         <h4>Water</h4>
         <p class="mb-0">
          Community Forests Pemba has installed two large scale rain water harvesting systems on two remote islets off of the coast of Pemba.
@@ -56,19 +54,19 @@
         </p>
       </div>
      <div class="col-md-3 mb-4">
-      <span class="fa-stack fa-3x mb-2">
-        <img src="/storage/Pictures/agriculture.jpg" onerror="this.src='';" alt="" class="fas fa-dollar-sign fa-stack-1x fa-inverse" style="border-radius:50px;"/>
-      </span>
+      <div>
+        <i class="fa fa-4x fa-shopping-basket"></i>
+      </div>
       <h4>Agriculture</h4>
       <p class="mb-0">Our communities are practicing a multitude of small-scale gardening
         techniques to increase their access to the fruits and vegetables necessary for a
         healthy diet.
       </p>
       </div>
-       <div class="col-md-3 mb-4">
-        <span class="fa-stack fa-3x mb-2">
-         <img src="/storage/Pictures/forestry.jpg" onerror="this.src='';" alt="" class="fas fa-dollar-sign fa-stack-1x fa-inverse" style="border-radius:50px;"/>
-       </span>
+      <div class="col-md-3 mb-4">
+       <div>
+        <i class="fa fa-4x fa-tree"></i>
+       </div>
        <h4>Forestry</h4>
        <p class="mb-0">
          Our communities have planted over 1,000,000 trees throughout Pemba.
@@ -76,9 +74,9 @@
        </p>
       </div>
       <div class="col-md-3 mb-4">
-        <span class="fa-stack fa-3x mb-2">
-          <img src="/storage/Pictures/energy.jpg" onerror="this.src='';" alt="" class="fas fa-dollar-sign fa-stack-1x fa-inverse" style="border-radius:50px;"/>
-        </span>
+       <div>
+        <i class="fa fa-4x fa-bolt"></i>
+       </div>
         <h4>Energy</h4>
         <p class="mb-0">
           Community Forests Pemba is working to revolutionize off grid electricity.
@@ -92,7 +90,7 @@
 </div>
 
 <!-- image gallery -->
-<div id="galleries" class="pt-5 pb-4 bg-light">
+<div id="galleries" class="pt-5 pb-4">
   <div class="container">
     <h2 class="text-center text-uppercase mb-4-5">Galleries</h2>
     <div class="row col-md">
@@ -202,15 +200,30 @@
 
       <div class="col-auto mb-4">
         <a href="https://www.facebook.com/COMMUNITYFORESTSPEMBA" class="text-light" target="_blank">
-          <i class="fab fa-3x fa-facebook"></i>
+          <i class="fa fa-3x fa-facebook"></i>
         </a>
       </div>
       <div class="col-auto mb-4">
         <a href="https://www.youtube.com/user/forestsinternational" class="text-light" target="_blank">
-          <i class="fab fa-3x fa-youtube"></i>
+          <i class="fa fa-3x fa-youtube"></i>
         </a>
       </div>
     </div>                                                                                                                                                                                      </div>
   </div>
 </div>
+
+<script>
+$(".scroll").click(function(event){
+        event.preventDefault();
+        //calculate destination place
+        var dest=0;
+        if($(this.hash).offset().top > $(document).height()-$(window).height()){
+             dest=$(document).height()-$(window).height();
+        }else{
+             dest=$(this.hash).offset().top;
+        }
+        //go to destination
+        $('html,body').animate({scrollTop:dest}, 1000,'swing');
+    });
+</script>
 @endsection
