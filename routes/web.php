@@ -42,6 +42,58 @@ Route::patch('users/{username}', 'UsersController@update')->name('users.update')
 Route::delete('users/{username}', 'UsersController@destroy')->name('users.destroy');
 Route::patch('users/{username}/password/reset', 'UsersController@resetPassword')->name('users.resetPassword');
 
+/*
+|--------------------------------------------------------------------------
+| Employees Routes
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/employees', 'EmployeeController@index')->name('employees');
+Route::get('/employees/create', 'EmployeeController@create')->name('employee.create');
+Route::post('/employees','EmployeeController@store')->name('employee.store');
+Route::get('/employees/{id}', 'EmployeeController@edit')->name('employee.edit');
+Route::post('/employees{id}','EmployeeController@update')->name('employee.update');
+Route::delete('/employees/{id}','EmployeeController@destroy')->name('employee.destroy');
+
+/*
+|--------------------------------------------------------------------------
+| Beneficiaries Routes
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/beneficiaries', 'BeneficiaryController@index')->name('beneficiaries');
+Route::get('/beneficiaries/create','BeneficiaryController@create')->name('beneficiary.create');
+Route::post('/beneficiaries','BeneficiaryController@store')->name('beneficiary.store');
+Route::get('/beneficiaries/{id}','BeneficiaryController@edit')->name('beneficiary.edit');
+Route::post('/beneficiaries/{id}','BeneficiaryController@update')->name('beneficiary.update');
+Route::delete('/beneficiaries/{id}','BeneficiaryController@destroy')->name('beneficiary.destroy');
+
+/*
+|--------------------------------------------------------------------------
+| Images Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/image','ImageController@index')->name('image.index');
+Route::get('/galleries/{id}/image/create','ImageController@create')->name('image.create')->middleware('auth');
+Route::post('/galleries/{id}','ImageController@store')->name('image.store')->middleware('auth');
+Route::delete('/galleries/{id}','ImageController@destroy')->name('image.destroy')->middleware('auth');
+
+//Multiple Images Routes
+Route::get('/form','FormController@create')->name('create');
+Route::post('form','FormController@store');
+
+
+/*
+|--------------------------------------------------------------------------
+| Galleries Routes
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/galleries','GalleryController@index')->name('galleries');
+Route::get('/galleries/create','GalleryController@create')->name('gallery.create');
+Route::post('/galleries','GalleryController@store')->name('gallery.store');
+Route::get('/galleries/{id}','GalleryController@show')->name('gallery.show');
+
  /*
  |--------------------------------------------------------------------------
  | Indicators Routes

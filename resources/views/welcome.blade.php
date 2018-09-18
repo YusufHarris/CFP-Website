@@ -3,10 +3,12 @@
 @section('content')
 
 <!-- jumbotron -->
-<div id="home" class="py-6 text-center text-light" style="background-image: url(/storage/main/banner.jpg); background-size: cover; background-position: center;">
+<div id="home" class="py-6 text-center text-light" style="background-image: url(/storage/main/banner.jpg); background-size: cover; background-position: center;height:400px;">
   <div class="container">
+    <div style="height:50px;"></div>
     <h1 class="h2 text-uppercase">Community Forest Pemba</h1>
     <p class="lead">We are together.</p>
+    <div style="height:200px;"></div>
     <a href="#about" class="btn btn-primary btn-lg">Learn More</a>
     <a href="#contact" class="btn btn-primary btn-lg">Contact Us</a>
   </div>
@@ -18,14 +20,16 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 offset-md-2">
-          <h2 class="text-center text-uppercase mb-4-5">About Us</h2>
-          <h3 class="text-center text-uppercase text-light bg-dark">Vision</h3>
-          <p class="lead mb-0">Together we change the world. Through shared challeges we create opportunity.
+          <h2 class="text-center text-uppercase mb-4-5 ">About Us</h2>
+          <div style="height:25px;"></div>
+          <h3 class="text-center text-uppercase text-light rounded bg-dark">Vision</h3>
+          <p class="lead mb-0">
+           Together we change the world. Through shared challeges we create opportunity.
            Our communities have transformed how we live and work. We are all leaders. We all innovate.
            We work in harmony with the natural world. It's not just our responsibility, it's our potential.
           </p>
           <hr/>
-          <h3 class="text-center text-uppercase text-light bg-dark">Mission</h3>
+          <h3 class="text-center text-uppercase text-light bg-dark rounded">Mission</h3>
           <p class="lead mb-0">
            To foster environmental stewardship in the four districts of Pemba,
            Zanzibar by establishing community forests,
@@ -94,7 +98,7 @@
     <div class="row col-md">
         @foreach($galleries as $gallery)
               <div class="col-md-3 mb-4">
-                <a href="{{route('newgal.show', $gallery->id)}}">
+                <a href="{{route('gallery.show', $gallery->id)}}">
                   <p class="text-center text-light bg-dark" style="border-bottom-right-radius:50px;border-bottom-left-radius:50px;">
                     {{$gallery->title}}</br>
                     <span class="text-uppercase"><strong>{{$gallery->sector}}</strong></span>
@@ -131,8 +135,8 @@
             </div>
         </div>
 <hr>
-<!-- testimonials -->
-<div id="testimonials" class="py-5 text-center ">
+<!-- Beneficiaries -->
+<div id="beneficiaries" class="py-5 text-center ">
   <div class="container">
   <h2 class="text-center text-uppercase mb-4-5">Beneficiaries of Our Project</h2>
     <div class="row col-md">
@@ -195,6 +199,7 @@
   <div class="container">
   <h2 class="text-center text-uppercase text-light mb-4-5">Like &amp; Follow Us</h2>
     <div class="row justify-content-center">
+
       <div class="col-auto mb-4">
         <a href="https://www.facebook.com/COMMUNITYFORESTSPEMBA" class="text-light" target="_blank">
           <i class="fab fa-3x fa-facebook"></i>
@@ -203,11 +208,6 @@
       <div class="col-auto mb-4">
         <a href="https://www.youtube.com/user/forestsinternational" class="text-light" target="_blank">
           <i class="fab fa-3x fa-youtube"></i>
-        </a>
-      </div>
-      <div class="col-auto mb-4">
-        <a href="https://twitter.com/mycompany" class="text-light" target="_blank">
-          <i class="fab fa-3x fa-twitter"></i>
         </a>
       </div>
     </div>                                                                                                                                                                                      </div>

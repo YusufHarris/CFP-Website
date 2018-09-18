@@ -38,7 +38,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}"><img src="/storage/mainmenu_logo.png"></a>
+                <a class="navbar-brand" href="{{ url('/') }}"><img src="/storage/mainmenu_logo.png" onerror="this.src='https://i.imgur.com/KaRxkxl.png';" alt="CFP Logo" width="30px" height="30px"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -52,7 +52,7 @@
                           <li class="nav-item"><a class="nav-link" href="#features">Focus</a></li>
                           <li class="nav-item"><a class="nav-link" href="#galleries">Galleries</a></li>
                           <li class="nav-item"><a class="nav-link" href="#staff">Staff</a></li>
-                          <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                          <li class="nav-item"><a class="nav-link" href="#beneficiaries">Beneficiaries</a></li>
                           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                         </ul>
                         @endif
@@ -85,6 +85,10 @@
                                 <a class="dropdown-item" href="{{ route('edit') }}">{{ __('Profile') }}</a>
                             @if (Auth::user()->admin)
                                 <a class="dropdown-item" href="{{ route('users.index') }}">{{ __('Users') }}</a>
+
+                                <a class="dropdown-item" href="{{ route('employees') }}">{{ __('Employees') }}</a>
+
+                                <a class="dropdown-item" href="{{ route('beneficiaries') }}">{{ __('Beneficiaries') }}</a>
                             @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
