@@ -164,19 +164,15 @@ class Agriculture extends Model
     // Returns the number of renewabe energy systems by district
     public static function getKitchenGardens()
     {
-         $sqlQuery = 'SELECT (ROUND(SUM(IF(`beneficiaryType`="Final Beneficiaries", `totalBeneficiaries`/5.2, 0)) )) AS totalKitchens, `district`
-                      FROM `RE_KeyActivityBeneficiaries`
-
-
-                      JOIN `BN_Communities`
-                          ON `RE_KeyActivityBeneficiaries`.id_BN_Communities = `BN_Communities`.id
-                      JOIN `BN_Districts`
-                          ON `BN_Communities`.id_BN_Districts = `BN_Districts`.id
-                      JOIN `LK_KeyActivities`
-                        ON `RE_KeyActivityBeneficiaries`.id_LK_KeyActivities = `LK_KeyActivities`.id
-                        WHERE (keyActivity LIKE "07%")
-
-                      GROUP BY `district`';
+        $sqlQuery = 'SELECT COUNT(`OP_07KitchenGardens`.`id`) AS totalKitchens, `BN_Districts`.`district`
+                        FROM `OP_07KitchenGardens`
+                        JOIN `OP_00Outputs`
+                            ON `OP_07KitchenGardens`.`id_OP_00Outputs` = `OP_00Outputs`.`id`
+                        JOIN `BN_Communities`
+                            ON `OP_00Outputs`.`id_BN_Communities` = `BN_Communities`.`id`
+                        JOIN `BN_Districts`
+                            ON `BN_Communities`.`id_BN_Districts` = `BN_Districts`.`id`
+                        GROUP BY `BN_Districts`.`district`';
 
 
         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
