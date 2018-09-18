@@ -45,7 +45,7 @@ class ImageController extends Controller
           'imageName' => 'image',
           'description' => 'string|max:255|required'
         ]);
-        $path = Storage::put('public/galleries/' . $gallery_id, $request->file('imageName'), 'public');
+        $path = Storage::put('public/galleries/' . $gallery_id, $request->file('imageName'));
         $path = str_replace('public', '/storage', $path);
         Image::create([
           'imageName' => $path,

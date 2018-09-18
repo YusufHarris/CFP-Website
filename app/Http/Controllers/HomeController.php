@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         $employees = Employee::all();
         $beneficiaries = Beneficiary::take(4)->get();
-        $galleries = Gallery::take(4)->get();
+        $galleries = Gallery::take(4)->with('images')->take(1)->get();
         return view('welcome', compact('employees','beneficiaries','galleries'));
     }
 }
