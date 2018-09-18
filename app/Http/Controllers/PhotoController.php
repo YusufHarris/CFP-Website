@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Main\Image;
+use App\Models\Main\Photo;
 use App\Models\Main\Gallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
-class ImageController extends Controller
+class PhotoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +18,10 @@ class ImageController extends Controller
      */
     public function index()
     {
-        $images = Image::all();
+        $photos = Photo::all();
 
 
-        return view('image.index', compact('images'));
+        return view('photo.index', compact('photos'));
     }
 
     /**
@@ -30,7 +31,7 @@ class ImageController extends Controller
      */
     public function create($gallery_id)
     {
-        return view('image.create', compact('gallery_id'));
+        return view('photo.create', compact('gallery_id'));
     }
 
     /**
@@ -41,14 +42,29 @@ class ImageController extends Controller
      */
     public function store(Request $request, $gallery_id)
     {
+        // Validate the request
         $request->validate([
-          'imageName' => 'image',
+          'filename' => 'image',
           'description' => 'string|max:255|required'
         ]);
-        $path = Storage::put('public/galleries/' . $gallery_id, $request->file('imageName'));
+
+        // Save the image
+        $path = Storage::put('public/galleries/' . $gallery_id, $request->file('filename'));
+        // Update the photo path to use the public folder instead of the
+        // storage folder
         $path = str_replace('public', '/storage', $path);
-        Image::create([
-          'imageName' => $path,
+
+        // Create the thumbnail of the photo
+        $thm_path = str_replace('.jpeg', '-thm.jpeg', $path);
+        $img = Image::make('.'.$path);
+        $img->resize(255, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $img->save('.'.$thm_path);
+
+        // Create the photo record in the database
+        Photo::create([
+          'filename' => $path,
           'description' => $request->description,
           'gallery_id' => $gallery_id
         ]);
@@ -64,8 +80,8 @@ class ImageController extends Controller
      */
     public function show(r $r)
     {
-        $images = Image::all();
-        return view('image.index', compact('images'));
+        $photos = Photo::all();
+        return view('photo.index', compact('photos'));
     }
 
     /**
@@ -99,8 +115,8 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
-        $image = Image::where('id',$id)->first();
-        $image->delete();
+        $photo = Photo::where('id',$id)->first();
+        $photo->delete();
         return redirect()->back();
     }
 }

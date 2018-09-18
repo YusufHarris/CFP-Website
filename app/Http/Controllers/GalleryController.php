@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\r;
 use App\Models\Main\Gallery;
-use App\Models\Main\Image;
+use App\Models\Main\Photo;
 use Illuminate\Http\Request;
 
 class GalleryController extends Controller
@@ -55,9 +55,9 @@ class GalleryController extends Controller
      */
     public function show($id)
     {
-        $images = Image::select()->where('gallery_id', $id)->get();
+        $photos = Photo::select()->where('gallery_id', $id)->get();
         $gallery = Gallery::select()->find($id);
-        return view('galleries.show', compact('images'), compact('gallery'));
+        return view('galleries.show', compact('photos'), compact('gallery'));
     }
 
     /**
