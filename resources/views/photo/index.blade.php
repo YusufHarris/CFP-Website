@@ -3,23 +3,23 @@
 @section('content')
 
 
-<!-- image gallery -->
-        <div id="images" class="pt-5 pb-4 ">
+<!-- photo gallery -->
+        <div id="photos" class="pt-5 pb-4 ">
         <div class="container">
-            <h2 class="text-center text-uppercase mb-4-5">Image Gallery</h2>
+            <h2 class="text-center text-uppercase mb-4-5">Photo Gallery</h2>
             <div class="row">
-              @foreach($images as $image)
+              @foreach($photos as $photo)
                     <div class="col-md-3 mb-4">
-                        <img src="{{$image->imageName}}" class="w-100" style="border-top-left-radius:50px;border-top-right-radius:50px;">
-                        <p class="text-center text-light bg-dark" style="border-bottom-right-radius:50px;border-bottom-left-radius:50px;">{{$image->description}}</p>
+                        <img src="{{$photo->filename}}" class="w-100" style="border-top-left-radius:50px;border-top-right-radius:50px;">
+                        <p class="text-center text-light bg-dark" style="border-bottom-right-radius:50px;border-bottom-left-radius:50px;">{{$photo->description}}</p>
                     </div>
 
               @endforeach
               @guest
               @else
               <div class="col-md-3 mb-4">
-                <a href="{{route('image.create')}}" class="btn-primary">
-                  {{ __('Add an Image') }}
+                <a href="{{route('photo.create')}}" class="btn-primary">
+                  {{ __('Add an Photo') }}
                 </a>
               </div>
               @endguest
@@ -29,7 +29,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Image</h5>
+                    <h5 class="modal-title">Photo</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

@@ -5,17 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Add Image') }}</div>
+                <div class="card-header">{{ __('Add Photo') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('image.store', $gallery_id) }}" aria-label="{{ __('Add Image') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('photo.store', $gallery_id) }}" aria-label="{{ __('Add Photo') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="imageName" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+                            <label for="filename" class="col-md-4 col-form-label text-md-right">{{ __('Photo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="imageName" type="file" class="form-control" name="imageName" accept="image/*" required>
+                                <input id="filename" type="file" class="form-control" name="filename" accept="image/*" required>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -31,7 +31,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Add Image to Gallery') }}
+                                    {{ __('Add Photo to Gallery') }}
                                 </button>
                             </div>
                         </div>

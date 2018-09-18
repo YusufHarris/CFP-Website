@@ -10,7 +10,7 @@ class Gallery extends Model
     'title','sector'
   ];
 
-   public function images(){
-     return $this->hasMany('App\Models\Main\Image');
+   public function photos(){
+     return $this->hasMany('App\Models\Main\Photo');
    }
 }

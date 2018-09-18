@@ -4,7 +4,7 @@ namespace App\Models\Main;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class Photo extends Model
 {
   /**
    * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class Image extends Model
    * @var array
    */
   protected $fillable = [
-      'imageName', 'directory', 'description', 'gallery_id'
+      'filename', 'directory', 'description', 'gallery_id'
   ];
 
   public function gallery(){
