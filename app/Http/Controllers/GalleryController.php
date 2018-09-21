@@ -38,13 +38,14 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        Gallery::create([
+        $gallery = Gallery::create([
           'title' => $request->title,
           'sector' => $request->sector
         ]);
         $galleries = Gallery::all();
 
-        return view('galleries.index', compact('galleries'));
+        $gallery_id = $gallery->id;
+        return redirect('galleries/{'.$gallery_id.'}');
     }
 
     /**
@@ -89,8 +90,12 @@ class GalleryController extends Controller
      * @param  \App\r  $r
      * @return \Illuminate\Http\Response
      */
-    public function destroy(r $r)
+    public function destroy($id)
     {
-        //
+      //Get the Beneficiary
+      $gallery = Gallery::where('id', $id)->first();
+      $gallery->delete();
+
+      return redirect('galleries');
     }
 }

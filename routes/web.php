@@ -75,7 +75,7 @@ Route::delete('beneficiaries/{id}','BeneficiaryController@destroy')->name('benef
 */
 Route::get('galleries/{id}/photo/create','PhotoController@create')->name('photo.create')->middleware('auth');
 Route::post('galleries/{id}','PhotoController@store')->name('photo.store')->middleware('auth');
-Route::delete('galleries/{id}','PhotoController@destroy')->name('photo.destroy')->middleware('auth');
+Route::delete('galleries/{id}/image','PhotoController@destroy')->name('photo.destroy')->middleware('auth');
 
 
 /*
@@ -88,6 +88,7 @@ Route::get('galleries','GalleryController@index')->name('galleries');
 Route::get('galleries/create','GalleryController@create')->name('gallery.create');
 Route::post('galleries','GalleryController@store')->name('gallery.store');
 Route::get('galleries/{id}','GalleryController@show')->name('gallery.show');
+Route::delete('galleries/{id}','GalleryController@destroy')->name('gallery.destroy');
 
  /*
  |--------------------------------------------------------------------------

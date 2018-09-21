@@ -92,12 +92,12 @@
 <!-- photo gallery -->
 <div id="galleries" class="pt-5 pb-4">
   <div class="container">
-    <h2 class="text-center text-uppercase mb-4-5">Galleries</h2>
+    <a href="{{route('galleries')}}"><h2 class="text-center text-uppercase mb-4-5">Galleries</h2></a>
     <div class="row col-md">
         @foreach($galleries as $gallery)
               <div class="col-md-3 mb-4">
                 <a href="{{route('gallery.show', $gallery->id)}}">
-                    <img src="{{$gallery->photos[0]->filename}}" alt="">
+                    <img src="{{$gallery->photos[0]->filename}}" alt="{{$gallery->title}}">
                   <p class="text-center text-light bg-dark" style="border-bottom-right-radius:50px;border-bottom-left-radius:50px;">
                     {{$gallery->title}}</br>
                     <span class="text-uppercase"><strong>{{$gallery->sector}}</strong></span>

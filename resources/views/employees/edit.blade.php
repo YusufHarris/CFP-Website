@@ -48,10 +48,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Profile Picture') }}</label>
+                            <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Current Profile Picture') }}</label>
 
                             <div class="col-md-6">
-                                <img src="/{{$employee->avatar}}" alt="{{$employee->name}}" width="50px" height="50px" class="rounded">
+                                <img src="{{$employee->avatar}}" alt="{{$employee->name}}" width="50px" height="50px" class="rounded">
                                 <input id="avatar" type="file" class="form-control" name="avatar" accept="image/*">
                             </div>
                         </div>

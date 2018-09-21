@@ -4,16 +4,39 @@
 
 
 <!-- photo gallery -->
-        <div id="images" class="pt-5 pb-4 ">
-        <div class="container">
-            <h2 class="text-center text-uppercase mb-4-5">{{$gallery->title}}</h2>
-            @guest
-            @else
-            <div class="col-md-3 mb-4">
-              <a href="{{route('photo.create',$gallery)}}" class="btn btn-primary">
-                {{ __('Add an Photo') }}
-              </a>
+<div id="images" class="pt-5 pb-4 ">
+  <div class="container">
+    <h2 class="text-center text-uppercase mb-4-5">{{$gallery->title}}</h2>
+    @guest
+    @else
+    <div class="col-md-4 mb-4">
+      <a href="{{route('photo.create',$gallery)}}" class="btn btn-primary">
+        {{ __('Add an Photo') }}
+      </a>
+      <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#confirmDelete">{{ __('Delete This Gallery') }}</button>
+    </div>
+        <!-- Delete Confirmation Popup -->
+        <div id="confirmDelete" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+                <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">{{ __('Delete This Gallery?') }}</h4>
+              </div>
+              <div class="modal-body">
+               <p style="text:red;"><strong>{{ __('Are you sure you want to delete this ENTIRE Gallery?') }}</strong></p>
+              </div>
+              <div class="modal-footer">
+                <form method="POST" action="{{ route('gallery.destroy', $gallery) }}" aria-label="{{ __('Delete') }}">
+                  @csrf
+                  <input name="_method" type="hidden" value="DELETE">
+                  <button type="submit" class="btn btn-primary">Yes</a>
+                </form>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+              </div>
             </div>
+          </div>
+        </div>
             @endguest
             <div class="row">
               @foreach($photos as $photo)
