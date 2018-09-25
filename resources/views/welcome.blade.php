@@ -97,7 +97,7 @@
         @foreach($galleries as $gallery)
               <div class="col-md-3 mb-4">
                 <a href="{{route('gallery.show', $gallery->id)}}">
-                    <img src="{{$gallery->photos[0]->filename}}" alt="{{$gallery->title}}">
+                    <img src="{{$gallery->photos[0]->filename}}" class="w-100" alt="{{$gallery->title}}">
                   <p class="text-center text-light bg-dark" style="border-bottom-right-radius:50px;border-bottom-left-radius:50px;">
                     {{$gallery->title}}</br>
                     <span class="text-uppercase"><strong>{{$gallery->sector}}</strong></span>

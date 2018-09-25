@@ -20,11 +20,17 @@
     <script src="{{asset('js/BasicPieChartClass.js')}}"></script>
     <!-- Basic Bar Chart Subclass -->
     <script src="{{asset('js/BasicBarChartClass.js')}}"></script>
+    <!--Light Box-->
+    <script src="{{asset('js/lightbox.js')}}"></script>
+    <script src="{{asset('js/lightbox-plus-jquery.min.js')}}"></script>
+
 
 
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/dashboard.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.min.css')}}"/>
 
 </head>
 <body>

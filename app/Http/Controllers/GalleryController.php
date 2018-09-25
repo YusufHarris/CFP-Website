@@ -42,10 +42,11 @@ class GalleryController extends Controller
           'title' => $request->title,
           'sector' => $request->sector
         ]);
-        $galleries = Gallery::all();
 
         $gallery_id = $gallery->id;
-        return redirect('galleries/{'.$gallery_id.'}');
+
+        $photos = Photo::select()->where('gallery_id', $gallery_id)->get();
+        return view('galleries.show', compact('gallery_id','gallery', 'photos'));
     }
 
     /**
