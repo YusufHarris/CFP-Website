@@ -32,6 +32,21 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.min.css')}}"/>
 
+    <style>
+      div.shade {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      text-align: center;
+      }
+      h2.shade{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius:50px;
+        padding:20px
+      }
+      img.shade{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+    </style>
+
 </head>
 <body>
     <div id="app">
@@ -106,9 +121,28 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
-    </div>
+        </div>
+        <!-- social -->
+        <div id="social" class="pt-5 pb-4 bg-primary">
+          <div class="container">
+          <h2 class="text-center text-uppercase text-light mb-4-5">Like &amp; Follow Us</h2>
+            <div class="row justify-content-center">
+
+              <div class="col-auto mb-4">
+                <a href="https://www.facebook.com/COMMUNITYFORESTSPEMBA" class="text-light" target="_blank">
+                  <i class="fa fa-3x fa-facebook"></i>
+                </a>
+              </div>
+              <div class="col-auto mb-4">
+                <a href="https://www.youtube.com/user/forestsinternational" class="text-light" target="_blank">
+                  <i class="fa fa-3x fa-youtube"></i>
+                </a>
+              </div>
+            </div>                                                                                                                                                                                      </div>
+          </div>
+        </div>
 </body>
 </html>

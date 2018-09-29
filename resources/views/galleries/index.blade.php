@@ -13,12 +13,12 @@
 <!-- image gallery -->
         <div id="images" class="pt-5 pb-4 ">
         <div class="container">
-            <h2 class="text-center text-uppercase mb-4-5">Galleries</h2>
+            <h2 class="text-center text-uppercase mb-4-5 shade">Galleries</h2>
             <div class="row">
               @foreach($galleries as $gallery)
                     <div class="col-md-3 mb-4">
                       <a href="{{route('gallery.show', $gallery->id)}}">
-                        <img src="{{$gallery->photos[0]->filename}}" class="w-100" alt="{{$gallery->title}}">
+                        <img src="{{$gallery->photos[0]->filename}}" class="w-100 shade" alt="{{$gallery->title}}">
                         <p class="text-center text-light bg-dark w-100" style="border-bottom-right-radius:50px;border-bottom-left-radius:50px;">
                           {{$gallery->title}}</br>
                           <span class="text-uppercase"><strong>{{$gallery->sector}}</strong></span>
@@ -46,26 +46,5 @@
                 </div>
             </div>
         </div>
-    </div>
-
-
-    <!-- social -->
-    <div id="social" class="pt-5 pb-4 bg-primary">
-      <div class="container">
-      <h2 class="text-center text-uppercase text-light mb-4-5">Like &amp; Follow Us</h2>
-        <div class="row justify-content-center">
-
-          <div class="col-auto mb-4">
-            <a href="https://www.facebook.com/COMMUNITYFORESTSPEMBA" class="text-light" target="_blank">
-              <i class="fa fa-3x fa-facebook"></i>
-            </a>
-          </div>
-          <div class="col-auto mb-4">
-            <a href="https://www.youtube.com/user/forestsinternational" class="text-light" target="_blank">
-              <i class="fa fa-3x fa-youtube"></i>
-            </a>
-          </div>
-        </div>                                                                                                                                                                                      </div>
-      </div>
     </div>
 @endsection

@@ -57,7 +57,8 @@ class GalleryController extends Controller
      */
     public function show($id)
     {
-        $photos = Photo::select()->where('gallery_id', $id)->get();
+        
+        $photos = Photo::select()->where('gallery_id', $id)->paginate(16);
         $gallery = Gallery::select()->find($id);
         return view('galleries.show', compact('photos'), compact('gallery'));
     }

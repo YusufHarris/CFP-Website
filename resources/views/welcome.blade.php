@@ -14,34 +14,34 @@
 
 
 <!-- about -->
-<div id="about" class="py-5 ">
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
-      <h2 class="text-center text-uppercase mb-4-5 ">About Us</h2>
-      <div style="height:25px;"></div>
-      <h3 class="text-center text-uppercase text-light rounded bg-dark">Vision</h3>
-      <p class="lead mb-0">
-          Pemba communities thrive in harmony with the natural world. The
-          challenges of climate change are overcome with resilient livelihoods that
-          create lasting positive change.
-      </p>
-      <hr/>
-      <h3 class="text-center text-uppercase text-light bg-dark rounded">Mission</h3>
-      <p class="lead mb-0">
-          To adapt to climate change and overcome poverty on Pemba Island by
-          sharing knowledge, advancing sustainable livelihoods, and restoring the
-          natural environment.
-      </p>
+<div id="about" class="py-5" style="height:400px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h2 class="text-center text-uppercase mb-4-5 ">About Us</h2>
+        <div style="height:25px;"></div>
+        <h3 class="text-center text-uppercase text-light rounded bg-dark">Vision</h3>
+        <p class="lead mb-0">
+            Pemba communities thrive in harmony with the natural world. The
+            challenges of climate change are overcome with resilient livelihoods that
+            create lasting positive change.
+        </p>
+        <hr/>
+        <h3 class="text-center text-uppercase text-light bg-dark rounded">Mission</h3>
+        <p class="lead mb-0">
+            To adapt to climate change and overcome poverty on Pemba Island by
+            sharing knowledge, advancing sustainable livelihoods, and restoring the
+            natural environment.
+        </p>
+      </div>
     </div>
   </div>
 </div>
-</div>
 
 <!-- features -->
-  <div id="features" class="pt-5 pb-4 text-center bg-light">
+  <div id="features" class="pt-5 pb-4 text-center bg-light" style="height:400px;">
     <div class="container">
-      <h2 class="text-uppercase mb-4-5">Our Expertise</h2>
+      <h2 class="text-uppercase mb-4-5" style="padding-bottom:50px;">Our Expertise</h2>
       <div class="row">
        <div class="col-md-3 mb-4">
         <div>
@@ -90,7 +90,7 @@
 </div>
 
 <!-- photo gallery -->
-<div id="galleries" class="pt-5 pb-4">
+<div id="galleries" class="pt-5 pb-4" style="height:400px;">
   <div class="container">
     <a href="{{route('galleries')}}"><h2 class="text-center text-uppercase mb-4-5">Galleries</h2></a>
     <div class="row col-md">
@@ -112,7 +112,7 @@
 
 
 <!-- staff -->
-        <div id="staff" class="pt-5 pb-4 bg-light">
+        <div id="staff" class="pt-5 pb-4 bg-light" style="height:400px;">
         <div class="container">
             <h2 class="text-center text-uppercase mb-4-5">Our Staff</h2>
             <div class="row col-md">
@@ -133,22 +133,41 @@
 
             </div>
         </div>
+        </div
 <hr>
 <!-- Beneficiaries -->
 <div id="beneficiaries" class="py-5 text-center ">
   <div class="container">
-  <h2 class="text-center text-uppercase mb-4-5">Beneficiaries of Our Project</h2>
-    <div class="row col-md">
-      @foreach ($beneficiaries as $beneficiary)
-        <div class="col-md text-center">
-          <ul style="list-style-type:none;">
-            <li><img src="{{$beneficiary->avatar}}" onerror="this.src='https://i.imgur.com/fitWknA.png';" width="125px" height="125px" style="border-radius:50px;" alt="{{$beneficiary->directory}}defavatar.jpg"/></p>
-            <li><h4>{{$beneficiary->name}}</h4></li>
-            <li><strong><h5 style="font-family:times; font-style:italic;">{{$beneficiary->occupation}}</h5></strong></li>
-            <li>{{$beneficiary->introduction}}</li>
-          </ul>
+    <h2 class="text-center text-uppercase mb-4-5">Beneficiaries of Our Project</h2>
+    <div id="carouselTestimonials" class="carousel slide text-center" data-ride="carousel" data-interval="7500" style="height:400px;">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row">
+            <div class="col-8 offset-2">
+              <img src="/storage/mainmenu_logo.png" class="mb-3 rounded-circle" height="100">
+              <p class="lead font-italic">These are some of the people who have benefitted from our project.</p>
+            </div>
+          </div>
         </div>
-      @endforeach
+        @foreach ($beneficiaries as $beneficiary)
+          <div class="carousel-item">
+            <div class="row">
+              <div class="col-8 offset-2">
+                <img class="mb-3 rounded-circle" src="{{$beneficiary->avatar}}" onerror="this.src='https://i.imgur.com/fitWknA.png';">
+                <p class="lead font-italic">{{$beneficiary->name}}</p>
+                <p class="">{{$beneficiary->occupation}}</p>
+                <p class="mb-0">{{$beneficiary->introduction}}</p>
+              </div>
+            </div>
+          </div>
+        @endforeach
+      </div>
+        <a class="carousel-control-prev text-dark" href="#carouselTestimonials" role="button" data-slide="prev">
+            <i class="fa fa-lg fa-chevron-left"></i>
+        </a>
+        <a class="carousel-control-next text-dark" href="#carouselTestimonials" role="button" data-slide="next">
+            <i class="fa fa-lg fa-chevron-right"></i>
+        </a>
     </div>
   </div>
 </div>
@@ -190,26 +209,6 @@
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7948.582784700076!2d39.724669437775496!3d-5.056439127307255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2stz!4v1535627312433" width="600" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
       </div>
      </div>
-  </div>
-</div>
-
-<!-- social -->
-<div id="social" class="pt-5 pb-4 bg-primary">
-  <div class="container">
-  <h2 class="text-center text-uppercase text-light mb-4-5">Like &amp; Follow Us</h2>
-    <div class="row justify-content-center">
-
-      <div class="col-auto mb-4">
-        <a href="https://www.facebook.com/COMMUNITYFORESTSPEMBA" class="text-light" target="_blank">
-          <i class="fa fa-3x fa-facebook"></i>
-        </a>
-      </div>
-      <div class="col-auto mb-4">
-        <a href="https://www.youtube.com/user/forestsinternational" class="text-light" target="_blank">
-          <i class="fa fa-3x fa-youtube"></i>
-        </a>
-      </div>
-    </div>                                                                                                                                                                                      </div>
   </div>
 </div>
 

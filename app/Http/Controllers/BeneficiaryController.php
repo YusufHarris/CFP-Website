@@ -138,7 +138,7 @@ class BeneficiaryController extends Controller
        $beneficiary->name = $request->name;
        $beneficiary->occupation = $request->occupation;
        $beneficiary->introduction = $request->introduction;
-       $beneficiary->avatar = $thm_path
+       $beneficiary->avatar = $thm_path;
 
 
        // Save the Beneficiary with confirmation
