@@ -24,6 +24,19 @@
     <script src="{{asset('js/lightbox.js')}}"></script>
     <script src="{{asset('js/lightbox-plus-jquery.min.js')}}"></script>
 
+    <script>
+          $(document).ready(function(){
+
+          $("#showPanel").click(function(){
+              $("#panel").fadeIn("slow");
+          });
+
+          $("#hidePanel").click(function(){
+              $("#panel").fadeOut("fast");
+          });
+      });
+    </script>
+
 
 
     <!-- Styles -->
@@ -36,6 +49,9 @@
       div.shade {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       text-align: center;
+      }
+      div.size{
+        height:500px;
       }
       h2.shade{
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

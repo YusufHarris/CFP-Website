@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- jumbotron -->
-<div id="home" class="py-6 text-center text-light" style="background-image: url(/storage/main/banner.jpg); background-size: cover; background-position: center;height:400px;">
+<div id="home" class="py-6 text-center text-light shade" style="background-image: url(/storage/main/banner.jpg); background-size: cover; background-position: center;height:400px;">
     <div class="container" style="">
         <h1 class="h2 text-uppercase">Community Forests Pemba</h1>
         <!--<p class="lead">We are together.</p>-->
@@ -14,11 +14,11 @@
 
 
 <!-- about -->
-<div id="about" class="py-5" style="height:400px;">
+<div id="about" class="py-5 shade">
   <div class="container">
     <div class="row">
       <div class="col-md-8 offset-md-2">
-        <h2 class="text-center text-uppercase mb-4-5 ">About Us</h2>
+        <h2 class="text-center text-uppercase mb-4-5 shade">About Us</h2>
         <div style="height:25px;"></div>
         <h3 class="text-center text-uppercase text-light rounded bg-dark">Vision</h3>
         <p class="lead mb-0">
@@ -39,9 +39,9 @@
 </div>
 
 <!-- features -->
-  <div id="features" class="pt-5 pb-4 text-center bg-light" style="height:400px;">
+  <div id="features" class="pt-5 pb-4 text-center bg-light size">
     <div class="container">
-      <h2 class="text-uppercase mb-4-5" style="padding-bottom:50px;">Our Expertise</h2>
+      <h2 class="text-uppercase mb-4-5 shade">Our Expertise</h2>
       <div class="row">
        <div class="col-md-3 mb-4">
         <div>
@@ -90,9 +90,9 @@
 </div>
 
 <!-- photo gallery -->
-<div id="galleries" class="pt-5 pb-4" style="height:400px;">
+<div id="galleries" class="pt-5 pb-4 size">
   <div class="container">
-    <a href="{{route('galleries')}}"><h2 class="text-center text-uppercase mb-4-5">Galleries</h2></a>
+    <a href="{{route('galleries')}}"><h2 class="text-center text-uppercase mb-4-5 shade">Galleries</h2></a>
     <div class="row col-md">
         @foreach($galleries as $gallery)
               <div class="col-md-3 mb-4">
@@ -112,9 +112,9 @@
 
 
 <!-- staff -->
-        <div id="staff" class="pt-5 pb-4 bg-light" style="height:400px;">
+        <div id="staff" class="pt-5 pb-4 bg-light size">
         <div class="container">
-            <h2 class="text-center text-uppercase mb-4-5">Our Staff</h2>
+            <h2 class="text-center text-uppercase mb-4-5 shade">Our Staff</h2>
             <div class="row col-md">
 
                 @foreach ($employees as $employee)
@@ -136,9 +136,9 @@
         </div
 <hr>
 <!-- Beneficiaries -->
-<div id="beneficiaries" class="py-5 text-center ">
+<div id="beneficiaries" class="py-5 text-center">
   <div class="container">
-    <h2 class="text-center text-uppercase mb-4-5">Beneficiaries of Our Project</h2>
+    <h2 class="text-center text-uppercase mb-4-5 shade">Beneficiaries of Our Project</h2>
     <div id="carouselTestimonials" class="carousel slide text-center" data-ride="carousel" data-interval="7500" style="height:400px;">
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -175,7 +175,7 @@
 <!-- contact -->
 <div id="contact" class="pt-5 pb-4 bg-light">
   <div class="container">
-     <h2 class="text-center text-uppercase mb-4-5">Contact Us</h2>
+     <h2 class="text-center text-uppercase mb-4-5 shade">Contact Us</h2>
      <div class="row">
       <div class="col-md-4 mb-4">
         <p>Please feel free to get in touch with us today!</p>
