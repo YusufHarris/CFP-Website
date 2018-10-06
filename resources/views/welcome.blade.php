@@ -12,7 +12,6 @@
     </div>
 </div>
 
-
 <!-- about -->
 <div id="about" class="py-5 shade">
   <div class="container">
@@ -21,7 +20,7 @@
         <h2 class="text-center text-uppercase mb-4-5 shade">About Us</h2>
         <div style="height:25px;"></div>
         <h3 class="text-center text-uppercase text-light rounded bg-dark">Vision</h3>
-        <p class="lead mb-0">
+        <p class="lead mb-0 ">
             Pemba communities thrive in harmony with the natural world. The
             challenges of climate change are overcome with resilient livelihoods that
             create lasting positive change.
@@ -112,17 +111,16 @@
 
 
 <!-- staff -->
-        <div id="staff" class="pt-5 pb-4 bg-light size">
+        <div id="staff" class="pt-5 pb-4 bg-light">
         <div class="container">
             <h2 class="text-center text-uppercase mb-4-5 shade">Our Staff</h2>
             <div class="row col-md">
-
                 @foreach ($employees as $employee)
-                      <div class="col-md text-center">
+                      <div class="col-md-3 text-center">
                         <ul style="list-style-type:none;">
 
 
-                          <li><img src="{{$employee->avatar}}" class="avatar-sm" onerror="this.src='https://i.imgur.com/fitWknA.png';" width="150px" height="150px" style="border-radius:50px;" alt="{{$employee->name}} Photo"/></p>
+                          <li><img src="{{$employee->avatar}}" class="avatar-sm curve shade" onerror="this.src='https://i.imgur.com/fitWknA.png';" alt="{{$employee->name}} Photo"/></p>
                           <li><h4>{{$employee->name}}</h4></li>
                           <li><strong><h5 style="font-family:times; font-style:italic;">{{$employee->title}}</h5></strong></li>
                           <li>{{$employee->description}}</li>
@@ -175,7 +173,7 @@
 <!-- contact -->
 <div id="contact" class="pt-5 pb-4 bg-light">
   <div class="container">
-     <h2 class="text-center text-uppercase mb-4-5 shade">Contact Us</h2>
+     <h2 class="text-center text-uppercase mb-4-5 shade" style="">Contact Us</h2>
      <div class="row">
       <div class="col-md-4 mb-4">
         <p>Please feel free to get in touch with us today!</p>

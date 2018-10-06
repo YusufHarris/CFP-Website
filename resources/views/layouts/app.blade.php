@@ -24,21 +24,6 @@
     <script src="{{asset('js/lightbox.js')}}"></script>
     <script src="{{asset('js/lightbox-plus-jquery.min.js')}}"></script>
 
-    <script>
-          $(document).ready(function(){
-
-          $("#showPanel").click(function(){
-              $("#panel").fadeIn("slow");
-          });
-
-          $("#hidePanel").click(function(){
-              $("#panel").fadeOut("fast");
-          });
-      });
-    </script>
-
-
-
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/dashboard.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}"/>
@@ -56,10 +41,20 @@
       h2.shade{
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         border-radius:50px;
-        padding:20px
+        padding:10px
       }
       img.shade{
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      .shade{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      img.curve{
+        border-radius:50px;
+      }
+      a:hover{
+        background-color:green;
+        box-shadow: 0 4px 8px 0 rgba(15, 200, 25, 0.2), 0 6px 20px 0 rgba(25, 200, 15, 0.19);
       }
     </style>
 
