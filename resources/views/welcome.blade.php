@@ -13,7 +13,7 @@
 </div>
 
 <!-- about -->
-<div id="about" class="py-5 shade">
+<div id="about" class="py-5 img-thumbnail shade">
   <div class="container">
     <div class="row">
       <div class="col-md-8 offset-md-2">
@@ -38,7 +38,7 @@
 </div>
 
 <!-- features -->
-  <div id="features" class="pt-5 pb-4 text-center bg-light size">
+  <div id="features" class="pt-5 pb-4 text-center bg-light">
     <div class="container">
       <h2 class="text-uppercase mb-4-5 shade">Our Expertise</h2>
       <div class="row">
@@ -89,12 +89,12 @@
 </div>
 
 <!-- photo gallery -->
-<div id="galleries" class="pt-5 pb-4 size">
+<div id="galleries" class="pt-5 pb-4 img-thumbnail shade">
   <div class="container">
     <a href="{{route('galleries')}}"><h2 class="text-center text-uppercase mb-4-5 shade">Galleries</h2></a>
     <div class="row col-md">
         @foreach($galleries as $gallery)
-              <div class="col-md-3 mb-4">
+              <div class="col-md-3 mb-4 img-thumbnail">
                 <a href="{{route('gallery.show', $gallery->id)}}">
                     <img src="{{$gallery->photos[0]->filename}}" class="w-100" alt="{{$gallery->title}}">
                   <p class="text-center text-light bg-dark" style="border-bottom-right-radius:50px;border-bottom-left-radius:50px;">
@@ -110,6 +110,23 @@
 </div>
 
 
+<!-- Donors -->
+        <div id="donors" class="pt-5 pb-4 bg-light">
+        <div class="container">
+            <h2 class="text-center text-uppercase mb-4-5 shade">Donors</h2>
+            <div class="row col-md-12">
+                @foreach ($donors as $donor)
+                      <div class="col-md-2 text-center">
+                          <img src="{{$donor->logo}}" data-toggle="tooltip" data-html="true" data-animation="true" title="{{$donor->title}}" class="curve img-thumbnail shadow" alt="$donor->title">
+                      </div>
+                  @endforeach
+
+            </div>
+        </div>
+        </div
+<hr>
+
+
 <!-- staff -->
         <div id="staff" class="pt-5 pb-4 bg-light">
         <div class="container">
@@ -120,7 +137,7 @@
                         <ul style="list-style-type:none;">
 
 
-                          <li><img src="{{$employee->avatar}}" class="avatar-sm curve shade" onerror="this.src='https://i.imgur.com/fitWknA.png';" alt="{{$employee->name}} Photo"/></p>
+                          <li><img src="{{$employee->avatar}}" class="avatar-sm curve shade img-thumbnail" onerror="this.src='https://i.imgur.com/fitWknA.png';" alt="{{$employee->name}} Photo"/></p>
                           <li><h4>{{$employee->name}}</h4></li>
                           <li><strong><h5 style="font-family:times; font-style:italic;">{{$employee->title}}</h5></strong></li>
                           <li>{{$employee->description}}</li>
@@ -132,9 +149,10 @@
             </div>
         </div>
         </div
+
 <hr>
 <!-- Beneficiaries -->
-<div id="beneficiaries" class="py-5 text-center">
+<div id="beneficiaries" class="py-5 text-center img-thumbnail shade">
   <div class="container">
     <h2 class="text-center text-uppercase mb-4-5 shade">Beneficiaries of Our Project</h2>
     <div id="carouselTestimonials" class="carousel slide text-center" data-ride="carousel" data-interval="7500" style="height:400px;">
@@ -151,7 +169,7 @@
           <div class="carousel-item">
             <div class="row">
               <div class="col-8 offset-2">
-                <img class="mb-3 rounded-circle" src="{{$beneficiary->avatar}}" onerror="this.src='https://i.imgur.com/fitWknA.png';">
+                <img class="mb-3 rounded-circle img-thumbnail shadow" src="{{$beneficiary->avatar}}" onerror="this.src='https://i.imgur.com/fitWknA.png';">
                 <p class="lead font-italic">{{$beneficiary->name}}</p>
                 <p class="">{{$beneficiary->occupation}}</p>
                 <p class="mb-0">{{$beneficiary->introduction}}</p>

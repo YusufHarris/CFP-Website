@@ -14,7 +14,7 @@
                     <a href="{{route('beneficiary.create')}}" class="btn btn-primary float-right">Create Beneficiary</a>
                 </div>
                 <div class='position-ref'>
-                  <table class="text-center table table-striped" style="width:100%">
+                  <table class="text-center table table-striped table-hover" style="width:100%">
                     <thead class="bg-dark text-light">
                       <th><strong>ID</strong></th>
                       <th><strong>Picture</strong></th>
