@@ -54,7 +54,18 @@ Route::post('employees','EmployeeController@store')->name('employee.store');
 Route::get('employees/{id}', 'EmployeeController@edit')->name('employee.edit');
 Route::post('employees{id}','EmployeeController@update')->name('employee.update');
 Route::delete('employees/{id}','EmployeeController@destroy')->name('employee.destroy');
-
+/*
+|--------------------------------------------------------------------------
+| Donor Routes
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('donors', 'DonorController@index')->name('donors');
+Route::get('donors/create', 'DonorController@create')->name('donor.create');
+Route::post('donors','DonorController@store')->name('donor.store');
+Route::get('donors/{id}', 'DonorController@edit')->name('donor.edit');
+Route::post('donors/{id}','DonorController@update')->name('donor.update');
+Route::delete('donors/{id}','DonorController@destroy')->name('donor.destroy');
 /*
 |--------------------------------------------------------------------------
 | Beneficiaries Routes

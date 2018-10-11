@@ -90,6 +90,8 @@
 
 <!-- photo gallery -->
 <div id="galleries" class="pt-5 pb-4 img-thumbnail shade">
+  @if(is_null($galleries))
+  @else
   <div class="container">
     <a href="{{route('galleries')}}"><h2 class="text-center text-uppercase mb-4-5 shade">Galleries</h2></a>
     <div class="row col-md">
@@ -107,12 +109,15 @@
         @endforeach
     </div>
   </div>
+  @endif
 </div>
 
 
 <!-- Donors -->
         <div id="donors" class="pt-5 pb-4 bg-light">
-        <div class="container">
+          @if(is_null($donors))
+          @else
+          <div class="container">
             <h2 class="text-center text-uppercase mb-4-5 shade">Donors</h2>
             <div class="row col-md-12">
                 @foreach ($donors as $donor)
@@ -120,15 +125,17 @@
                           <img src="{{$donor->logo}}" data-toggle="tooltip" data-html="true" data-animation="true" title="{{$donor->title}}" class="curve img-thumbnail shadow" alt="$donor->title">
                       </div>
                   @endforeach
-
             </div>
         </div>
+        @endif
         </div
 <hr>
 
 
 <!-- staff -->
         <div id="staff" class="pt-5 pb-4 bg-light">
+      @if(is_null($employees))
+      @else
         <div class="container">
             <h2 class="text-center text-uppercase mb-4-5 shade">Our Staff</h2>
             <div class="row col-md">
@@ -148,12 +155,13 @@
 
             </div>
         </div>
+        @endif
         </div
 
 <hr>
 <!-- Beneficiaries -->
 <div id="beneficiaries" class="py-5 text-center img-thumbnail shade">
-  <div class="container">
+    <div class="container">
     <h2 class="text-center text-uppercase mb-4-5 shade">Beneficiaries of Our Project</h2>
     <div id="carouselTestimonials" class="carousel slide text-center" data-ride="carousel" data-interval="7500" style="height:400px;">
       <div class="carousel-inner">

@@ -42,11 +42,10 @@ class GalleryController extends Controller
           'title' => $request->title,
           'sector' => $request->sector
         ]);
+        $id = $gallery->id;
 
-        $gallery_id = $gallery->id;
-
-        $photos = Photo::select()->where('gallery_id', $gallery_id)->get();
-        return view('galleries.show', compact('gallery_id','gallery', 'photos'));
+        $photos = Photo::select()->where('gallery_id', $id)->paginate(16);
+        return view('galleries.show', compact('gallery','photos'));
     }
 
     /**
@@ -57,7 +56,7 @@ class GalleryController extends Controller
      */
     public function show($id)
     {
-        
+
         $photos = Photo::select()->where('gallery_id', $id)->paginate(16);
         $gallery = Gallery::select()->find($id);
         return view('galleries.show', compact('photos'), compact('gallery'));

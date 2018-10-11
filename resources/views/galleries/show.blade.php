@@ -12,12 +12,20 @@
       <a href="{{route('photo.create',$gallery)}}" class="btn btn-primary">
         {{ __('Add an Photo') }}
       </a>
-      <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#confirmDelete">{{ __('Delete This Gallery') }}</button>
+      <form method="POST" class="float-right" action="{{ route('gallery.destroy', $gallery->id) }}" aria-label="{{ __('Delete') }}">
+        @csrf
+        <input name="_method" type="hidden" value="DELETE">
+        <button type="submit" class="btn btn-danger">Delete Gallery</a>
+          <!--<button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#confirmDelete">{{ __('Delete This Gallery') }}</button>-->
+        </form>
+      </div>
     </div>
     @endauth
       <div class="row shade">
+        @if(is_null($photos))
+        @else
           @foreach($photos as $photo)
-            <div class="col-md-3 mb-4">
+            <div class="col-md-3 mb-4 img-thumbnail shade">
               <a href="{{$photo->filename2}}" data-lightbox="{{$photo->gallery_id}}" data-title="{{$photo->description}}">
                 <img src="{{$photo->filename}}" class="w-100" style="border-top-left-radius:50px;border-top-right-radius:50px;">
                 @guest
@@ -45,6 +53,7 @@
                 @endauth
               </div>
               @endforeach
+            @endif
             </div>
             {{ $photos->links() }}
       <div id="images_modal" class="modal" tabindex="-1" role="dialog">
