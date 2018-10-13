@@ -13,12 +13,11 @@
 </div>
 
 <!-- about -->
-<div id="about" class="py-5 img-thumbnail shade">
+<div id="about" class="py-5">
   <div class="container">
     <div class="row">
       <div class="col-md-8 offset-md-2">
-        <h2 class="text-center text-uppercase mb-4-5 shade">About Us</h2>
-        <div style="height:25px;"></div>
+        <h2 class="text-center text-uppercase mb-4-5 shade" style="margin-bottom:25px;">About Us</h2>
         <h3 class="text-center text-uppercase text-light rounded bg-dark">Vision</h3>
         <p class="lead mb-0 ">
             Pemba communities thrive in harmony with the natural world. The
@@ -38,9 +37,9 @@
 </div>
 
 <!-- features -->
-  <div id="features" class="pt-5 pb-4 text-center bg-light">
+  <div id="features" class="pt-5 pb-4 img-thumbnail shade text-center bg-light">
     <div class="container">
-      <h2 class="text-uppercase mb-4-5 shade">Our Expertise</h2>
+      <h2 class="text-uppercase mb-4-5 shade ">Our Expertise</h2>
       <div class="row">
        <div class="col-md-3 mb-4">
         <div>
@@ -89,15 +88,15 @@
 </div>
 
 <!-- photo gallery -->
-<div id="galleries" class="pt-5 pb-4 img-thumbnail shade">
+<div id="galleries" class="pt-5 pb-4">
   @if(is_null($galleries))
   @else
   <div class="container">
-    <a href="{{route('galleries')}}"><h2 class="text-center text-uppercase mb-4-5 shade">Galleries</h2></a>
+    <a href="{{route('galleries')}}"><h2 class="text-center text-uppercase mb-4-5 shade ">Galleries</h2></a>
     <div class="row col-md">
         @foreach($galleries as $gallery)
               <div class="col-md-3 mb-4 img-thumbnail">
-                <a href="{{route('gallery.show', $gallery->id)}}">
+                <a href="{{route('gallery.show', $gallery->id)}}" class="opa">
                     <img src="{{$gallery->photos[0]->filename}}" class="w-100" alt="{{$gallery->title}}">
                   <p class="text-center text-light bg-dark" style="border-bottom-right-radius:50px;border-bottom-left-radius:50px;">
                     {{$gallery->title}}</br>
@@ -114,11 +113,11 @@
 
 
 <!-- Donors -->
-        <div id="donors" class="pt-5 pb-4 bg-light">
+        <div id="donors" class="pt-5 pb-4 img-thumbnail shade bg-light">
           @if(is_null($donors))
           @else
           <div class="container">
-            <h2 class="text-center text-uppercase mb-4-5 shade">Donors</h2>
+            <h2 class="text-center text-uppercase mb-4-5 shade ">Donors</h2>
             <div class="row col-md-12">
                 @foreach ($donors as $donor)
                       <div class="col-md-2 text-center">
@@ -128,7 +127,7 @@
             </div>
         </div>
         @endif
-        </div
+      </div>
 <hr>
 
 
@@ -137,7 +136,7 @@
       @if(is_null($employees))
       @else
         <div class="container">
-            <h2 class="text-center text-uppercase mb-4-5 shade">Our Staff</h2>
+            <h2 class="text-center text-uppercase mb-4-5 shade ">Our Staff</h2>
             <div class="row col-md">
                 @foreach ($employees as $employee)
                       <div class="col-md-3 text-center">
@@ -162,7 +161,7 @@
 <!-- Beneficiaries -->
 <div id="beneficiaries" class="py-5 text-center img-thumbnail shade">
     <div class="container">
-    <h2 class="text-center text-uppercase mb-4-5 shade">Beneficiaries of Our Project</h2>
+    <h2 class="text-center text-uppercase mb-4-5 shade ">Beneficiaries of Our Project</h2>
     <div id="carouselTestimonials" class="carousel slide text-center" data-ride="carousel" data-interval="7500" style="height:400px;">
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -199,7 +198,7 @@
 <!-- contact -->
 <div id="contact" class="pt-5 pb-4 bg-light">
   <div class="container">
-     <h2 class="text-center text-uppercase mb-4-5 shade" style="">Contact Us</h2>
+     <h2 class="text-center text-uppercase mb-4-5 shade " style="">Contact Us</h2>
      <div class="row">
       <div class="col-md-4 mb-4">
         <p>Please feel free to get in touch with us today!</p>

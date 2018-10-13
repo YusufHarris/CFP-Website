@@ -59,6 +59,9 @@
         padding-top:2.5px;
         box-shadow: 0 4px 8px 0 rgba(15, 200, 25, 0.2), 0 6px 20px 0 rgba(25, 200, 15, 0.19);
       }
+      .opa:hover{
+        opacity: .5;
+      }
     </style>
 
 </head>
