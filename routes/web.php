@@ -54,7 +54,18 @@ Route::post('employees','EmployeeController@store')->name('employee.store');
 Route::get('employees/{id}', 'EmployeeController@edit')->name('employee.edit');
 Route::post('employees{id}','EmployeeController@update')->name('employee.update');
 Route::delete('employees/{id}','EmployeeController@destroy')->name('employee.destroy');
-
+/*
+|--------------------------------------------------------------------------
+| Donor Routes
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('donors', 'DonorController@index')->name('donors');
+Route::get('donors/create', 'DonorController@create')->name('donor.create');
+Route::post('donors','DonorController@store')->name('donor.store');
+Route::get('donors/{id}', 'DonorController@edit')->name('donor.edit');
+Route::post('donors/{id}','DonorController@update')->name('donor.update');
+Route::delete('donors/{id}','DonorController@destroy')->name('donor.destroy');
 /*
 |--------------------------------------------------------------------------
 | Beneficiaries Routes
@@ -75,7 +86,7 @@ Route::delete('beneficiaries/{id}','BeneficiaryController@destroy')->name('benef
 */
 Route::get('galleries/{id}/photo/create','PhotoController@create')->name('photo.create')->middleware('auth');
 Route::post('galleries/{id}','PhotoController@store')->name('photo.store')->middleware('auth');
-Route::delete('galleries/{id}','PhotoController@destroy')->name('photo.destroy')->middleware('auth');
+Route::delete('galleries/{id}/image','PhotoController@destroy')->name('photo.destroy')->middleware('auth');
 
 
 /*
@@ -88,6 +99,7 @@ Route::get('galleries','GalleryController@index')->name('galleries');
 Route::get('galleries/create','GalleryController@create')->name('gallery.create');
 Route::post('galleries','GalleryController@store')->name('gallery.store');
 Route::get('galleries/{id}','GalleryController@show')->name('gallery.show');
+Route::delete('galleries/{id}','GalleryController@destroy')->name('gallery.destroy');
 
  /*
  |--------------------------------------------------------------------------

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Main\Employee;
 use Illuminate\Http\Request;
-use App\Models\Main\Image;
+use App\Models\Main\Photo;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 
 class EmployeeController extends Controller
@@ -63,15 +65,26 @@ class EmployeeController extends Controller
           'avatar' => 'image',
         ]);
 
-        //Save picture file
-        $path = $request->file('avatar')->store('public/empavatars');
+        // Save the image
+        $path = Storage::put('public/empavatars/' . $request->id, $request->file('avatar'));
+        // Update the photo path to use the public folder instead of the
+        // storage folder
+        $path = str_replace('public', '/storage', $path);
+
+        // Create the thumbnail of the photo
+        $thm_path = str_replace('.jpeg', '-thm.jpeg', $path);
+        $img = Image::make('.'.$path);
+        $img->resize(255, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $img->save('.'.$thm_path);
 
         //Create Employee
         Employee::create([
           'name' => $request->name,
           'title'=> $request->title,
           'description' => $request->description,
-          'avatar' => $request->file('avatar')->store('storage/empavatars'),
+          'avatar' => $thm_path,
         ]);
 
         return redirect('employees')->with('success', $request->name . ' has been added to employees.');
@@ -120,13 +133,26 @@ class EmployeeController extends Controller
         'avatar' => 'image',
       ]);
 
-      //Designate which data goes where
-      $path = $request->file('avatar')->store('public/empavatars');
+
+      // Save the image
+      $path = Storage::put('public/empavatars/' . $request->id, $request->file('avatar'));
+      // Update the photo path to use the public folder instead of the
+      // storage folder
+      $path = str_replace('public', '/storage', $path);
+
+      // Create the thumbnail of the photo
+      $thm_path = str_replace('.jpeg', '-thm.jpeg', $path);
+      $img = Image::make('.'.$path);
+      $img->resize(255, null, function ($constraint) {
+          $constraint->aspectRatio();
+      });
+      $img->save('.'.$thm_path);
+
+            //Designate which data goes where
       $employee->name = $request->name;
       $employee->title = $request->title;
       $employee->description = $request->description;
-      $employee->avatar = $request->file('avatar')->store('storage/empavatars');
-
+      $employee->avatar = $thm_path;
 
       // Save the Employee
       $employee->save();
@@ -142,8 +168,9 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-      //Get the Beneficiary
+      //Get the Employee
       $employee = Employee::where('id', $id)->first();
+      //Delete the Employee
       $employee->delete();
 
       return redirect('employees');

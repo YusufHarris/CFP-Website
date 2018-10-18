@@ -7,15 +7,17 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Main\Beneficiary;
 use App\Models\Main\Employee;
 use App\Models\Main\Gallery;
+use App\Models\Main\Donor;
 
 class HomeController extends Controller
 {
 
     public function index()
     {
+        $donors = Donor::all();
         $employees = Employee::all();
-        $beneficiaries = Beneficiary::take(4)->get();
-        $galleries = Gallery::take(4)->with('photos')->take(1)->get();
-        return view('welcome', compact('employees','beneficiaries','galleries'));
+        $beneficiaries = Beneficiary::all();
+        $galleries = Gallery::take(4)->with('photos')->get();
+        return view('welcome', compact('employees','beneficiaries','galleries','donors'));
     }
 }

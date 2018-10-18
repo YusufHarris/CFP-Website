@@ -7,6 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -20,16 +21,53 @@
     <script src="{{asset('js/BasicPieChartClass.js')}}"></script>
     <!-- Basic Bar Chart Subclass -->
     <script src="{{asset('js/BasicBarChartClass.js')}}"></script>
-
+    <!--Light Box-->
+    <script src="{{asset('js/lightbox.js')}}"></script>
+    <script src="{{asset('js/lightbox-plus-jquery.min.js')}}"></script>
 
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/dashboard.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.min.css')}}"/>
+
+    <style>
+      div.shade {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      text-align: center;
+      }
+      div.size{
+        height:500px;
+      }
+      h2.shade{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius:50px;
+        padding:10px
+      }
+      img.shade{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      .shade{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      img.curve{
+        border-radius:50px;
+      }
+      .green:hover{
+        background-color:#000500;
+        border-radius: 50px;
+        padding-top:2.5px;
+        box-shadow: 0 4px 8px 0 rgba(15, 200, 25, 0.2), 0 6px 20px 0 rgba(25, 200, 15, 0.19);
+      }
+      .opa:hover{
+        opacity: .5;
+      }
+    </style>
 
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel">
+        <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"><img src="/storage/mainmenu_logo.png" onerror="this.src='https://i.imgur.com/KaRxkxl.png';" alt="CFP Logo" width="30px" height="30px"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -41,12 +79,13 @@
                     <ul class="navbar-nav mr-auto">
                         @if (Request::is('/'))
                         <ul class="navbar-nav ml-auto">
-                          <li class="nav-item"><a class="nav-link scroll" href="#about">About</a></li>
-                          <li class="nav-item"><a class="nav-link scroll" href="#features">Focus</a></li>
-                          <li class="nav-item"><a class="nav-link scroll" href="#galleries">Galleries</a></li>
-                          <li class="nav-item"><a class="nav-link scroll" href="#staff">Staff</a></li>
-                          <li class="nav-item"><a class="nav-link scroll" href="#beneficiaries">Beneficiaries</a></li>
-                          <li class="nav-item"><a class="nav-link scroll" href="#contact">Contact</a></li>
+                          <li class="nav-item green"><a class="nav-link scroll" href="#about">About</a></li>
+                          <li class="nav-item green"><a class="nav-link scroll" href="#features">Focus</a></li>
+                          <li class="nav-item green"><a class="nav-link scroll" href="#galleries">Galleries</a></li>
+                          <li class="nav-item green"><a class="nav-link scroll" href="#donors">Donors</a></li>
+                          <li class="nav-item green"><a class="nav-link scroll" href="#staff">Staff</a></li>
+                          <li class="nav-item green"><a class="nav-link scroll" href="#beneficiaries">Beneficiaries</a></li>
+                          <li class="nav-item green"><a class="nav-link scroll" href="#contact">Contact</a></li>
                         </ul>
                         @endif
                     </ul>
@@ -82,6 +121,8 @@
                                 <a class="dropdown-item" href="{{ route('employees') }}">{{ __('Employees') }}</a>
 
                                 <a class="dropdown-item" href="{{ route('beneficiaries') }}">{{ __('Beneficiaries') }}</a>
+
+                                <a class="dropdown-item" href="{{ route('donors') }}">{{ __('Donors') }}</a>
                             @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
@@ -100,9 +141,28 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
-    </div>
+        </div>
+        <!-- social -->
+        <div id="social" class="pt-5 pb-4 bg-primary">
+          <div class="container">
+          <h2 class="text-center text-uppercase text-light mb-4-5">Like &amp; Follow Us</h2>
+            <div class="row justify-content-center">
+
+              <div class="col-auto mb-4">
+                <a href="https://www.facebook.com/COMMUNITYFORESTSPEMBA" class="text-light" target="_blank">
+                  <i class="fa fa-3x fa-facebook"></i>
+                </a>
+              </div>
+              <div class="col-auto mb-4">
+                <a href="https://www.youtube.com/user/forestsinternational" class="text-light" target="_blank">
+                  <i class="fa fa-3x fa-youtube"></i>
+                </a>
+              </div>
+            </div>                                                                                                                                                                                      </div>
+          </div>
+        </div>
 </body>
 </html>

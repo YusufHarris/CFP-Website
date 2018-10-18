@@ -64,7 +64,8 @@ class PhotoController extends Controller
 
         // Create the photo record in the database
         Photo::create([
-          'filename' => $path,
+          'filename' => $thm_path,
+          'filename2' => $path,
           'description' => $request->description,
           'gallery_id' => $gallery_id
         ]);

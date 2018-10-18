@@ -12,7 +12,7 @@ class Photo extends Model
    * @var array
    */
   protected $fillable = [
-      'filename', 'directory', 'description', 'gallery_id'
+      'filename', 'filename2', 'directory', 'description', 'gallery_id'
   ];
 
   public function gallery(){

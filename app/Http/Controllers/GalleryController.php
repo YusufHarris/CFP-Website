@@ -38,13 +38,14 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        Gallery::create([
+        $gallery = Gallery::create([
           'title' => $request->title,
           'sector' => $request->sector
         ]);
-        $galleries = Gallery::all();
+        $id = $gallery->id;
 
-        return view('galleries.index', compact('galleries'));
+        $photos = Photo::select()->where('gallery_id', $id)->paginate(16);
+        return view('galleries.show', compact('gallery','photos'));
     }
 
     /**
@@ -55,7 +56,8 @@ class GalleryController extends Controller
      */
     public function show($id)
     {
-        $photos = Photo::select()->where('gallery_id', $id)->get();
+
+        $photos = Photo::select()->where('gallery_id', $id)->paginate(16);
         $gallery = Gallery::select()->find($id);
         return view('galleries.show', compact('photos'), compact('gallery'));
     }
@@ -89,8 +91,12 @@ class GalleryController extends Controller
      * @param  \App\r  $r
      * @return \Illuminate\Http\Response
      */
-    public function destroy(r $r)
+    public function destroy($id)
     {
-        //
+      //Get the Beneficiary
+      $gallery = Gallery::where('id', $id)->first();
+      $gallery->delete();
+
+      return redirect('galleries');
     }
 }
