@@ -11,6 +11,8 @@ window.Vue = require('vue');
 
 window.d3 = require('d3');
 
+window.L = require('leaflet');
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

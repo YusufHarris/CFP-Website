@@ -11,6 +11,13 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="{{asset('css/dashboard.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/leaflet.css')}}"/>
+
     <!-- Scripts -->
     <script src="{{asset('js/app.js')}}"></script>
 
@@ -24,12 +31,6 @@
     <!--Light Box-->
     <script src="{{asset('js/lightbox.js')}}"></script>
     <script src="{{asset('js/lightbox-plus-jquery.min.js')}}"></script>
-
-    <!-- Styles -->
-    <link rel="stylesheet" type="text/css" href="{{asset('css/dashboard.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.min.css')}}"/>
 
     <style>
     </style>
