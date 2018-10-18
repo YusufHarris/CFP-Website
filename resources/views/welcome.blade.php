@@ -8,7 +8,9 @@
         <h1 class="h2 text-uppercase">Community Forests Pemba</h1>
         <!--<p class="lead">We are together.</p>-->
         <div class="container"><img src="/storage/main/CFP_large_logo.png" alt="CFP" width="200px"></div>
-        <a href="#contact" class="btn btn-primary btn-lg">Contact Us</a>
+        <div id="btn-contact" class="container">
+            <a class="btn btn-primary btn-lg scroll" href="#contact">Contact Us</a>
+        </div>
     </div>
 </div>
 
@@ -17,15 +19,16 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 offset-md-2">
-        <h2 class="text-center text-uppercase mb-4-5 shade" style="margin-bottom:25px;">About Us</h2>
-        <h3 class="text-center text-uppercase text-light rounded bg-dark">Vision</h3>
+        <h2 class="text-center text-uppercase mb-4-5" style="margin-bottom:25px;">About</h2>
+        <hr/>
+        <h3 class="text-center text-uppercase rounded">Vision</h3>
         <p class="lead mb-0 ">
             Pemba communities thrive in harmony with the natural world. The
             challenges of climate change are overcome with resilient livelihoods that
             create lasting positive change.
         </p>
         <hr/>
-        <h3 class="text-center text-uppercase text-light bg-dark rounded">Mission</h3>
+        <h3 class="text-center text-uppercase rounded">Mission</h3>
         <p class="lead mb-0">
             To adapt to climate change and overcome poverty on Pemba Island by
             sharing knowledge, advancing sustainable livelihoods, and restoring the
@@ -39,7 +42,7 @@
 <!-- features -->
   <div id="features" class="pt-5 pb-4 img-thumbnail shade text-center bg-light">
     <div class="container">
-      <h2 class="text-uppercase mb-4-5 shade ">Our Expertise</h2>
+      <h2 class="text-uppercase mb-4-5">Our Expertise</h2>
       <div class="row">
        <div class="col-md-3 mb-4">
         <div>
@@ -92,7 +95,7 @@
   @if(is_null($galleries))
   @else
   <div class="container">
-    <a href="{{route('galleries')}}"><h2 class="text-center text-uppercase mb-4-5 shade ">Galleries</h2></a>
+    <a href="{{route('galleries')}}"><h2 class="text-center text-uppercase mb-4-5">Galleries</h2></a>
     <div class="row col-md">
         @foreach($galleries as $gallery)
               <div class="col-md-3 mb-4 img-thumbnail">
@@ -117,7 +120,7 @@
           @if(is_null($donors))
           @else
           <div class="container">
-            <h2 class="text-center text-uppercase mb-4-5 shade ">Donors</h2>
+            <h2 class="text-center text-uppercase mb-4-5">Donors</h2>
             <div class="row col-md-12">
                 @foreach ($donors as $donor)
                       <div class="col-md-2 text-center">
@@ -136,7 +139,7 @@
       @if(is_null($employees))
       @else
         <div class="container">
-            <h2 class="text-center text-uppercase mb-4-5 shade ">Our Staff</h2>
+            <h2 class="text-center text-uppercase mb-4-5">Our Staff</h2>
             <div class="row col-md">
                 @foreach ($employees as $employee)
                       <div class="col-md-3 text-center">
@@ -161,7 +164,7 @@
 <!-- Beneficiaries -->
 <div id="beneficiaries" class="py-5 text-center img-thumbnail shade">
     <div class="container">
-    <h2 class="text-center text-uppercase mb-4-5 shade ">Beneficiaries of Our Project</h2>
+    <h2 class="text-center text-uppercase mb-4-5">Beneficiaries</h2>
     <div id="carouselTestimonials" class="carousel slide text-center" data-ride="carousel" data-interval="7500" style="height:400px;">
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -198,7 +201,7 @@
 <!-- contact -->
 <div id="contact" class="pt-5 pb-4 bg-light">
   <div class="container">
-     <h2 class="text-center text-uppercase mb-4-5 shade " style="">Contact Us</h2>
+     <h2 class="text-center text-uppercase mb-4-5" style="">Contact Us</h2>
      <div class="row">
       <div class="col-md-4 mb-4">
         <p>Please feel free to get in touch with us today!</p>
@@ -232,6 +235,26 @@
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7948.582784700076!2d39.724669437775496!3d-5.056439127307255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2stz!4v1535627312433" width="600" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
       </div>
      </div>
+  </div>
+</div>
+
+<!-- social -->
+<div id="social" class="pt-5 pb-4 bg-primary">
+  <div class="container">
+  <h2 class="text-center text-uppercase text-light mb-4-5">Like &amp; Follow Us</h2>
+    <div class="row justify-content-center">
+
+      <div class="col-auto mb-4">
+        <a href="https://www.facebook.com/COMMUNITYFORESTSPEMBA" class="text-light" target="_blank">
+          <i class="fa fa-3x fa-facebook"></i>
+        </a>
+      </div>
+      <div class="col-auto mb-4">
+        <a href="https://www.youtube.com/user/forestsinternational" class="text-light" target="_blank">
+          <i class="fa fa-3x fa-youtube"></i>
+        </a>
+      </div>
+    </div>                                                                                                                                                                                      </div>
   </div>
 </div>
 

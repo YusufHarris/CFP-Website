@@ -114,25 +114,6 @@
         <main class="">
             @yield('content')
         </main>
-        </div>
-        <!-- social -->
-        <div id="social" class="pt-5 pb-4 bg-primary">
-          <div class="container">
-          <h2 class="text-center text-uppercase text-light mb-4-5">Like &amp; Follow Us</h2>
-            <div class="row justify-content-center">
-
-              <div class="col-auto mb-4">
-                <a href="https://www.facebook.com/COMMUNITYFORESTSPEMBA" class="text-light" target="_blank">
-                  <i class="fa fa-3x fa-facebook"></i>
-                </a>
-              </div>
-              <div class="col-auto mb-4">
-                <a href="https://www.youtube.com/user/forestsinternational" class="text-light" target="_blank">
-                  <i class="fa fa-3x fa-youtube"></i>
-                </a>
-              </div>
-            </div>                                                                                                                                                                                      </div>
-          </div>
-        </div>
+    </div>
 </body>
 </html>
