@@ -32,36 +32,6 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.min.css')}}"/>
 
     <style>
-      div.shade {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      text-align: center;
-      }
-      div.size{
-        height:500px;
-      }
-      h2.shade{
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        border-radius:50px;
-        padding:10px
-      }
-      img.shade{
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      }
-      .shade{
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      }
-      img.curve{
-        border-radius:50px;
-      }
-      .green:hover{
-        background-color:#000500;
-        border-radius: 50px;
-        padding-top:2.5px;
-        box-shadow: 0 4px 8px 0 rgba(15, 200, 25, 0.2), 0 6px 20px 0 rgba(25, 200, 15, 0.19);
-      }
-      .opa:hover{
-        opacity: .5;
-      }
     </style>
 
 </head>
@@ -79,13 +49,13 @@
                     <ul class="navbar-nav mr-auto">
                         @if (Request::is('/'))
                         <ul class="navbar-nav ml-auto">
-                          <li class="nav-item green"><a class="nav-link scroll" href="#about">About</a></li>
-                          <li class="nav-item green"><a class="nav-link scroll" href="#features">Focus</a></li>
-                          <li class="nav-item green"><a class="nav-link scroll" href="#galleries">Galleries</a></li>
-                          <li class="nav-item green"><a class="nav-link scroll" href="#donors">Donors</a></li>
-                          <li class="nav-item green"><a class="nav-link scroll" href="#staff">Staff</a></li>
-                          <li class="nav-item green"><a class="nav-link scroll" href="#beneficiaries">Beneficiaries</a></li>
-                          <li class="nav-item green"><a class="nav-link scroll" href="#contact">Contact</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#about">About</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#features">Focus</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#galleries">Galleries</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#donors">Donors</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#staff">Staff</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#beneficiaries">Beneficiaries</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#contact">Contact</a></li>
                         </ul>
                         @endif
                     </ul>
