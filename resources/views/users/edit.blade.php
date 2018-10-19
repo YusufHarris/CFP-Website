@@ -2,22 +2,6 @@
 
 @section('content')
 
-@if (\Session::has('success'))
-<br />
-<div class="alert alert-success">
-    <p>{{ \Session::get('success') }}</p>
-</div>
-<br />
-@endif
-@if (\Session::has('error'))
-<br />
-<div class="alert alert-danger">
-    <p>{{ \Session::get('error') }}</p>
-</div>
-<br />
-@endif
-
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -101,7 +85,9 @@
                 </div>
 
                 <div class="card-footer text-right">
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete">{{ __('Delete Account') }}</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete">
+                            <i class="fa fa-user-times"></i> {{ __('Delete') }}
+                        </button>
                 </div>
 
             </div>
@@ -121,7 +107,7 @@
                 <p>{{ __('Are you sure you want to delete this account?  It cannot be recovered.') }}</p>
             </div>
             <div class="modal-footer">
-                <form method="POST" action="{{ route('users.destroy', $user->username) }}" aria-label="{{ __('Update') }}">
+                <form method="POST" action="{{ route('users.destroy', $user->username) }}" aria-label="{{ __('Delete') }}">
                     @csrf
                     <input name="_method" type="hidden" value="DELETE">
                     <button type="submit" class="btn btn-primary">Yes</a>

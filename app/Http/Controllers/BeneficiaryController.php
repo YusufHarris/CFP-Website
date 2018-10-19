@@ -11,15 +11,16 @@ use Intervention\Image\Facades\Image;
 
 class BeneficiaryController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-     public function __construct()
-     {
-         $this->middleware('auth');
-     }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -45,47 +46,35 @@ class BeneficiaryController extends Controller
      */
     public function store(Request $request)
     {
-      //Validate Beneficiary entry
-      $request->validate([
-        'name' => 'required|max:191|string',
-        'occupation' => 'required|max:191|string',
-        'introduction' => 'required|max:191|string',
-        'avatar' => 'image',
-      ]);
+        //Validate Beneficiary entry
+        $request->validate([
+            'name' => 'required|max:191|string',
+            'introduction' => 'required|max:191|string',
+            'avatar' => 'required|image',
+        ]);
 
-      // Save the image
-      $path = Storage::put('public/benavatars/' . $request->id, $request->file('avatar'));
-      // Update the photo path to use the public folder instead of the
-      // storage folder
-      $path = str_replace('public', '/storage', $path);
+        // Save the image
+        $path = Storage::put('public/benavatars/' . $request->id, $request->file('avatar'));
+        // Update the photo path to use the public folder instead of the
+        // storage folder
+        $path = str_replace('public', '/storage', $path);
 
-      // Create the thumbnail of the photo
-      $thm_path = str_replace('.jpeg', '-thm.jpeg', $path);
-      $img = Image::make('.'.$path);
-      $img->resize(255, null, function ($constraint) {
-          $constraint->aspectRatio();
-      });
-      $img->save('.'.$thm_path);
+        // Create the thumbnail of the photo
+        $thm_path = str_replace('.jpeg', '-thm.jpeg', $path);
+        $img = Image::make('.'.$path);
+        $img->resize(255, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $img->save('.'.$thm_path);
 
-      //Create Beneficiary
-      Beneficiary::create([
-        'name' => $request->name,
-        'occupation'=> $request->occupation,
-        'introduction' => $request->introduction,
-        'avatar' => $thm_path,
-      ]);
-      return redirect('beneficiaries')->with('success', $request->name . ' has been added to beneficiaries.');
-    }
+        //Create Beneficiary
+        Beneficiary::create([
+            'name' => $request->name,
+            'introduction' => $request->introduction,
+            'avatar' => $thm_path,
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\r  $r
-     * @return \Illuminate\Http\Response
-     */
-    public function show(r $r)
-    {
-        //
+        return redirect('beneficiaries')->with('success', $request->name . ' has been added to beneficiaries.');
     }
 
     /**
@@ -94,11 +83,11 @@ class BeneficiaryController extends Controller
      * @param  \App\r  $r
      * @return \Illuminate\Http\Response
      */
-     public function edit($id)
-     {
-       $beneficiary = Beneficiary::where('id', $id)->first();
-       return view('beneficiaries.edit',compact('beneficiary'));
-     }
+    public function edit($id)
+    {
+        $beneficiary = Beneficiary::where('id', $id)->first();
+        return view('beneficiaries.edit',compact('beneficiary'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -107,44 +96,47 @@ class BeneficiaryController extends Controller
      * @param  \App\r  $r
      * @return \Illuminate\Http\Response
      */
-     public function update(Request $request, $id)
-     {
-       //Get the Beneficiary
-       $beneficiary = Beneficiary::where('id', $id)->first();
+    public function update(Request $request, $id)
+    {
+        //Get the Beneficiary
+        $beneficiary = Beneficiary::where('id', $id)->first();
 
-       //Validate Beneficiary entry
-       $request->validate([
-         'name' => 'required|max:191|string',
-         'occupation' => 'required|max:191|string',
-         'introduction' => 'required|max:191|string',
-         'avatar' => 'image',
-       ]);
+        //Validate Beneficiary entry
+        $request->validate([
+            'name' => 'required|max:191|string',
+            'introduction' => 'required|max:191|string',
+            'avatar' => 'image',
+        ]);
 
-       // Save the image
-       $path = Storage::put('public/benavatars/' . $request->id, $request->file('avatar'));
-       // Update the photo path to use the public folder instead of the
-       // storage folder
-       $path = str_replace('public', '/storage', $path);
+        // Update the image only if an image was selected
+        if( $request->file('avatar') ) {
 
-       // Create the thumbnail of the photo
-       $thm_path = str_replace('.jpeg', '-thm.jpeg', $path);
-       $img = Image::make('.'.$path);
-       $img->resize(255, null, function ($constraint) {
-           $constraint->aspectRatio();
-       });
-       $img->save('.'.$thm_path);
+            // Save the image
+            $path = Storage::put('public/benavatars/' . $request->id, $request->file('avatar'));
+            // Update the photo path to use the public folder instead of the
+            // storage folder
+            $path = str_replace('public', '/storage', $path);
+
+            // Create the thumbnail of the photo and save it
+            $thm_path = str_replace('.jpeg', '-thm.jpeg', $path);
+            $img = Image::make('.'.$path);
+            $img->resize(255, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->save('.'.$thm_path);
+
+            $beneficiary->avatar = $thm_path;
+        }
 
 
-       $beneficiary->name = $request->name;
-       $beneficiary->occupation = $request->occupation;
-       $beneficiary->introduction = $request->introduction;
-       $beneficiary->avatar = $thm_path;
+        $beneficiary->name = $request->name;
+        $beneficiary->introduction = $request->introduction;
 
 
-       // Save the Beneficiary with confirmation
-       $beneficiary->save();
-       $beneficiaries = Beneficiary::all();
-       return redirect('beneficiaries')->with('success', "Updated ".$beneficiary->name."`s details.");
+        // Save the Beneficiary with confirmation
+        $beneficiary->save();
+        $beneficiaries = Beneficiary::all();
+        return redirect('beneficiaries')->with('success', "Updated ".$beneficiary->name."`s details.");
      }
 
     /**
@@ -159,6 +151,6 @@ class BeneficiaryController extends Controller
          $beneficiary = Beneficiary::where('id', $id)->first();
          $beneficiary->delete();
 
-         return redirect('beneficiaries');
+         return redirect('beneficiaries')->with('success', "Deleted ".$beneficiary->name."`s details.");
      }
 }

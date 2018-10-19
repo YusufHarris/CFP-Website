@@ -3,16 +3,11 @@
 @section('content')
 
 <div class="container">
-    @if (\Session::has('success'))
-    <br />
-    <div class="alert alert-success">
-        <p>{{ \Session::get('success') }}</p>
-    </div>
-    <br />
-    @endif
 
     <div class="text-right">
-    <a class="btn btn-primary" href="{{ route('users.create') }}">{{ __('New User') }}</a>
+        <a class="btn btn-primary" href="{{ route('users.create') }}">
+            <i class="fa fa-plus-circle"></i> {{ __('New') }}
+        </a>
     </div>
     <br />
 
@@ -44,11 +39,13 @@
                             <form method="POST" action="{{ route('users.resetPassword', $user->username) }}" aria-label="{{ __('Reset Password') }}">
                                 @csrf
                                 <input name="_method" type="hidden" value="PATCH">
-                                <button type="submit" class="btn btn-warning">Reset Password</a>
+                                <button type="submit" class="btn btn-warning"> {{ __('Reset Password') }}</a>
                             </form>
                         </td>
                         <td class="text-right">
-                            <a href="{{ route('users.edit', $user->username) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('users.edit', $user->username) }}" class="btn btn-warning">
+                                <i class="fa fa-pencil"></i> {{ __('Edit') }}
+                            </a>
                         </td>
                     </tr>
                 @endforeach

@@ -113,7 +113,30 @@
         </nav>
 
         <main class="">
+            <!-- Notifications -->
+            @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <p>{{ \Session::get('success') }}</p>
+            </div>
+            @endif
+            @if (\Session::has('info'))
+            <div class="alert alert-info">
+                <p>{{ \Session::get('info') }}</p>
+            </div>
+            @endif
+            @if (\Session::has('warning'))
+            <div class="alert alert-warning">
+                <p>{{ \Session::get('warning') }}</p>
+            </div>
+            @endif
+            @if (\Session::has('error'))
+            <div class="alert alert-danger">
+                <p>{{ \Session::get('error') }}</p>
+            </div>
+            @endif
+
             @yield('content')
+            
         </main>
     </div>
 </body>
