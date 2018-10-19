@@ -163,16 +163,9 @@
         <h2 class="text-center text-uppercase mb-4-5">Beneficiaries</h2>
         <div id="carouselTestimonials" class="carousel slide text-center" data-ride="carousel" data-interval="7500" style="height:400px;">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row">
-                        <div class="col-8 offset-2">
-                            <img src="/storage/mainmenu_logo.png" class="mb-3 rounded-circle" height="100">
-                            <p class="lead font-italic">These are some of the people who have benefitted from our project.</p>
-                        </div>
-                    </div>
-                </div>
+                <?php $cnt = 0; ?>
                 @foreach ($beneficiaries as $beneficiary)
-                <div class="carousel-item">
+                <div class="carousel-item{{ $cnt == 0 ? ' active' : '' }}">
                     <div class="row">
                         <div class="col-8 offset-2">
                             <img class="mb-3 rounded-circle img-thumbnail shadow" src="{{$beneficiary->avatar}}" onerror="this.src='https://i.imgur.com/fitWknA.png';">
@@ -182,6 +175,7 @@
                         </div>
                     </div>
                 </div>
+                <?php $cnt += 1; ?>
                 @endforeach
             </div>
             <a class="carousel-control-prev text-dark" href="#carouselTestimonials" role="button" data-slide="prev">
