@@ -104,3 +104,30 @@
 .benTreeOverlay {
     background-color: #EEE;
 }
+
+/* From Yussuf
+
+div.shade {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+}
+div.size{
+    height:500px;
+}
+h2.shade{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius:50px;
+    padding:10px
+}
+img.shade{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.shade{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+img.curve{
+    border-radius:50px;
+}
+.opa:hover{
+    opacity: .5;
+}*/

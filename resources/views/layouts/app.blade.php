@@ -11,6 +11,13 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="{{asset('css/dashboard.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/leaflet.css')}}"/>
+
     <!-- Scripts -->
     <script src="{{asset('js/app.js')}}"></script>
 
@@ -25,43 +32,7 @@
     <script src="{{asset('js/lightbox.js')}}"></script>
     <script src="{{asset('js/lightbox-plus-jquery.min.js')}}"></script>
 
-    <!-- Styles -->
-    <link rel="stylesheet" type="text/css" href="{{asset('css/dashboard.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.min.css')}}"/>
-
     <style>
-      div.shade {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      text-align: center;
-      }
-      div.size{
-        height:500px;
-      }
-      h2.shade{
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        border-radius:50px;
-        padding:10px
-      }
-      img.shade{
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      }
-      .shade{
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      }
-      img.curve{
-        border-radius:50px;
-      }
-      .green:hover{
-        background-color:#000500;
-        border-radius: 50px;
-        padding-top:2.5px;
-        box-shadow: 0 4px 8px 0 rgba(15, 200, 25, 0.2), 0 6px 20px 0 rgba(25, 200, 15, 0.19);
-      }
-      .opa:hover{
-        opacity: .5;
-      }
     </style>
 
 </head>
@@ -79,13 +50,13 @@
                     <ul class="navbar-nav mr-auto">
                         @if (Request::is('/'))
                         <ul class="navbar-nav ml-auto">
-                          <li class="nav-item green"><a class="nav-link scroll" href="#about">About</a></li>
-                          <li class="nav-item green"><a class="nav-link scroll" href="#features">Focus</a></li>
-                          <li class="nav-item green"><a class="nav-link scroll" href="#galleries">Galleries</a></li>
-                          <li class="nav-item green"><a class="nav-link scroll" href="#donors">Donors</a></li>
-                          <li class="nav-item green"><a class="nav-link scroll" href="#staff">Staff</a></li>
-                          <li class="nav-item green"><a class="nav-link scroll" href="#beneficiaries">Beneficiaries</a></li>
-                          <li class="nav-item green"><a class="nav-link scroll" href="#contact">Contact</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#about">About</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#features">Focus</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#galleries">Galleries</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#donors">Donors</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#staff">Staff</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#beneficiaries">Beneficiaries</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#contact">Contact</a></li>
                         </ul>
                         @endif
                     </ul>
@@ -142,27 +113,31 @@
         </nav>
 
         <main class="">
-            @yield('content')
-        </main>
-        </div>
-        <!-- social -->
-        <div id="social" class="pt-5 pb-4 bg-primary">
-          <div class="container">
-          <h2 class="text-center text-uppercase text-light mb-4-5">Like &amp; Follow Us</h2>
-            <div class="row justify-content-center">
+            <!-- Notifications -->
+            @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <p>{{ \Session::get('success') }}</p>
+            </div>
+            @endif
+            @if (\Session::has('info'))
+            <div class="alert alert-info">
+                <p>{{ \Session::get('info') }}</p>
+            </div>
+            @endif
+            @if (\Session::has('warning'))
+            <div class="alert alert-warning">
+                <p>{{ \Session::get('warning') }}</p>
+            </div>
+            @endif
+            @if (\Session::has('error'))
+            <div class="alert alert-danger">
+                <p>{{ \Session::get('error') }}</p>
+            </div>
+            @endif
 
-              <div class="col-auto mb-4">
-                <a href="https://www.facebook.com/COMMUNITYFORESTSPEMBA" class="text-light" target="_blank">
-                  <i class="fa fa-3x fa-facebook"></i>
-                </a>
-              </div>
-              <div class="col-auto mb-4">
-                <a href="https://www.youtube.com/user/forestsinternational" class="text-light" target="_blank">
-                  <i class="fa fa-3x fa-youtube"></i>
-                </a>
-              </div>
-            </div>                                                                                                                                                                                      </div>
-          </div>
-        </div>
+            @yield('content')
+            
+        </main>
+    </div>
 </body>
 </html>
