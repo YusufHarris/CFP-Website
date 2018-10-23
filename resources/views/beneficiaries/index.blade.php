@@ -20,25 +20,24 @@
                         <th>Name</th>
                         <th>Action</th>
                     </tr>
-            </thead>
-            <tbody>
-                @foreach ($beneficiaries as $beneficiary)
-                <tr>
-                    <td>
-                        <img src="{{$beneficiary->avatar}}" onerror="this.src='https://i.imgur.com/fitWknA.png';" width="30px" height="30px" alt="{{$beneficiary->directory}}defavatar.jpg" style="border-radius:50px;"/>
-                    </td>
-                    <td>{{$beneficiary->name}}</td>
-                    <td class="text-right">
-                        <a href="{{ route('beneficiary.edit', $beneficiary->id) }}" class="btn btn-warning">
-                            <i class="fa fa-pencil"></i> {{ __('Edit') }}
-                        </a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($beneficiaries as $beneficiary)
+                    <tr>
+                        <td>
+                            <img src="{{$beneficiary->avatar}}" onerror="this.src='https://i.imgur.com/fitWknA.png';" width="30px" height="30px" alt="{{$beneficiary->directory}}defavatar.jpg" style="border-radius:50px;"/>
+                        </td>
+                        <td>{{$beneficiary->name}}</td>
+                        <td class="text-right">
+                            <a href="{{ route('beneficiary.edit', $beneficiary->id) }}" class="btn btn-warning">
+                                <i class="fa fa-pencil"></i> {{ __('Edit') }}
+                            </a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-
-
 @endsection
