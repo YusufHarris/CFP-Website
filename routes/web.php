@@ -34,13 +34,13 @@ Route::patch('password/update', 'ProfileController@updatePassword')->name('passw
 |--------------------------------------------------------------------------
 |
 */
-Route::get('users', 'UsersController@index')->name('users.index');
-Route::post('users', 'UsersController@store')->name('users.store');
-Route::get('users/create', 'UsersController@create')->name('users.create');
-Route::get('users/{username}', 'UsersController@edit')->name('users.edit');
-Route::patch('users/{username}', 'UsersController@update')->name('users.update');
-Route::delete('users/{username}', 'UsersController@destroy')->name('users.destroy');
-Route::patch('users/{username}/password/reset', 'UsersController@resetPassword')->name('users.resetPassword');
+Route::get('users', 'UsersController@index')->name('users');
+Route::post('users', 'UsersController@store')->name('user.store');
+Route::get('users/create', 'UsersController@create')->name('user.create');
+Route::get('users/{username}', 'UsersController@edit')->name('user.edit');
+Route::patch('users/{username}', 'UsersController@update')->name('user.update');
+Route::delete('users/{username}', 'UsersController@destroy')->name('user.destroy');
+Route::patch('users/{username}/password/reset', 'UsersController@resetPassword')->name('user.resetPassword');
 
 /*
 |--------------------------------------------------------------------------

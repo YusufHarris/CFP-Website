@@ -59,6 +59,18 @@
                           <li class="nav-item"><a class="nav-link scroll" href="#contact">Contact</a></li>
                         </ul>
                         @endif
+                        @if (Auth::user()->admin)
+                        <li class="nav-item dropdown show">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Front Page<span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('employees') }}">{{ __('Employees') }}</a>
+                                <a class="dropdown-item" href="{{ route('beneficiaries') }}">{{ __('Beneficiaries') }}</a>
+                                <a class="dropdown-item" href="{{ route('donors') }}">{{ __('Donors') }}</a>
+                            </div>
+                        </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -87,13 +99,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('edit') }}">{{ __('Profile') }}</a>
                             @if (Auth::user()->admin)
-                                <a class="dropdown-item" href="{{ route('users.index') }}">{{ __('Users') }}</a>
-
-                                <a class="dropdown-item" href="{{ route('employees') }}">{{ __('Employees') }}</a>
-
-                                <a class="dropdown-item" href="{{ route('beneficiaries') }}">{{ __('Beneficiaries') }}</a>
-
-                                <a class="dropdown-item" href="{{ route('donors') }}">{{ __('Donors') }}</a>
+                                <a class="dropdown-item" href="{{ route('users') }}">{{ __('Users') }}</a>
                             @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
@@ -136,7 +142,7 @@
             @endif
 
             @yield('content')
-            
+
         </main>
     </div>
 </body>

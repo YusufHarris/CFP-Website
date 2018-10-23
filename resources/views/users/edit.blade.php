@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">{{ $user->name }}{{ $user->enabled ? '' : ' - Account Disabled' }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('users.update', $user->username) }}" aria-label="{{ __('Update') }}">
+                    <form method="POST" action="{{ route('user.update', $user->username) }}" aria-label="{{ __('Update') }}">
                         @csrf
                         <input name="_method" type="hidden" value="PATCH">
 
@@ -76,7 +76,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Update') }}
+                                    <i class="fa fa-check-circle"></i> {{ __('Update') }}
                                 </button>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                 <p>{{ __('Are you sure you want to delete this account?  It cannot be recovered.') }}</p>
             </div>
             <div class="modal-footer">
-                <form method="POST" action="{{ route('users.destroy', $user->username) }}" aria-label="{{ __('Delete') }}">
+                <form method="POST" action="{{ route('user.destroy', $user->username) }}" aria-label="{{ __('Delete') }}">
                     @csrf
                     <input name="_method" type="hidden" value="DELETE">
                     <button type="submit" class="btn btn-primary">Yes</a>

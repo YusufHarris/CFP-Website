@@ -5,7 +5,7 @@
 <div class="container">
 
     <div class="text-right">
-        <a class="btn btn-primary" href="{{ route('users.create') }}">
+        <a class="btn btn-primary" href="{{ route('user.create') }}">
             <i class="fa fa-plus-circle"></i> {{ __('New') }}
         </a>
     </div>
@@ -36,14 +36,14 @@
                         <td class="text-right">{{ $user->created_at }}</td>
                         <td><?php if($user->enabled){echo 'Enabled';}else{echo 'Disabled';}?></td>
                         <td class="text-right">
-                            <form method="POST" action="{{ route('users.resetPassword', $user->username) }}" aria-label="{{ __('Reset Password') }}">
+                            <form method="POST" action="{{ route('user.resetPassword', $user->username) }}" aria-label="{{ __('Reset Password') }}">
                                 @csrf
                                 <input name="_method" type="hidden" value="PATCH">
                                 <button type="submit" class="btn btn-warning"> {{ __('Reset Password') }}</a>
                             </form>
                         </td>
                         <td class="text-right">
-                            <a href="{{ route('users.edit', $user->username) }}" class="btn btn-warning">
+                            <a href="{{ route('user.edit', $user->username) }}" class="btn btn-warning">
                                 <i class="fa fa-pencil"></i> {{ __('Edit') }}
                             </a>
                         </td>

@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Beneficiary Picture') }}</label>
+                            <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Picture') }}</label>
 
                             <div class="col-md-6">
                                 <input id="avatar" type="file" class="form-control" name="avatar" accept="image/*">
@@ -49,7 +49,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Create Beneficiary') }}
+                                    <i class="fa fa-user-plus"></i> {{ __('Create') }}
                                 </button>
                             </div>
                         </div>
