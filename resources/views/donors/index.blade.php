@@ -30,7 +30,7 @@
                         </td>
                         <td>{{$donor->title}}</td>
                         <td class="text-right">
-                            <a href="{{ route('donor.edit', $beneficiary->id) }}" class="btn btn-warning">
+                            <a href="{{ route('donor.edit', $donor->id) }}" class="btn btn-warning">
                                 <i class="fa fa-pencil"></i> {{ __('Edit') }}
                             </a>
                         </td>

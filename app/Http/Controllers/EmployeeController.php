@@ -62,7 +62,7 @@ class EmployeeController extends Controller
           'name' => 'required|max:191|string',
           'title' => 'required|max:191|string',
           'description' => 'required|max:191|string',
-          'avatar' => 'image',
+          'avatar' => 'image|required',
         ]);
 
         // Save the image
@@ -98,7 +98,7 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-      $employee = Employee::where('id', $id)->first();
+      $employee = Employee::FindOrFail($id);
       return view('employees.edit',compact('employee'));
     }
 
@@ -112,7 +112,7 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
       //Get the Employee
-      $employee = Employee::where('id', $id)->first();
+      $employee = Employee::FindOrFail($id);
 
       //Validate Employee entry
       $request->validate([
@@ -122,31 +122,33 @@ class EmployeeController extends Controller
         'avatar' => 'image',
       ]);
 
+      if( $request->file('avatar') ) {
 
-      // Save the image
-      $path = Storage::put('public/empavatars/' . $request->id, $request->file('avatar'));
-      // Update the photo path to use the public folder instead of the
-      // storage folder
-      $path = str_replace('public', '/storage', $path);
+          // Save the image
+          $path = Storage::put('public/empavatars/' . $request->id, $request->file('avatar'));
+          // Update the photo path to use the public folder instead of the
+          // storage folder
+          $path = str_replace('public', '/storage', $path);
 
-      // Create the thumbnail of the photo
-      $thm_path = str_replace('.jpeg', '-thm.jpeg', $path);
-      $img = Image::make('.'.$path);
-      $img->resize(255, null, function ($constraint) {
-          $constraint->aspectRatio();
-      });
-      $img->save('.'.$thm_path);
+          // Create the thumbnail of the photo and save it
+          $thm_path = str_replace('.jpeg', '-thm.jpeg', $path);
+          $img = Image::make('.'.$path);
+          $img->resize(255, null, function ($constraint) {
+              $constraint->aspectRatio();
+          });
+          $img->save('.'.$thm_path);
+
+          $employee->avatar = $thm_path;
+      }
 
             //Designate which data goes where
       $employee->name = $request->name;
       $employee->title = $request->title;
       $employee->description = $request->description;
-      $employee->avatar = $thm_path;
 
       // Save the Employee
       $employee->save();
-      $employees = Employee::all();
-      return redirect('employees')->with('success', "Updated ".$employee->name."`s details.");
+      return redirect()->back()->with('success', "Updated ".$employee->name."`s details.");
     }
 
     /**

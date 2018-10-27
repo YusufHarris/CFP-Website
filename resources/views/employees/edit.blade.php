@@ -43,7 +43,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" type="text" value="{{$employee->description}}" class="form-control" name="description" rows="3" cols="4"></textarea>
+                                <textarea id="description" type="text" value="{{$employee->description}}" class="form-control" name="description" rows="3" cols="4">{{$employee->description}}</textarea>
                             </div>
                         </div>
 

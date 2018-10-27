@@ -58,7 +58,7 @@ class DonorController extends Controller
       //Validate donor entry
       $request->validate([
         'name' => 'required|max:191|string',
-        'logo' => 'image',
+        'logo' => 'image|required',
       ]);
 
       // Save the image
@@ -99,7 +99,7 @@ class DonorController extends Controller
    */
   public function edit($id)
   {
-    $donor = Donor::where('id', $id)->first();
+    $donor = Donor::FIndOrFail($id);
     return view('donors.edit',compact('donor'));
   }
 
@@ -114,33 +114,39 @@ class DonorController extends Controller
   {
 
     //Get the donor
-    $donor = Donor::where('id', $id)->first();
+    $donor = Donor::FindOrFail($id);
 
     //Validate donor entry
+    $request->validate([
+      'name' => 'required|max:191|string',
+      'logo' => 'image',
+    ]);
 
+    if( $request->file('avatar') ) {
 
-    // Save the image
-    $path = Storage::put('public/donorLogos' . $request->id, $request->file('logo'));
-    // Update the photo path to use the public folder instead of the
-    // storage folder
-    $path = str_replace('public', '/storage', $path);
+        // Save the image
+        $path = Storage::put('public/donorLogos/' . $request->id, $request->file('avatar'));
+        // Update the photo path to use the public folder instead of the
+        // storage folder
+        $path = str_replace('public', '/storage', $path);
 
-    // Create the thumbnail of the photo
-    $thm_path = str_replace('.jpeg', '-thm.jpeg', $path);
-    $img = Image::make('.'.$path);
-    $img->resize(255, null, function ($constraint) {
-        $constraint->aspectRatio();
-    });
-    $img->save('.'.$thm_path);
+        // Create the thumbnail of the photo and save it
+        $thm_path = str_replace('.jpeg', '-thm.jpeg', $path);
+        $img = Image::make('.'.$path);
+        $img->resize(255, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $img->save('.'.$thm_path);
 
-          //Designate which data goes where
+        $donor->logo = $thm_path;
+    }
+
+    //Designate which data goes where
     $donor->title = $request->title;
-    $donor->logo = $thm_path;
 
     // Save the donor
     $donor->save();
-    $donors = Donor::all();
-    return redirect('donors')->with('success', "Updated ".$donor->title."`s details.");
+    return redirect()->back()->with('success', "Updated ".$donor->title."`s details.");
   }
 
   /**
@@ -152,7 +158,7 @@ class DonorController extends Controller
   public function destroy($id)
   {
     //Get the donor
-    $donor = Donor::where('id', $id)->first();
+    $donor = Donor::FindOrFail($id);
     //Delete the donor
     $donor->delete();
 

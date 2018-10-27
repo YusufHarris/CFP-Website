@@ -52,7 +52,7 @@ Route::get('employees', 'EmployeeController@index')->name('employees');
 Route::get('employees/create', 'EmployeeController@create')->name('employee.create');
 Route::post('employees','EmployeeController@store')->name('employee.store');
 Route::get('employees/{id}', 'EmployeeController@edit')->name('employee.edit');
-Route::post('employees{id}','EmployeeController@update')->name('employee.update');
+Route::post('employees/{id}','EmployeeController@update')->name('employee.update');
 Route::delete('employees/{id}','EmployeeController@destroy')->name('employee.destroy');
 /*
 |--------------------------------------------------------------------------
