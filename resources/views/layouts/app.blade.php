@@ -59,7 +59,8 @@
                           <li class="nav-item"><a class="nav-link scroll" href="#contact">Contact</a></li>
                         </ul>
                         @endif
-                        @if (Auth::user()->admin)
+                        @auth
+                            @if (Auth::user()->admin)
                         <li class="nav-item dropdown show">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Front Page<span class="caret"></span>
@@ -70,6 +71,7 @@
                                 <a class="dropdown-item" href="{{ route('donors') }}">{{ __('Donors') }}</a>
                             </div>
                         </li>
+                            @endif
                         @endif
                     </ul>
 

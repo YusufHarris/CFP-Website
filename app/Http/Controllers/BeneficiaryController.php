@@ -85,7 +85,7 @@ class BeneficiaryController extends Controller
      */
     public function edit($id)
     {
-        $beneficiary = Beneficiary::where('id', $id)->first();
+        $beneficiary = Beneficiary::findOrFail($id);
         return view('beneficiaries.edit',compact('beneficiary'));
     }
 
@@ -98,10 +98,10 @@ class BeneficiaryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Get the Beneficiary
-        $beneficiary = Beneficiary::where('id', $id)->first();
+        // Get the Beneficiary
+        $beneficiary = Beneficiary::findOrFail($id);
 
-        //Validate Beneficiary entry
+        // Validate Beneficiary entry
         $request->validate([
             'name' => 'required|max:191|string',
             'introduction' => 'required|max:191|string',
@@ -147,7 +147,7 @@ class BeneficiaryController extends Controller
      public function destroy($id)
      {
          //Get the Beneficiary
-         $beneficiary = Beneficiary::where('id', $id)->first();
+         $beneficiary = Beneficiary::findOrFail($id);
          $beneficiary->delete();
 
          return redirect('beneficiaries')->with('success', "Deleted ".$beneficiary->name."`s details.");

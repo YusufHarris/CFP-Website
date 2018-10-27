@@ -84,7 +84,7 @@ class UsersController extends Controller
      */
     public function edit($username)
     {
-        $user = User::where('username', $username)->first();
+        $user = User::where('username', $username)->firstOrFail();
         return view('users.edit',compact('user'));
     }
 
@@ -98,7 +98,7 @@ class UsersController extends Controller
     public function update(Request $request, $username)
     {
         // Retrieve the user
-        $user = User::where('username', $username)->first();
+        $user = User::where('username', $username)->firstOrFail();
 
         // Set the request checkbox values
         $admin = $request->admin == 1 ? 1 : 0;
@@ -146,7 +146,7 @@ class UsersController extends Controller
     public function destroy($username)
     {
         // Retrieve the user
-        $user = User::where('username', $username)->first();
+        $user = User::where('username', $username)->firstOrFail();
         $user->delete();
         return redirect('users')->with('success', $user->name . ' was deleted.');
     }
@@ -160,7 +160,7 @@ class UsersController extends Controller
     public function resetPassword($username)
     {
         // Retrieve the user
-        $user = User::where('username', $username)->first();
+        $user = User::where('username', $username)->firstOrFail();
         // Send the password reset link
         Password::sendResetLink(['email' => $user->email]);
         return redirect('users')->with('success', 'Password reset email was sent to '.$user->name);
