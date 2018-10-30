@@ -67,6 +67,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('employees') }}">{{ __('Employees') }}</a>
+                                    <a class="dropdown-item" href="{{ route('galleries') }}">{{ __('Galleries') }}</a>
                                 <a class="dropdown-item" href="{{ route('beneficiaries') }}">{{ __('Beneficiaries') }}</a>
                                 <a class="dropdown-item" href="{{ route('donors') }}">{{ __('Donors') }}</a>
                             </div>
