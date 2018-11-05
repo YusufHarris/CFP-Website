@@ -154,20 +154,20 @@ class Water extends Model
     public static function getWaterCapacity()
     {
          $sqlQuery = 'SELECT "Achieved" as status, SUM(reservoirCapacity) as totalCapacity,
-                             ROUND(100 * SUM(reservoirCapacity)/400000,0) as pct
+                             ROUND(100 * SUM(reservoirCapacity)/300000,0) as pct
                       FROM `OP_03Reservoirs`';
         $result = DB::connection('mysql2')->select(DB::Raw($sqlQuery));
 
-
         // Grab the unachieved households if it hasn't hit the 400 household target
-        if ($result[0]->totalCapacity < 400000) {
-            $sqlQuery2 = 'SELECT "Unachieved" as status, 6 - SUM(reservoirCapacity) as totalCapacity,
-                                ROUND(100 * (400000 - SUM(reservoirCapacity))/400000,0) as pct
+        if ($result[0]->totalCapacity < 300000) {
+            $sqlQuery2 = 'SELECT "Unachieved" as status, 300000 - SUM(reservoirCapacity) as totalCapacity,
+                                ROUND(100 * (300000 - SUM(reservoirCapacity))/300000,0) as pct
                          FROM `OP_03Reservoirs`';
 
             $result2 = DB::connection('mysql2')->select(DB::Raw($sqlQuery2));
             $result = array_merge($result, $result2);
         }
+
         return $result;
         #return array_merge($result, $result2);
     }
