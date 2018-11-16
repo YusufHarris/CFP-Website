@@ -40,7 +40,6 @@
     </div>
 
     <div class="col-12 col-md-6" id="kitchenBar" style="height: 400px;">
-      </div>
     </div>
 </div>
 

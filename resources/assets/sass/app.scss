@@ -1,0 +1,22 @@
+/* Welcome page
+ */
+ // Set the initial background color for the navigation bar
+.nav-welcome-bg {
+    //background: rgba(0,0,0,0.4);
+    background: linear-gradient(to top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 30%);
+}
+
+// Jumbotron settings
+#jumbotron {
+    padding-top: 100px;
+    background: transparent;
+    height:500px;
+}
+
+
+/* All other pages
+ */
+// Pad the content after the navigation bar
+#main {
+    padding-top: 20px;
+}

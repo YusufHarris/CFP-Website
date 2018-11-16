@@ -14,11 +14,14 @@ let mix = require('laravel-mix');
    // Pull in the javascript from vendors
 mix.js('resources/assets/js/vendors.js', 'public/js')
    // Pull in the applications custom javascript
-   .js('resources/assets/js/app.js', 'public/js')
+   .js('resources/assets/js/welcome.js', 'public/js')
 
    // Pull in the sass formatted css from vendors
    .sass('resources/assets/sass/vendors.scss', 'public/css')
 
-   // Pull in leaflet
+   // Pull in non-sass formated vendors
    .combine(['node_modules/leaflet/dist/leaflet.css'],
-            'public/css/leaflet.css');
+            'public/css/leaflet.css')
+
+   // Pull in the custom sass formatted css
+   .sass('resources/assets/sass/app.scss', 'public/css');

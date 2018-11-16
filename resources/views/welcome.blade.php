@@ -3,16 +3,18 @@
 @section('content')
 
 <!-- jumbotron -->
-<div id="home" class="py-6 text-center text-light shade" style="background-image: url(/storage/main/banner.jpg); background-size: cover; background-position: center;height:400px;">
+<div id="jumbotron" class="py-6 text-center text-light shade parallax-window">
     <div class="container" style="">
-        <h1 class="h2 text-uppercase">Community Forests Pemba</h1>
-        <!--<p class="lead">We are together.</p>-->
+        <h1 id="cfp-title" class="h2 text-uppercase">Community Forests Pemba</h1>
         <div class="container"><img src="/storage/main/CFP_large_logo.png" alt="CFP" width="200px"></div>
         <div id="btn-contact" class="container">
-            <a class="btn btn-primary btn-lg scroll" href="#contact">Contact Us</a>
+            <a class="btn btn-info btn-lg scroll" href="#contact">Contact Us</a>
         </div>
     </div>
 </div>
+<script>
+$('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
+</script>
 
 <!-- about -->
 <div id="about" class="py-5">
@@ -39,14 +41,14 @@
     </div>
 </div>
 
-<!-- features -->
+<!-- Focus -->
 <div id="features" class="pt-5 pb-4 img-thumbnail shade text-center bg-light">
     <div class="container">
-        <h2 class="text-uppercase mb-4-5">Our Expertise</h2>
+        <h2 class="text-uppercase mb-4-5">Our Focus</h2>
         <div class="row">
             <div class="col-md-3 mb-4">
                 <div>
-                    <i class="fa fa-4x fa-tint"></i>
+                    <i class="fa fa-4x fa-tint text-primary"></i>
                 </div>
                 <h4>Water</h4>
                 <p class="mb-0">
@@ -56,7 +58,7 @@
             </div>
             <div class="col-md-3 mb-4">
                 <div>
-                    <i class="fa fa-4x fa-shopping-basket"></i>
+                    <i class="fa fa-4x fa-shopping-basket text-warning"></i>
                 </div>
                 <h4>Agriculture</h4>
                 <p class="mb-0">
@@ -67,7 +69,7 @@
             </div>
             <div class="col-md-3 mb-4">
                 <div>
-                    <i class="fa fa-4x fa-tree"></i>
+                    <i class="fa fa-4x fa-tree text-success"></i>
                 </div>
                 <h4>Forestry</h4>
                 <p class="mb-0">
@@ -77,7 +79,7 @@
             </div>
             <div class="col-md-3 mb-4">
                 <div>
-                    <i class="fa fa-4x fa-bolt"></i>
+                    <i class="fa fa-4x fa-bolt text-danger"></i>
                 </div>
                 <h4>Energy</h4>
                 <p class="mb-0">
@@ -96,7 +98,7 @@
     @if(is_null($galleries))
     @else
     <div class="container">
-        <a href="{{route('galleries')}}"><h2 class="text-center text-uppercase mb-4-5">Galleries</h2></a>
+        <h2 class="text-center text-uppercase mb-4-5">Latest <a href="{{route('galleries')}}">News</a></h2>
         <div class="row col-md">
             @foreach($galleries as $gallery)
             <div class="col-md-3 mb-4 img-thumbnail">
@@ -114,53 +116,10 @@
     @endif
 </div>
 
-
-<!-- Donors -->
-<div id="donors" class="pt-5 pb-4 img-thumbnail shade bg-light">
-    @if(is_null($donors))
-    @else
-    <div class="container">
-        <h2 class="text-center text-uppercase mb-4-5">Donors</h2>
-        <div class="row col-md-12">
-            @foreach ($donors as $donor)
-            <div class="col-md-2 text-center">
-                <img src="{{$donor->logo}}" data-toggle="tooltip" data-html="true" data-animation="true" title="{{$donor->title}}" class="curve img-thumbnail shadow" alt="$donor->title">
-            </div>
-            @endforeach
-        </div>
-    </div>
-    @endif
-</div>
-<hr>
-
-<!-- staff -->
-<div id="staff" class="pt-5 pb-4 bg-light">
-    @if(is_null($employees))
-    @else
-    <div class="container">
-        <h2 class="text-center text-uppercase mb-4-5">Our Staff</h2>
-        <div class="row col-md">
-            @foreach ($employees as $employee)
-            <div class="col-md-3 text-center">
-                <ul style="list-style-type:none;">
-                    <li><img src="{{$employee->avatar}}" class="avatar-sm curve shade img-thumbnail" onerror="this.src='https://i.imgur.com/fitWknA.png';" alt="{{$employee->name}} Photo"/></p>
-                    <li><h4>{{$employee->name}}</h4></li>
-                    <li><strong><h5 style="font-style:italic;">{{$employee->title}}</h5></strong></li>
-                    <li>{{$employee->description}}</li>
-
-                </ul>
-            </div>
-            @endforeach
-        </div>
-    </div>
-    @endif
-</div>
-<hr>
-
 <!-- Beneficiaries -->
 <div id="beneficiaries" class="py-5 text-center img-thumbnail shade">
     <div class="container">
-        <h2 class="text-center text-uppercase mb-4-5">Beneficiaries</h2>
+        <h2 class="text-center text-uppercase mb-4-5">Meet Our Beneficiaries</h2>
         <div id="carouselTestimonials" class="carousel slide text-center" data-ride="carousel" data-interval="7500" style="height:400px;">
             <div class="carousel-inner">
                 <?php $cnt = 0; ?>
@@ -188,7 +147,47 @@
     </div>
 </div>
 
-<!-- contact -->
+<!-- Donors -->
+<div id="donors" class="pt-5 pb-4 img-thumbnail shade bg-light">
+    @if(is_null($donors))
+    @else
+    <div class="container">
+        <h2 class="text-center text-uppercase mb-4-5">Our Donors</h2>
+        <div class="row col-md-12">
+            @foreach ($donors as $donor)
+            <div class="col-md-2 text-center">
+                <img src="{{$donor->logo}}" data-toggle="tooltip" data-html="true" data-animation="true" title="{{$donor->title}}" class="curve img-thumbnail shadow" alt="$donor->title">
+            </div>
+            @endforeach
+        </div>
+    </div>
+    @endif
+</div>
+
+<!-- Staff -->
+<div id="staff" class="pt-5 pb-4 bg-light">
+    @if(is_null($employees))
+    @else
+    <div class="container">
+        <h2 class="text-center text-uppercase mb-4-5">Our Staff</h2>
+        <div class="row col-md">
+            @foreach ($employees as $employee)
+            <div class="col-md-3 text-center">
+                <ul style="list-style-type:none;">
+                    <li><img src="{{$employee->avatar}}" class="avatar-sm curve shade img-thumbnail" onerror="this.src='https://i.imgur.com/fitWknA.png';" alt="{{$employee->name}} Photo"/></p>
+                    <li><h4>{{$employee->name}}</h4></li>
+                    <li><strong><h5 style="font-style:italic;">{{$employee->title}}</h5></strong></li>
+                    <li>{{$employee->description}}</li>
+
+                </ul>
+            </div>
+            @endforeach
+        </div>
+    </div>
+    @endif
+</div>
+
+<!-- Contact -->
 <div id="contact" class="pt-5 pb-4 bg-light">
     <div class="container">
         <h2 class="text-center text-uppercase mb-4-5" style="">Contact Us</h2>
@@ -241,33 +240,7 @@
     </div>
 </div>
 
-<!-- script to scroll to anchors on page -->
-<script>
-$(".scroll").click(function(event){
-        event.preventDefault();
-        //calculate destination place
-        var dest=0;
-        if($(this.hash).offset().top > $(document).height()-$(window).height()){
-             dest=$(document).height()-$(window).height();
-        }else{
-             dest=$(this.hash).offset().top - 40;
-        }
-        //go to destination
-        $('html,body').animate({scrollTop:dest}, 1000,'swing');
-    });
-</script>
-
-<!-- script to insert the leaflet map into the contact section -->
-<script>
-var map = L.map('office-map').setView([-5.046, 39.716], 10);
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-L.marker([-5.046, 39.716]).addTo(map)
-    .bindPopup('CFP\'s<br> Rural Innovation Campus')
-    .openPopup();;
-</script>
+<!-- Custom Javascript for the Welcome Page -->
+<script src="{{asset('js/welcome.js')}}"></script>
 
 @endsection

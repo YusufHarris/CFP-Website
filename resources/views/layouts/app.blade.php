@@ -13,12 +13,12 @@
 
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/dashboard.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/vendors.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/leaflet.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}"/>
 
     <!-- Scripts -->
-    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/vendors.js')}}"></script>
 
     <script src="{{asset('js/supportFunctions.js')}}"></script>
     <!-- Chart Class for quickly creating resizable D3 charts -->
@@ -31,9 +31,20 @@
 </head>
 <body>
     <div id="app">
+        @if (Request::is('/'))
+        <nav id="welcome" class="navbar fixed-top navbar-expand-md navbar-dark nav-welcome-bg">
+        @else
         <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
+        @endif
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}"><img src="/storage/mainmenu_logo.png" onerror="this.src='https://i.imgur.com/KaRxkxl.png';" alt="CFP Logo" width="30px" height="30px"></a>
+                @if (Request::is('/'))
+                <a class="navbar-brand scroll" href="#app">
+                @else
+                <a class="navbar-brand" href="{{ url('/') }}">
+                @endif
+                    <img id="cfp-logo" src="/storage/mainmenu_logo.png" alt="CFP" width="30px" height="30px">
+                </a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -43,18 +54,18 @@
                     <ul class="navbar-nav mr-auto">
                         @if (Request::is('/'))
                         <ul class="navbar-nav ml-auto">
-                          <li class="nav-item"><a class="nav-link scroll" href="#about">About</a></li>
-                          <li class="nav-item"><a class="nav-link scroll" href="#features">Focus</a></li>
-                          <li class="nav-item"><a class="nav-link scroll" href="#galleries">Galleries</a></li>
-                          <li class="nav-item"><a class="nav-link scroll" href="#donors">Donors</a></li>
-                          <li class="nav-item"><a class="nav-link scroll" href="#staff">Staff</a></li>
-                          <li class="nav-item"><a class="nav-link scroll" href="#beneficiaries">Beneficiaries</a></li>
-                          <li class="nav-item"><a class="nav-link scroll" href="#contact">Contact</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#about">ABOUT</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#features">FOCUS</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#galleries">LATEST</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#beneficiaries">BENEFICIARIES</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#donors">DONORS</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#staff">STAFF</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#contact">CONTACT</a></li>
                         </ul>
                         @endif
                         @auth
                             @if (Auth::user()->admin)
-                        <li class="nav-item dropdown show">
+                        <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Front Page<span class="caret"></span>
                             </a>
@@ -73,7 +84,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @auth
-                        <li class="nav-item dropdown show">
+                        <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Indicators <span class="caret"></span>
                             </a>
@@ -87,7 +98,7 @@
                                 <a class="dropdown-item {{ Request::is('indicators/gov-links') ? 'active' : '' }}" href="{{ route('indicators.gov') }}">{{ __('Gov Links') }}</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown show">
+                        <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
@@ -114,7 +125,11 @@
             </div>
         </nav>
 
-        <main class="">
+        @if (Request::is('/'))
+        <main role="main">
+        @else
+        <main id="main" role="main">
+        @endif
             <!-- Notifications -->
             @if (\Session::has('success'))
             <div class="alert alert-success">
