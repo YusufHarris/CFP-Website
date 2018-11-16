@@ -190,7 +190,7 @@ class Energy extends Model
     // Returns the number of renewabe energy systems by district
     public static function getCookStoves()
     {
-         $sqlQuery = 'SELECT (ROUND(SUM(IF(`beneficiaryType`="Final Beneficiaries", `totalBeneficiaries`/5.2, 0)) )) AS totalStoves, `district`
+         $sqlQuery = 'SELECT (ROUND(SUM(IF(`beneficiaryType`="Final Beneficiaries", `totalBeneficiaries`/3.2, 0)) )) AS totalStoves, `district`
                       FROM `RE_KeyActivityBeneficiaries`
 
 

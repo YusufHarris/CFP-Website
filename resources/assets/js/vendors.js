@@ -9,10 +9,12 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-window.d3 = require('d3');
-
 window.L = require('leaflet');
 
 window.lightbox = require('lightbox2');
 
 require('jquery-parallax.js');
+
+window.d3 = require('d3');
+
+window.taucharts = require('taucharts');

@@ -11,5 +11,12 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.js('resources/assets/js/vendors.js', 'public/js')
+   .js('resources/assets/js/app.js', 'public/js')
+
+   //
+   .sass('resources/assets/sass/app.scss', 'public/css')
+
+   .combine(['node_modules/lightbox2/dist/css/lightbox.css',
+             'node_modules/leaflet/dist/leaflet.css'],
+            'public/css/vendors.css');

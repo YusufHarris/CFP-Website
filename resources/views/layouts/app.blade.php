@@ -14,9 +14,7 @@
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/dashboard.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('css/leaflet.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/vendors.css')}}"/>
 
     <!-- Scripts -->
     <script src="{{asset('js/app.js')}}"></script>
@@ -28,12 +26,6 @@
     <script src="{{asset('js/BasicPieChartClass.js')}}"></script>
     <!-- Basic Bar Chart Subclass -->
     <script src="{{asset('js/BasicBarChartClass.js')}}"></script>
-    <!--Light Box-->
-    <script src="{{asset('js/lightbox.js')}}"></script>
-    <script src="{{asset('js/lightbox-plus-jquery.min.js')}}"></script>
-
-    <style>
-    </style>
 
 </head>
 <body>
