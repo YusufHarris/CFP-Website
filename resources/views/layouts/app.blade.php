@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/dashboard.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/vendors.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/leaflet.css')}}"/>
 
     <!-- Scripts -->
     <script src="{{asset('js/app.js')}}"></script>
