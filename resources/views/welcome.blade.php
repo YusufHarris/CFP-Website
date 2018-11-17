@@ -200,8 +200,8 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
                     </li>
                     <li class="mb-2">
                         <i class="fa fa-fw fa-envelope"></i>
-                        <a href="mailto:webmaster@forestspemba.org" class="text-decoration-none">
-                            webmaster@forestspemba.org
+                        <a href="mailto:contact@forestspemba.org" class="text-decoration-none">
+                            contact@forestspemba.org
                         </a>
                     </li>
                     <li class="mb-2">
