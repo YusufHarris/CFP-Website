@@ -17,25 +17,24 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
 </script>
 
 <!-- about -->
-<div id="about" class="py-5">
+<div id="about" class="py-5 pt-5 pb-4 bg-light border-bottom">
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <h2 class="text-center text-uppercase mb-4-5" style="margin-bottom:25px;">About</h2>
-                <hr/>
-                <h3 class="text-center text-uppercase rounded">Mission</h3>
+                <h2 class="text-center text-uppercase">Mission</h3>
                 <p class="lead mb-0">
                     To adapt to climate change and overcome poverty on Pemba Island by
                     sharing knowledge, advancing sustainable livelihoods, and restoring the
                     natural environment.
                 </p>
                 <hr/>
-                <h3 class="text-center text-uppercase rounded">Vision</h3>
+                <h2 class="text-center text-uppercase">Vision</h3>
                 <p class="lead mb-0 ">
                     Pemba communities thrive in harmony with the natural world. The
                     challenges of climate change are overcome with resilient livelihoods that
                     create lasting positive change.
                 </p>
+                <hr/>
             </div>
         </div>
         <div class="row text-center">
@@ -55,7 +54,7 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
                 <p class="mb-0">
                     In partnership with <a href="https://forestsinternational.org/">CFI</a>, we developed a
                     community-wide solar portable microgrid, that has since spun off into the for-profit business,
-                    <a href="https://www.jazaenergy.com/">Jaza Energy</a>.  In communities with limited access
+                    <a href="https://www.jazaenergy.com/">Jaza</a>.  In communities with limited access
                     to main-line energy where the Jaza model does not fit, we continue to improve access to
                     renewable energy through community-based systems, whether it's in the community's gathering
                     center or at the household level.
@@ -89,11 +88,11 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
 </div>
 
 <!-- photo gallery -->
-<div id="galleries" class="pt-5 pb-4">
+<div id="galleries" class="py-5 pt-5 pb-4 border-bottom">
     @if(is_null($galleries))
     @else
     <div class="container">
-        <h2 class="text-center text-uppercase mb-4-5">Latest <a href="{{route('galleries')}}">News</a></h2>
+        <h2 class="text-center text-uppercase">Latest <a href="{{route('galleries')}}">News</a></h2>
         <div class="row col-md">
             @foreach($galleries as $gallery)
             <div class="col-md-3 mb-4 img-thumbnail">
@@ -112,9 +111,9 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
 </div>
 
 <!-- Beneficiaries -->
-<div id="beneficiaries" class="py-5 text-center img-thumbnail shade">
+<div id="beneficiaries" class="py-5 pt-5 pb-4 bg-light border-bottom">
     <div class="container">
-        <h2 class="text-center text-uppercase mb-4-5">Meet Our Beneficiaries</h2>
+        <h2 class="text-center text-uppercase">Meet Our Beneficiaries</h2>
         <div id="carouselTestimonials" class="carousel slide text-center" data-ride="carousel" data-interval="7500" style="height:400px;">
             <div class="carousel-inner">
                 <?php $cnt = 0; ?>
@@ -143,11 +142,11 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
 </div>
 
 <!-- Donors -->
-<div id="donors" class="pt-5 pb-4 img-thumbnail shade bg-light">
+<div id="donors" class="py-5 pt-5 pb-4 border-bottom">
     @if(is_null($donors))
     @else
     <div class="container">
-        <h2 class="text-center text-uppercase mb-4-5">Our Donors</h2>
+        <h2 class="text-center text-uppercase">Our Donors</h2>
         <div class="row col-md-12">
             @foreach ($donors as $donor)
             <div class="col-md-2 text-center">
@@ -160,11 +159,11 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
 </div>
 
 <!-- Staff -->
-<div id="staff" class="pt-5 pb-4 bg-light">
+<div id="staff" class="py-5 pt-5 pb-4 bg-light border-bottom">
     @if(is_null($employees))
     @else
     <div class="container">
-        <h2 class="text-center text-uppercase mb-4-5">Our Staff</h2>
+        <h2 class="text-center text-uppercase">Our Staff</h2>
         <div class="row col-md">
             @foreach ($employees as $employee)
             <div class="col-md-3 text-center">
@@ -183,12 +182,11 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
 </div>
 
 <!-- Contact -->
-<div id="contact" class="pt-5 pb-4 bg-light">
+<div id="contact" class="py-5 pt-5 pb-4 border-bottom">
     <div class="container">
-        <h2 class="text-center text-uppercase mb-4-5" style="">Contact Us</h2>
+        <h2 class="text-center text-uppercase">Contact Us</h2>
         <div class="row">
             <div class="col-md-4 mb-4">
-                <p>Please feel free to get in touch with us today!</p>
                 <ul class="list-unstyled lead mb-0">
                     <li class="mb-2">
                         <i class="fa fa-fw fa-phone"></i> +255 777 427450

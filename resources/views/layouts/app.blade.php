@@ -55,7 +55,6 @@
                         @if (Request::is('/'))
                         <ul class="navbar-nav ml-auto">
                           <li class="nav-item"><a class="nav-link scroll" href="#about">ABOUT</a></li>
-                          <li class="nav-item"><a class="nav-link scroll" href="#features">FOCUS</a></li>
                           <li class="nav-item"><a class="nav-link scroll" href="#galleries">LATEST</a></li>
                           <li class="nav-item"><a class="nav-link scroll" href="#beneficiaries">BENEFICIARIES</a></li>
                           <li class="nav-item"><a class="nav-link scroll" href="#donors">DONORS</a></li>
