@@ -7,20 +7,10 @@
 // Lightbox
 @import '~lightbox2/dist/css/lightbox.css';
 
+// aos
+@import '~aos/dist/aos.css';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 // Font-Awesome
 @import '~font-awesome/scss/font-awesome';
-
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-
-#home {
-    padding-top: 50px;
-}
-
-#btn-contact {
-    margin-top: 20px;
-}

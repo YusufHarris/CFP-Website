@@ -21,14 +21,14 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <h2 class="text-center text-uppercase">Mission</h3>
+                <h2 class="text-center text-uppercase" data-aos="fade-right">Mission</h3>
                 <p class="lead mb-0">
                     To adapt to climate change and overcome poverty on Pemba Island by
                     sharing knowledge, advancing sustainable livelihoods, and restoring the
                     natural environment.
                 </p>
                 <hr/>
-                <h2 class="text-center text-uppercase">Vision</h3>
+                <h2 class="text-center text-uppercase" data-aos="fade-left">Vision</h3>
                 <p class="lead mb-0 ">
                     Pemba communities thrive in harmony with the natural world. The
                     challenges of climate change are overcome with resilient livelihoods that
@@ -39,7 +39,7 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
         </div>
         <div class="row text-center">
             <div class="col-md-3 mb-4">
-                <i class="fa fa-4x fa-shopping-basket text-warning"></i>
+                <i class="fa fa-4x fa-shopping-basket text-warning" data-aos="flip-up"></i>
                 <h4>Agriculture</h4>
                 <p class="mb-0">
                     We have expertise in assisting small-scale farmers to convert thier monoculture farmland,
@@ -49,7 +49,7 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
                 </p>
             </div>
             <div class="col-md-3 mb-4">
-                <i class="fa fa-4x fa-bolt text-danger"></i>
+                <i class="fa fa-4x fa-bolt text-danger" data-aos="flip-right"></i>
                 <h4>Energy</h4>
                 <p class="mb-0">
                     In partnership with <a href="https://forestsinternational.org/">CFI</a>, we developed a
@@ -63,7 +63,7 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
                 </p>
             </div>
             <div class="col-md-3 mb-4">
-                <i class="fa fa-4x fa-tree text-success"></i>
+                <i class="fa fa-4x fa-tree text-success"  data-aos="flip-down"></i>
                 <h4>Forestry</h4>
                 <p class="mb-0">
                     We have assisted over 32 communities throughout Pemba with planting over one million trees
@@ -75,7 +75,7 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
                 </p>
             </div>
             <div class="col-md-3 mb-4">
-                <i class="fa fa-4x fa-tint text-primary"></i>
+                <i class="fa fa-4x fa-tint text-primary"  data-aos="flip-left"></i>
                 <h4>Water</h4>
                 <p class="mb-0">
                     We assist communities with improving access to water for households and agriculture, including
@@ -92,7 +92,7 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
     @if(is_null($galleries))
     @else
     <div class="container">
-        <h2 class="text-center text-uppercase">Latest <a href="{{route('galleries')}}">News</a></h2>
+        <h2 class="text-center text-uppercase" data-aos="fade-right">Latest <a href="{{route('galleries')}}">News</a></h2>
         <div class="row col-md">
             @foreach($galleries as $gallery)
             <div class="col-md-3 mb-4 img-thumbnail">
@@ -113,7 +113,7 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
 <!-- Beneficiaries -->
 <div id="beneficiaries" class="py-5 pt-5 pb-4 bg-light border-bottom">
     <div class="container">
-        <h2 class="text-center text-uppercase">Meet Our Beneficiaries</h2>
+        <h2 class="text-center text-uppercase" data-aos="fade-left">Meet Our Beneficiaries</h2>
         <div id="carouselTestimonials" class="carousel slide text-center" data-ride="carousel" data-interval="7500" style="height:400px;">
             <div class="carousel-inner">
                 <?php $cnt = 0; ?>
@@ -146,7 +146,7 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
     @if(is_null($donors))
     @else
     <div class="container">
-        <h2 class="text-center text-uppercase">Our Donors</h2>
+        <h2 class="text-center text-uppercase" data-aos="fade-right">Our Supporters</h2>
         <div class="row col-md-12">
             @foreach ($donors as $donor)
             <div class="col-md-2 text-center">
@@ -163,7 +163,7 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
     @if(is_null($employees))
     @else
     <div class="container">
-        <h2 class="text-center text-uppercase">Our Staff</h2>
+        <h2 class="text-center text-uppercase" data-aos="fade-left">Our Staff</h2>
         <div class="row col-md">
             @foreach ($employees as $employee)
             <div class="col-md-3 text-center">
@@ -184,7 +184,7 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
 <!-- Contact -->
 <div id="contact" class="py-5 pt-5 pb-4 border-bottom">
     <div class="container">
-        <h2 class="text-center text-uppercase">Contact Us</h2>
+        <h2 class="text-center text-uppercase" data-aos="fade-right">Contact Us</h2>
         <div class="row">
             <div class="col-md-4 mb-4">
                 <ul class="list-unstyled lead mb-0">
@@ -217,7 +217,7 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
 <!-- social -->
 <div id="social" class="pt-5 pb-4 bg-dark">
     <div class="container">
-        <h2 class="text-center text-uppercase text-light mb-4-5">Like &amp; Follow Us</h2>
+        <h2 class="text-center text-uppercase text-light mb-4-5" data-aos="fade-left">Like &amp; Follow Us</h2>
         <div class="row justify-content-center">
             <div class="col-auto mb-4">
                 <a href="https://www.facebook.com/COMMUNITYFORESTSPEMBA" class="text-light" target="_blank">

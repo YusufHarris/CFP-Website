@@ -30,6 +30,8 @@
 
 </head>
 <body>
+    <!-- Initialize Animate on Scroll -->
+    <script>AOS.init({once: true});</script>
     <div id="app">
         @if (Request::is('/'))
         <nav id="welcome" class="navbar fixed-top navbar-expand-md navbar-dark nav-welcome-bg">

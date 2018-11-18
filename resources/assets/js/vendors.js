@@ -9,6 +9,8 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+window.AOS = require('aos');
+
 window.L = require('leaflet');
 
 window.lightbox = require('lightbox2');
