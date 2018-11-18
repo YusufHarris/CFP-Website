@@ -23,70 +23,65 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
             <div class="col-md-8 offset-md-2">
                 <h2 class="text-center text-uppercase mb-4-5" style="margin-bottom:25px;">About</h2>
                 <hr/>
-                <h3 class="text-center text-uppercase rounded">Vision</h3>
-                <p class="lead mb-0 ">
-                    Pemba communities thrive in harmony with the natural world. The
-                    challenges of climate change are overcome with resilient livelihoods that
-                    create lasting positive change.
-                </p>
-                <hr/>
                 <h3 class="text-center text-uppercase rounded">Mission</h3>
                 <p class="lead mb-0">
                     To adapt to climate change and overcome poverty on Pemba Island by
                     sharing knowledge, advancing sustainable livelihoods, and restoring the
                     natural environment.
                 </p>
+                <hr/>
+                <h3 class="text-center text-uppercase rounded">Vision</h3>
+                <p class="lead mb-0 ">
+                    Pemba communities thrive in harmony with the natural world. The
+                    challenges of climate change are overcome with resilient livelihoods that
+                    create lasting positive change.
+                </p>
             </div>
         </div>
-    </div>
-</div>
-
-<!-- Focus -->
-<div id="features" class="pt-5 pb-4 img-thumbnail shade text-center bg-light">
-    <div class="container">
-        <h2 class="text-uppercase mb-4-5">Our Focus</h2>
-        <div class="row">
+        <div class="row text-center">
             <div class="col-md-3 mb-4">
-                <div>
-                    <i class="fa fa-4x fa-tint text-primary"></i>
-                </div>
-                <h4>Water</h4>
-                <p class="mb-0">
-                    Community Forests Pemba has installed two large scale rain water harvesting systems on two remote islets off of the coast of Pemba.
-                    These systems come complete with large storage tanks and UV and micron filters to ensure that the water is safe for consumption.
-                </p>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div>
-                    <i class="fa fa-4x fa-shopping-basket text-warning"></i>
-                </div>
+                <i class="fa fa-4x fa-shopping-basket text-warning"></i>
                 <h4>Agriculture</h4>
                 <p class="mb-0">
-                    Our communities are practicing a multitude of small-scale gardening
-                    techniques to increase their access to the fruits and vegetables necessary for a
-                    healthy diet.
+                    We have expertise in assisting small-scale farmers to convert thier monoculture farmland,
+                    a common practice throughout Pemba, to regenerative and diversified agroforesty and spice
+                    forest polyculture systems.  We also assist women with developing household permaculture
+                    systems for improving nutrition and developing small businesses selling their produce.
                 </p>
             </div>
             <div class="col-md-3 mb-4">
-                <div>
-                    <i class="fa fa-4x fa-tree text-success"></i>
-                </div>
-                <h4>Forestry</h4>
-                <p class="mb-0">
-                    Our communities have planted over 1,000,000 trees throughout Pemba.
-                    It is inspiring to see tree planting continue to grow and spread throughout the island.
-                </p>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div>
-                    <i class="fa fa-4x fa-bolt text-danger"></i>
-                </div>
+                <i class="fa fa-4x fa-bolt text-danger"></i>
                 <h4>Energy</h4>
                 <p class="mb-0">
-                    Community Forests Pemba is working to revolutionize off grid electricity.
-                    Each household in a community receives a locally available motorcycle battery and 12V LED light bulb.
-                    When the battery dies, they then take the battery to the central charging station,
-                    where they pay into a community fund and recharge the battery.
+                    In partnership with <a href="https://forestsinternational.org/">CFI</a>, we developed a
+                    community-wide solar portable microgrid, that has since spun off into the for-profit business,
+                    <a href="https://www.jazaenergy.com/">Jaza Energy</a>.  In communities with limited access
+                    to main-line energy where the Jaza model does not fit, we continue to improve access to
+                    renewable energy through community-based systems, whether it's in the community's gathering
+                    center or at the household level.
+                    We also have expertise in improved cook stove production that reduces both smoke and biomass
+                    consumption.
+                </p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <i class="fa fa-4x fa-tree text-success"></i>
+                <h4>Forestry</h4>
+                <p class="mb-0">
+                    We have assisted over 32 communities throughout Pemba with planting over one million trees
+                    and counting.  Coupled with reforestation efforts, we work in partnership with local government
+                    authorities to support communities with gaining land rights to their forests and building their
+                    capacity to sustainably manage them through community-based natural resource management plans.
+                    Additionally, we work with communities to develop sustainable beekeeping in the forests to
+                    provide non-wood-based forest products as alternative income generation activities.
+                </p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <i class="fa fa-4x fa-tint text-primary"></i>
+                <h4>Water</h4>
+                <p class="mb-0">
+                    We assist communities with improving access to water for households and agriculture, including
+                    community-scale rainwater harvesting systems, catchment conservation, drip irrigation systesm,
+                    and gray water use for household vegetable gardens.
                 </p>
             </div>
         </div>
