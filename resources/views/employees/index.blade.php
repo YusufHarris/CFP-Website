@@ -31,11 +31,14 @@
                         <td>{{ $employee->name }}</td>
                         <td>{{ $employee->title }}</td>
                         <td class="text-right">
-                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete">{{ __('Delete Employee') }}</button>
-
+                            <a href="{{ route('employee.edit', $employee->id) }}" class="btn btn-warning">
+                                <i class="fa fa-pencil"></i> {{ __('Edit') }}
+                            </a>
                         </td>
                         <td class="text-right">
-                            <a href="{{ route('employee.edit', $employee->id) }}" class="btn btn-warning">Edit</a>
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete">
+                              <i class="fa fa-user-times"></i> {{ __('Delete') }}
+                          </button>
                         </td>
                     </tr>
                 @endforeach
