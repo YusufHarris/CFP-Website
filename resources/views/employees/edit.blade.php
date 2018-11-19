@@ -45,14 +45,30 @@
                             <div class="col-md-6">
                                 <textarea id="description" type="text" value="{{$employee->description}}" class="form-control" name="description" rows="3" cols="4">{{$employee->description}}</textarea>
                             </div>
+
+                            <div class="col-md-6">
+                                @if ($errors->has('description'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Current Profile Picture') }}</label>
+                            <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Profile Picture') }}</label>
 
                             <div class="col-md-6">
                                 <img src="{{$employee->avatar}}" alt="{{$employee->name}}" width="50px" height="50px" class="rounded">
                                 <input id="avatar" type="file" class="form-control" name="avatar" accept="image/*">
+                            </div>
+
+                            <div class="col-md-6">
+                                @if ($errors->has('avatar'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('avatar') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

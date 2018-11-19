@@ -5,7 +5,9 @@
 <div class="container">
 
     <div class="text-right">
-    <a class="btn btn-primary" href="{{ route('employee.create') }}">{{ __('New Employee') }}</a>
+    <a class="btn btn-primary" href="{{ route('employee.create') }}">
+        <i class="fa fa-plus-circle"></i> {{ __('New') }}
+    </a>
     </div>
     <br />
 
@@ -18,7 +20,7 @@
                       <th>Picture</th>
                       <th>Name</th>
                       <th>Job Title</th>
-                      <th class="text-right" colspan="2">Action</th>
+                      <th class="text-right">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,11 +36,9 @@
                             <a href="{{ route('employee.edit', $employee->id) }}" class="btn btn-warning">
                                 <i class="fa fa-pencil"></i> {{ __('Edit') }}
                             </a>
-                        </td>
-                        <td class="text-right">
-                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete">
-                              <i class="fa fa-user-times"></i> {{ __('Delete') }}
-                          </button>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete">
+                                <i class="fa fa-user-times"></i> {{ __('Delete') }}
+                            </button>
                         </td>
                     </tr>
                 @endforeach

@@ -45,6 +45,14 @@
                             <div class="col-md-6">
                                 <textarea id="description" type="text" class="form-control" name="description" rows="3" cols="4" required></textarea>
                             </div>
+
+                            <div class="col-md-6">
+                                @if ($errors->has('description'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
 
                         <div class="form-group row">
@@ -52,6 +60,14 @@
 
                             <div class="col-md-6">
                                 <input id="avatar" type="file" class="form-control" name="avatar" accept="image/*" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                @if ($errors->has('avatar'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('avatar') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

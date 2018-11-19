@@ -57,11 +57,11 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
 
-        //Validate Employee entry
+        // Validate Employee entry
         $request->validate([
           'name' => 'required|max:191|string',
           'title' => 'required|max:191|string',
-          'description' => 'required|max:191|string',
+          'description' => 'required|string',
           'avatar' => 'image|required',
         ]);
 
@@ -118,7 +118,7 @@ class EmployeeController extends Controller
       $request->validate([
         'name' => 'required|max:191|string',
         'title' => 'required|max:191|string',
-        'description' => 'required|max:191|string',
+        'description' => 'required|string',
         'avatar' => 'image',
       ]);
 
