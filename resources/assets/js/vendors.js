@@ -20,3 +20,5 @@ require('jquery-parallax.js');
 window.d3 = require('d3');
 
 window.taucharts = require('taucharts');
+
+require('countup.js');
