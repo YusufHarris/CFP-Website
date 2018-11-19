@@ -60,7 +60,7 @@
                           <li class="nav-item"><a class="nav-link scroll" href="#galleries">LATEST</a></li>
                           <li class="nav-item"><a class="nav-link scroll" href="#beneficiaries">BENEFICIARIES</a></li>
                           <li class="nav-item"><a class="nav-link scroll" href="#donors">DONORS</a></li>
-                          <li class="nav-item"><a class="nav-link scroll" href="#staff">STAFF</a></li>
+                          <li class="nav-item"><a class="nav-link scroll" href="#team">TEAM</a></li>
                           <li class="nav-item"><a class="nav-link scroll" href="#contact">CONTACT</a></li>
                         </ul>
                         @endif

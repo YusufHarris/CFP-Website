@@ -158,12 +158,12 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
     @endif
 </div>
 
-<!-- Staff -->
-<div id="staff" class="py-5 pt-5 pb-4 bg-light border-bottom">
+<!-- Team -->
+<div id="team" class="py-5 pt-5 pb-4 bg-light border-bottom">
     @if(is_null($employees))
     @else
     <div class="container">
-        <h2 class="text-center text-uppercase" data-aos="fade-left">Our Staff</h2>
+        <h2 class="text-center text-uppercase" data-aos="fade-left">Our Team</h2>
         <div class="row col-md">
             @foreach ($employees as $employee)
             <div class="col-md-3 text-center">
