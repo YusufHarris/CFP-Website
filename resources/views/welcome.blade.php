@@ -56,9 +56,8 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
                     community-wide solar portable microgrid, that has since spun off into the for-profit business,
                     <a href="https://www.jazaenergy.com/">Jaza</a>.  In communities with limited access
                     to main-line energy where the Jaza model does not fit, we continue to improve access to
-                    renewable energy through community-based systems, whether it's in the community's gathering
-                    center or at the household level.
-                    We also have expertise in improved cook stove production that reduces both smoke and biomass
+                    renewable energy through community-based systems.
+                    We also have expertise in improved cook stove production to reduce both smoke and biomass
                     consumption.
                 </p>
             </div>
@@ -69,9 +68,7 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
                     We have assisted over 32 communities throughout Pemba with planting over one million trees
                     and counting.  Coupled with reforestation efforts, we work in partnership with local government
                     authorities to support communities with gaining land rights to their forests and building their
-                    capacity to sustainably manage them through community-based natural resource management plans.
-                    Additionally, we work with communities to develop sustainable beekeeping in the forests to
-                    provide non-wood-based forest products as alternative income generation activities.
+                    capacity for sustainable management through community-based natural resource management plans.
                 </p>
             </div>
             <div class="col-md-3 mb-4">
