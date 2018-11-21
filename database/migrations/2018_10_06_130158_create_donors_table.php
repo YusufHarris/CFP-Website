@@ -18,6 +18,7 @@ class CreateDonorsTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('logo');
+            $table->boolean('current')->default(0);
         });
     }
 

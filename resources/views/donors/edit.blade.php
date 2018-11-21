@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Edit ') }}{{$donor->title}}{{__('`s profile.')}}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('donor.update',$donor->id) }}" aria-label="{{ __('Create donor') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('donor.update', $donor->id) }}" aria-label="{{ __('Update') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -24,11 +24,20 @@
                                 @endif
                             </div>
                         </div>
+
                         <div class="form-group row">
-                            <label for="logo" class="col-md-4 col-form-label text-md-right">{{ __('Current Profile Picture') }}</label>
+                            <label for="current" class="col-md-4 col-form-label text-md-right">{{ __('Current') }}</label>
 
                             <div class="col-md-6">
-                                <img src="{{$donor->logo}}" alt="{{$donor->title}}" width="50px" height="50px" class="rounded">
+                                <input id="current" type="checkbox" class="form-control{{ $errors->has('current') ? ' is-invalid' : '' }}" name="current" value="1" {{ $donor->current ? 'checked' : '' }}>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="logo" class="col-md-4 col-form-label text-md-right">{{ __('Logo') }}</label>
+
+                            <div class="col-md-6">
+                                <img src="{{str_replace('_thm.', '.', $donor->logo)}}" alt="{{$donor->title}}" height="50px" class="rounded">
                                 <input id="logo" type="file" class="form-control" name="logo" accept="image/*">
                             </div>
                         </div>
@@ -36,7 +45,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Update Donor') }}
+                                    <i class="fa fa-check-circle"></i> {{ __('Update') }}
                                 </button>
                             </div>
                         </div>
@@ -46,4 +55,5 @@
         </div>
     </div>
 </div>
+
 @endsection

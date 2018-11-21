@@ -14,7 +14,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $donors = Donor::all();
+        $donors = Donor::select()->orderBy('current', 'desc')->get();
         $employees = Employee::all();
         $beneficiaries = Beneficiary::all();
         $galleries = Gallery::take(4)->with('photos')->get();

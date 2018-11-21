@@ -100,11 +100,10 @@ class BeneficiaryController extends Controller
     {
         // Get the Beneficiary
         $beneficiary = Beneficiary::findOrFail($id);
-
+        
         // Validate Beneficiary entry
         $request->validate([
             'name' => 'required|max:191|string',
-            'introduction' => 'required|max:191|string',
             'avatar' => 'image',
         ]);
 

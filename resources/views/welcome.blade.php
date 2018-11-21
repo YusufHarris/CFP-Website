@@ -143,11 +143,11 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
     @if(is_null($donors))
     @else
     <div class="container">
-        <h2 class="text-center text-uppercase" data-aos="fade-right">Our Supporters</h2>
+        <h2 class="text-center text-uppercase" data-aos="fade-right">Our Donors</h2>
         <div class="row col-md-12">
             @foreach ($donors as $donor)
-            <div class="col-md-2 text-center">
-                <img src="{{$donor->logo}}" data-toggle="tooltip" data-html="true" data-animation="true" title="{{$donor->title}}" class="curve img-thumbnail shadow" alt="$donor->title">
+            <div class="col-md-6 col-lg-4 justify-content-center d-flex align-items-center">
+                <img src="{{$donor->logo}}" data-toggle="tooltip" title="{{$donor->title}}" class="curve" alt="$donor->title">
             </div>
             @endforeach
         </div>
@@ -163,13 +163,12 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
         <h2 class="text-center text-uppercase" data-aos="fade-left">Our Team</h2>
         <div class="row col-md">
             @foreach ($employees as $employee)
-            <div class="col-md-3 text-center">
+            <div class="col-md-4 text-center">
                 <ul style="list-style-type:none;">
-                    <li><img src="{{$employee->avatar}}" class="avatar-sm curve shade img-thumbnail" onerror="this.src='https://i.imgur.com/fitWknA.png';" alt="{{$employee->name}} Photo"/></p>
+                    <li><img src="{{$employee->avatar}}" class="avatar-sm curve shade img-thumbnail" onerror="this.src='/storage/mainmenu_logo.png';" alt="{{$employee->name}} Photo"/></p>
                     <li><h4>{{$employee->name}}</h4></li>
                     <li><strong><h5 style="font-style:italic;">{{$employee->title}}</h5></strong></li>
-                    <li>{{$employee->description}}</li>
-
+                    <li class="text-justify">{{$employee->description}}</li>
                 </ul>
             </div>
             @endforeach
