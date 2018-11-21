@@ -56,41 +56,11 @@
                                 </button>
                             </div>
                         </div>
-
                     </form>
-                </div>
-
-                <div class="card-footer text-right">
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete">
-                            <i class="fa fa-user-times"></i> {{ __('Delete') }}
-                        </button>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<!-- Delete Confirmation Popup -->
-<div id="confirmDelete" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">{{ __('Delete this beneficiary?') }}</h4>
-            </div>
-            <div class="modal-body">
-                <p>{{ __('Are you sure you want to delete this beneficiary?  It cannot be recovered.') }}</p>
-            </div>
-            <div class="modal-footer">
-                <form method="POST" action="{{ route('beneficiary.destroy', $beneficiary->id) }}" aria-label="{{ __('Delete') }}">
-                    @csrf
-                    <input name="_method" type="hidden" value="DELETE">
-                    <button type="submit" class="btn btn-primary">Yes</a>
-                </form>
-                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-            </div>
-        </div>
-  </div>
 </div>
 
 @endsection
