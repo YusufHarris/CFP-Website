@@ -135,7 +135,7 @@ class BeneficiaryController extends Controller
 
         // Save the Beneficiary with confirmation
         $beneficiary->save();
-        return redirect()->back()->with('success', "Updated ".$beneficiary->name."`s details.");
+        return redirect('beneficiaries')->with('success', "Updated ".$beneficiary->name."`s details.");
      }
 
     /**
