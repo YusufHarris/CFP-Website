@@ -36,7 +36,7 @@
                             <a href="{{ route('employee.edit', $employee->id) }}" class="btn btn-warning">
                                 <i class="fa fa-pencil"></i> {{ __('Edit') }}
                             </a>
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete">
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete{{ $employee->id }}">
                                 <i class="fa fa-user-times"></i> {{ __('Delete') }}
                             </button>
                         </td>
@@ -50,12 +50,12 @@
 
 @foreach ($employees as $employee)
 <!-- Delete Confirmation Popup -->
-<div id="confirmDelete" class="modal fade" role="dialog">
+<div id="confirmDelete{{ $employee->id }}" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">{{ __('Delete Employee?') }}</h4>
+                <h4 class="modal-title">{{ __('Delete') }} {{ $employee->name }}?</h4>
             </div>
             <div class="modal-body">
                 <p>{{ __('Are you sure you want to delete this Employee?') }}</p>
