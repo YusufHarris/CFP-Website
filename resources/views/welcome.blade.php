@@ -163,13 +163,11 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
         <h2 class="text-center text-uppercase" data-aos="fade-left">Our Team</h2>
         <div class="row col-md">
             @foreach ($employees as $employee)
-            <div class="col-md-4 text-center">
-                <ul style="list-style-type:none;">
-                    <li><img src="{{$employee->avatar}}" class="avatar-sm curve shade img-thumbnail" onerror="this.src='/storage/mainmenu_logo.png';" alt="{{$employee->name}} Photo"/></p>
-                    <li><h4>{{$employee->name}}</h4></li>
-                    <li><strong><h5 style="font-style:italic;">{{$employee->title}}</h5></strong></li>
-                    <li class="text-justify">{{$employee->description}}</li>
-                </ul>
+            <div class="col-md-6 col-lg-4 text-center">
+                <img src="{{$employee->avatar}}" class="avatar-sm curve shade img-thumbnail" onerror="this.src='/storage/mainmenu_logo.png';" alt="{{$employee->name}} Photo"/>
+                <h4>{{$employee->name}}</h4>
+                <h5>{{$employee->title}}</h5>
+                <p class="text-justify">{{$employee->description}}</p>
             </div>
             @endforeach
         </div>
