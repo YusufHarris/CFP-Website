@@ -146,7 +146,7 @@ $('.parallax-window').parallax({imageSrc: '/storage/main/banner.jpg'});
         <h2 class="text-center text-uppercase" data-aos="fade-right">Our Donors</h2>
         <div class="row col-md-12">
             @foreach ($donors as $donor)
-            <div class="col-md-6 col-lg-4 justify-content-center d-flex align-items-center">
+            <div class="col-md-6 col-lg-4 py-4 justify-content-center d-flex align-items-center">
                 <img src="{{$donor->logo}}" data-toggle="tooltip" title="{{$donor->title}}" class="curve" alt="$donor->title">
             </div>
             @endforeach
