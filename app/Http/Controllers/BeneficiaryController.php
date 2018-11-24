@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Main\Beneficiary;
+use App\Repositories\Main\Beneficiary\BeneficiaryInterface;
+
 use Illuminate\Http\Request;
 use \Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
@@ -13,18 +15,27 @@ class BeneficiaryController extends Controller
 {
 
     /**
+     * @var App\Repositories\Main\Beneficiary\BeneficiaryInterface
+     */
+    protected $beneficiary;
+
+    public function __construct(BeneficiaryInterface $beneficiary)
+    {
+        // Limit access to authenticated users
+        $this->middleware('auth');
+
+        // Set the beneficiary interface
+        $this->beneficiary = $beneficiary;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        $beneficiaries = Beneficiary::all();
+        $beneficiaries = $this->beneficiary->getAll();
         return view('beneficiaries.index', compact('beneficiaries'));
     }
 
@@ -46,7 +57,7 @@ class BeneficiaryController extends Controller
      */
     public function store(Request $request)
     {
-        //Validate Beneficiary entry
+        // Validate Beneficiary entry
         $request->validate([
             'name' => 'required|max:191|string',
             'introduction' => 'required|max:191|string',
@@ -100,7 +111,7 @@ class BeneficiaryController extends Controller
     {
         // Get the Beneficiary
         $beneficiary = Beneficiary::findOrFail($id);
-        
+
         // Validate Beneficiary entry
         $request->validate([
             'name' => 'required|max:191|string',

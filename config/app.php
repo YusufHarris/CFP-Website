@@ -165,6 +165,11 @@ return [
          */
         Intervention\Image\ImageServiceProvider::class,
 
+        /*
+         * Repository Service Providers...
+         */
+        App\Repositories\RepositoryServiceProvider::class,
+
     ],
 
     /*
